@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Noordkust Roleplay - Webshop</title>
+  <title>Noordkust Roleplay | FiveM Roleplay</title>
+  
+  <!-- Tabblad icoontje (Favicon) -->
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
+
   <style>
     /* Algemene stijlen */
     * {
@@ -12,122 +16,189 @@
       padding: 0;
     }
     body {
-      font-family: Arial, sans-serif;
-      background-color: #0f172a;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0b0f19;
       color: #ffffff;
       line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* Navigatiebalk & Header */
+    /* Navigatiebalk */
     header {
-      background-color: #1e293b;
-      padding: 15px 30px;
+      background-color: rgba(11, 15, 25, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 15px 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 3px solid #0284c7;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .brand-container {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 12px;
+      text-decoration: none;
     }
 
-    /* Logo styling */
+    /* Logo styling in header */
     .site-logo {
-      height: 65px;
+      height: 45px;
       width: auto;
       border-radius: 50%;
-      object-fit: contain;
-      box-shadow: 0 0 10px rgba(2, 132, 199, 0.5);
+      object-fit: cover;
     }
 
-    .site-title {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #38bdf8;
+    .brand-text {
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: 0.5px;
+      color: #ffffff;
     }
 
-    nav ul {
+    .brand-text span {
+      color: #3b82f6;
+    }
+
+    nav {
       display: flex;
-      list-style: none;
-      gap: 20px;
+      gap: 30px;
     }
 
     nav a {
-      color: #f8fafc;
+      color: #94a3b8;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 500;
+      font-size: 0.95rem;
       transition: color 0.2s;
     }
 
     nav a:hover {
-      color: #38bdf8;
+      color: #ffffff;
     }
 
-    /* Hoofdcontent */
+    /* Hero Sectie */
     main {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
-    .welcome-card {
-      background-color: #1e293b;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    .badge {
+      background-color: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
     h1 {
-      margin-bottom: 15px;
-      color: #38bdf8;
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
     }
 
-    p {
-      color: #cbd5e1;
-      font-size: 1.1rem;
+    h1 .highlight {
+      color: #3b82f6;
+      display: block;
     }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #64748b;
-      margin-top: 50px;
+    p.subtitle {
+      color: #94a3b8;
+      font-size: 1.15rem;
+      max-width: 650px;
+      margin-bottom: 40px;
+    }
+
+    /* Knoppen */
+    .button-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      background-color: #4f46e5;
+      color: #ffffff;
+      border: 1px solid #6366f1;
+    }
+
+    .btn-primary:hover {
+      background-color: #4338ca;
+    }
+
+    .btn-secondary {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="brand-container">
-      <!-- Logo -->
+    <a href="index.html" class="brand-container">
       <img src="logo.jpg" alt="Noordkust RP Logo" class="site-logo">
-      <span class="site-title">Noordkust RP</span>
-    </div>
+      <span class="brand-text">NOORDKUST<span>RP</span></span>
+    </a>
     <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="admin.html">Admin</a></li>
-      </ul>
+      <a href="index.html">Home</a>
+      <a href="#">Mogelijkheden</a>
+      <a href="#">Discords</a>
+      <a href="admin.html">Admin</a>
     </nav>
   </header>
 
   <main>
-    <div class="welcome-card">
-      <h1>Welkom bij Noordkust Roleplay! 🚓</h1>
-      <p>
-        Een unieke FiveM Roleplay-server waar realistisch roleplay, actie en gezelligheid samenkomen.
-        Politie, Ambulance, Auto's, Criminelen & Actieve community.
-      </p>
+    <div class="badge">
+      🌊 Welkom bij Noordkust Roleplay
+    </div>
+
+    <h1>JOUW STAD.<span class="highlight">JOUW VERHAAL.</span></h1>
+
+    <p class="subtitle">
+      Stap in de wereld van Noordkust Roleplay. Beleef unieke roleplay, bouw je eigen carrière, maak vrienden en bepaal zelf hoe jouw verhaal eindigt.
+    </p>
+
+    <div class="button-group">
+      <a href="#" class="btn btn-primary">💬 Join Main Discord</a>
+      <a href="#" class="btn btn-secondary">Ontdek Noordkust →</a>
     </div>
   </main>
-
-  <footer>
-    &copy; 2026 Noordkust Roleplay. Alle rechten voorbehouden.
-  </footer>
 
 </body>
 </html>
