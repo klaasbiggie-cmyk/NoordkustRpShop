@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Noordkust Roleplay | FiveM Roleplay</title>
   
-  <!-- Tabblad icoontje (Favicon) -->
+  <!-- Tabblad icoontjes (Favicon) -->
   <link rel="icon" type="image/jpeg" href="logo.jpg">
+  <link rel="shortcut icon" type="image/jpeg" href="logo.jpg">
+  <link rel="apple-touch-icon" href="logo.jpg">
 
   <style>
-    /* Algemene stijlen */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -17,9 +18,8 @@
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #0b0f19;
+      background-color: #030712;
       color: #ffffff;
-      line-height: 1.6;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -27,16 +27,10 @@
 
     /* Navigatiebalk */
     header {
-      background-color: rgba(11, 15, 25, 0.8);
-      backdrop-filter: blur(10px);
-      padding: 15px 40px;
+      padding: 20px 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .brand-container {
@@ -46,9 +40,8 @@
       text-decoration: none;
     }
 
-    /* Logo styling in header */
     .site-logo {
-      height: 45px;
+      height: 42px;
       width: auto;
       border-radius: 50%;
       object-fit: cover;
@@ -56,7 +49,7 @@
 
     .brand-text {
       font-weight: 800;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       letter-spacing: 0.5px;
       color: #ffffff;
     }
@@ -67,11 +60,11 @@
 
     nav {
       display: flex;
-      gap: 30px;
+      gap: 32px;
     }
 
     nav a {
-      color: #94a3b8;
+      color: #9ca3af;
       text-decoration: none;
       font-weight: 500;
       font-size: 0.95rem;
@@ -82,7 +75,7 @@
       color: #ffffff;
     }
 
-    /* Hero Sectie */
+    /* Hero inhoud */
     main {
       flex: 1;
       display: flex;
@@ -90,32 +83,31 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 60px 20px;
-      max-width: 900px;
-      margin: 0 auto;
+      padding: 0 20px;
+      margin-top: 40px;
     }
 
     .badge {
-      background-color: rgba(59, 130, 246, 0.1);
-      border: 1px solid rgba(59, 130, 246, 0.2);
+      background-color: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(59, 130, 246, 0.3);
       color: #60a5fa;
-      padding: 6px 16px;
+      padding: 8px 18px;
       border-radius: 20px;
       font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 30px;
+      font-weight: 500;
+      margin-bottom: 35px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
     }
 
     h1 {
-      font-size: 3.5rem;
+      font-size: 4.5rem;
       font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -1px;
-      margin-bottom: 20px;
-      text-transform: uppercase;
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 25px;
+      max-width: 900px;
     }
 
     h1 .highlight {
@@ -124,33 +116,31 @@
     }
 
     p.subtitle {
-      color: #94a3b8;
-      font-size: 1.15rem;
-      max-width: 650px;
+      color: #9ca3af;
+      font-size: 1.1rem;
+      max-width: 600px;
       margin-bottom: 40px;
+      line-height: 1.6;
     }
 
     /* Knoppen */
     .button-group {
       display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      justify-content: center;
+      gap: 16px;
     }
 
     .btn {
-      padding: 12px 28px;
+      padding: 12px 24px;
       border-radius: 8px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.2s;
       font-size: 0.95rem;
+      transition: all 0.2s;
     }
 
     .btn-primary {
       background-color: #4f46e5;
       color: #ffffff;
-      border: 1px solid #6366f1;
     }
 
     .btn-primary:hover {
@@ -158,13 +148,13 @@
     }
 
     .btn-secondary {
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: transparent;
       color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .btn-secondary:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.05);
     }
   </style>
 </head>
@@ -179,7 +169,6 @@
       <a href="index.html">Home</a>
       <a href="#">Mogelijkheden</a>
       <a href="#">Discords</a>
-      <a href="admin.html">Admin</a>
     </nav>
   </header>
 
