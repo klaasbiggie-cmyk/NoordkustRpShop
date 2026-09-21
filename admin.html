@@ -3,17 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NoordKust RP - Geavanceerd Staff Panel</title>
+  <title>NoordKust RP - Live Admin Control Panel</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDSgeqJqqf_7NDo2Fi9j4On4k9iWNODczs",
+      authDomain: "noordkustrp-7a0bd.firebaseapp.com",
+      projectId: "noordkustrp-7a0bd",
+      storageBucket: "noordkustrp-7a0bd.firebasestorage.app",
+      messagingSenderId: "395759032224",
+      appId: "1:395759032224:web:389a9f24s756af091db6c6",
+      measurementId: "G-TRXCE8MX4X"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+
   <style>
     :root {
       --primary: #00e5ff;
       --secondary: #7000ff;
       --danger: #ff0055;
       --success: #00ff66;
-      --bg-dark: #07090e;
       --card-bg: rgba(15, 18, 26, 0.95);
       --border: rgba(0, 229, 255, 0.25);
       --text: #f0f4f8;
@@ -21,214 +39,117 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+    body { background: #07090e; color: var(--text); min-height: 100vh; }
 
-    body {
-      background: linear-gradient(rgba(7, 9, 14, 0.9), rgba(7, 9, 14, 0.95)),
-                  url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
-      background-size: cover; color: var(--text); min-height: 100vh;
-    }
-
-    /* Lock Screen Modal */
     #lock-screen {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(5, 6, 10, 0.95); backdrop-filter: blur(15px);
-      display: flex; align-items: center; justify-content: center; z-index: 9999;
+      background: rgba(5, 6, 10, 0.98); display: flex; align-items: center; justify-content: center; z-index: 9999;
     }
-
     .login-box {
       background: var(--card-bg); border: 2px solid var(--primary);
-      padding: 40px; border-radius: 20px; width: 90%; max-width: 420px;
-      text-align: center; box-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
+      padding: 40px; border-radius: 20px; width: 90%; max-width: 400px; text-align: center;
     }
 
-    .login-box h2 { font-family: 'Orbitron', sans-serif; margin-bottom: 20px; color: var(--primary); }
-
-    .input-field {
-      width: 100%; padding: 12px 15px; margin-bottom: 15px;
-      background: #0a0c10; border: 1px solid var(--border);
-      border-radius: 8px; color: #fff; outline: none;
-    }
-    .input-field:focus { border-color: var(--primary); box-shadow: 0 0 8px var(--primary); }
-
-    .btn {
-      width: 100%; padding: 12px; border: none; border-radius: 8px;
-      font-weight: 700; cursor: pointer; transition: 0.3s;
-      background: linear-gradient(135deg, var(--secondary), var(--primary)); color: #fff;
-    }
-    .btn:hover { box-shadow: 0 0 15px var(--primary); transform: scale(1.02); }
-
-    /* Main Dashboard Layout */
     .dashboard { display: flex; min-height: 100vh; }
-    
     .sidebar {
       width: 260px; background: rgba(10, 12, 18, 0.98); border-right: 1px solid var(--border);
       padding: 25px; display: flex; flex-direction: column; gap: 10px;
     }
-
     .sidebar h2 { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; color: var(--primary); margin-bottom: 25px; }
 
     .nav-item {
-      padding: 12px 15px; border-radius: 10px; color: var(--text-muted);
-      cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 12px; transition: 0.3s;
+      padding: 12px 15px; border-radius: 10px; color: var(--text-muted); cursor: pointer;
+      font-weight: 600; display: flex; align-items: center; gap: 12px; transition: 0.3s;
     }
     .nav-item:hover, .nav-item.active { background: rgba(0, 229, 255, 0.1); color: var(--primary); border: 1px solid var(--border); }
 
-    .content-area { flex: 1; padding: 30px; overflow-y: auto; }
-
+    .content-area { flex: 1; padding: 30px; }
     .panel-section { display: none; }
     .panel-section.active { display: block; }
-
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
 
     .panel-card {
       background: var(--card-bg); border: 1px solid var(--border);
       border-radius: 16px; padding: 25px; margin-bottom: 20px;
     }
-
-    .panel-card h3 { font-family: 'Orbitron', sans-serif; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; color: #fff; }
-
-    .badge-status {
-      padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem;
+    .input-field {
+      width: 100%; padding: 12px 15px; margin-bottom: 15px;
+      background: #0a0c10; border: 1px solid var(--border); border-radius: 8px; color: #fff; outline: none;
     }
-    .status-online { background: rgba(0, 255, 102, 0.2); color: var(--success); border: 1px solid var(--success); }
-    .status-offline { background: rgba(255, 0, 85, 0.2); color: var(--danger); border: 1px solid var(--danger); }
+    .btn {
+      padding: 10px 20px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer;
+      background: linear-gradient(135deg, var(--secondary), var(--primary)); color: #fff;
+    }
+    .btn-danger { background: var(--danger); }
+    .btn-success { background: var(--success); color: #000; }
 
     .item-row {
       display: flex; justify-content: space-between; align-items: center;
-      background: #0a0c10; padding: 12px 15px; border-radius: 8px; margin-bottom: 10px; border: 1px solid var(--border);
+      background: #0a0c10; padding: 12px; border-radius: 8px; margin-bottom: 8px; border: 1px solid var(--border);
     }
-
-    .btn-small { padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; border: none; cursor: pointer; color: #fff; }
-    .btn-danger { background: var(--danger); }
-    .btn-success { background: var(--success); color: #000; font-weight: 700; }
   </style>
 </head>
 <body>
 
-  <!-- Inlogscherm Pop-up -->
+  <!-- Inlogscherm -->
   <div id="lock-screen">
     <div class="login-box">
-      <h2><i class="fa-solid fa-shield-halved"></i> STAFF LOGIN</h2>
-      <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;">Standaard login: <b>admin</b> / <b>admin123</b></p>
-      
-      <form id="login-form">
+      <h2 style="font-family:'Orbitron'; color:var(--primary); margin-bottom:15px;">STAFF LOGIN</h2>
+      <form onsubmit="login(event)">
         <input type="text" id="user" class="input-field" placeholder="Gebruikersnaam" required>
         <input type="password" id="pass" class="input-field" placeholder="Wachtwoord" required>
-        <button type="submit" class="btn"><i class="fa-solid fa-key"></i> Inloggen</button>
+        <button type="submit" class="btn" style="width:100%;">Inloggen</button>
       </form>
     </div>
   </div>
 
-  <!-- Dashboard -->
   <div class="dashboard">
     <div class="sidebar">
       <h2>NOORDKUST <span style="color:#fff;">RP</span></h2>
-      <div class="nav-item active" onclick="switchTab('tab-overview', this)"><i class="fa-solid fa-chart-pie"></i> Overzicht</div>
+      <div class="nav-item active" onclick="switchTab('tab-overview', this)"><i class="fa-solid fa-chart-pie"></i> Server Control</div>
       <div class="nav-item" onclick="switchTab('tab-staff', this)"><i class="fa-solid fa-users-gear"></i> Staff Beheer</div>
-      <div class="nav-item" onclick="switchTab('tab-bans', this)"><i class="fa-solid fa-ban"></i> Bans & Warns</div>
-      <div class="nav-item" onclick="switchTab('tab-apps', this)"><i class="fa-solid fa-file-signature"></i> Sollicitaties</div>
-      <div class="nav-item" onclick="switchTab('tab-security', this)"><i class="fa-solid fa-key"></i> Wachtwoord Wijzigen</div>
-      
-      <div style="margin-top: auto;">
-        <button class="btn btn-danger" onclick="location.reload()"><i class="fa-solid fa-power-off"></i> Uitloggen</button>
-      </div>
+      <button class="btn btn-danger" style="margin-top:auto;" onclick="location.reload()">Uitloggen</button>
     </div>
 
     <div class="content-area">
       
-      <!-- TAB 1: OVERZICHT -->
+      <!-- TAB 1: SERVER CONTROL -->
       <div id="tab-overview" class="panel-section active">
-        <h1 style="font-family: 'Orbitron'; margin-bottom: 20px;">Server Dashboard</h1>
+        <h1 style="font-family: 'Orbitron'; margin-bottom: 20px;">Live Website Aansturen</h1>
         
-        <div class="grid-2">
-          <div class="panel-card">
-            <h3><i class="fa-solid fa-server"></i> Server Status Control</h3>
-            <p style="color: var(--text-muted); margin-bottom: 15px;">Pas hier de status van de FiveM server aan op de website.</p>
-            <div style="display: flex; gap: 15px; align-items: center;">
-              <span id="server-status-badge" class="badge-status status-online">ONLINE</span>
-              <button class="btn-small btn-danger" onclick="toggleServerStatus(false)">Zet Offline</button>
-              <button class="btn-small btn-success" onclick="toggleServerStatus(true)">Zet Online</button>
-            </div>
+        <div class="panel-card">
+          <h3><i class="fa-solid fa-power-off"></i> Live Server Status & Spelers</h3>
+          <p style="color:var(--text-muted); margin-bottom:15px;">Kies de status die live getoond wordt op de hoofdwebsite:</p>
+          <div style="display:flex; gap:10px; margin-bottom:15px;">
+            <button class="btn btn-success" onclick="updateServerStatus(true)">Zet Server ONLINE</button>
+            <button class="btn btn-danger" onclick="updateServerStatus(false)">Zet Server OFFLINE</button>
           </div>
+          <input type="number" id="player-count" class="input-field" placeholder="Aantal spelers online (bijv. 45)" style="max-width:300px;">
+          <button class="btn" onclick="updatePlayerCount()">Aantal Spelers Updaten</button>
+        </div>
 
-          <div class="panel-card">
-            <h3><i class="fa-solid fa-note-sticky"></i> Interne Staff Notitie</h3>
-            <textarea id="staff-note" class="input-field" style="height: 80px;" placeholder="Plaats een mededeling voor ander staffpersoneel..."></textarea>
-            <button class="btn" style="padding: 8px;" onclick="saveNote()">Notitie Opslaan</button>
-          </div>
+        <div class="panel-card">
+          <h3><i class="fa-solid fa-pen"></i> Welkomsttekst Aanpassen</h3>
+          <textarea id="hero-text-input" class="input-field" rows="3" placeholder="Typ hier de nieuwe welkomsttekst voor de hoofdpagina..."></textarea>
+          <button class="btn" onclick="updateHeroText()">Tekst Live Updaten</button>
         </div>
       </div>
 
       <!-- TAB 2: STAFF BEHEER -->
       <div id="tab-staff" class="panel-section">
-        <h1 style="font-family: 'Orbitron'; margin-bottom: 20px;">Staff Team & Admins Beheren</h1>
+        <h1 style="font-family: 'Orbitron'; margin-bottom: 20px;">Staff Team Beheren</h1>
         
-        <div class="grid-2">
-          <div class="panel-card">
-            <h3><i class="fa-solid fa-user-plus"></i> Nieuwe Staff Toevoegen</h3>
-            <form id="add-staff-form">
-              <input type="text" id="staff-name" class="input-field" placeholder="Naam / Discord Username" required>
-              <select id="staff-role" class="input-field" style="background:#0a0c10; color:#fff;" required>
-                <option value="Eigenaar">Eigenaar</option>
-                <option value="Developer">Developer</option>
-                <option value="Head Admin">Head Admin</option>
-                <option value="Admin">Admin</option>
-                <option value="Moderator">Moderator</option>
-              </select>
-              <button type="submit" class="btn">Voeg Toe</button>
-            </form>
-          </div>
-
-          <div class="panel-card">
-            <h3><i class="fa-solid fa-shield"></i> Actieve Beheerders</h3>
-            <div id="admin-list-container"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB 3: BANS & WARNS -->
-      <div id="tab-bans" class="panel-section">
-        <h1 style="font-family: 'Orbitron'; margin-bottom: 20px;">Waarschuwingen & Bans Registreren</h1>
         <div class="panel-card">
-          <h3><i class="fa-solid fa-triangle-exclamation"></i> Registreer Straf</h3>
-          <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-            <input type="text" id="ban-player" class="input-field" placeholder="Speler Naam / ID" style="margin:0;">
-            <input type="text" id="ban-reason" class="input-field" placeholder="Reden" style="margin:0;">
-            <button class="btn btn-danger" style="width: auto; white-space: nowrap;" onclick="addBan()">Registreer</button>
-          </div>
-          <div id="ban-list"></div>
-        </div>
-      </div>
-
-      <!-- TAB 4: SOLLICITATIES -->
-      <div id="tab-apps" class="panel-section">
-        <h1 style="font-family: 'Orbitron'; margin-bottom: 20px;">Inkomende Sollicitaties</h1>
-        <div class="panel-card">
-          <div class="item-row">
-            <div>
-              <strong>Kandidaat: Jan_Visser</strong> - Support Team Sollicitatie
-              <div style="font-size: 0.8rem; color: var(--text-muted);">"Ik wil graag de community helpen met tickets en vragen."</div>
-            </div>
-            <div>
-              <button class="btn-small btn-success" onclick="this.closest('.item-row').remove(); alert('Geaccepteerd!')">Accepteren</button>
-              <button class="btn-small btn-danger" onclick="this.closest('.item-row').remove(); alert('Afgewezen!')">Afwijzen</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB 5: WACHTWOORD WIJZIGEN -->
-      <div id="tab-security" class="panel-section">
-        <h1 style="font-family: 'Orbitron'; margin-bottom: 20px;">Beveiligingsinstellingen</h1>
-        <div class="panel-card" style="max-width: 500px;">
-          <h3><i class="fa-solid fa-key"></i> Nieuw Wachtwoord Instellen</h3>
-          <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px;">Kies een nieuw wachtwoord om het oude wachtwoord (<code>admin123</code>) direct te vervangen.</p>
-          
-          <form id="change-pass-form">
-            <input type="text" id="new-user" class="input-field" placeholder="Gebruikersnaam" value="admin" required>
-            <input type="password" id="new-pass" class="input-field" placeholder="Nieuw Wachtwoord" required>
-            <button type="submit" class="btn"><i class="fa-solid fa-floppy-disk"></i> Wachtwoord Opslaan</button>
+          <h3><i class="fa-solid fa-user-plus"></i> Stafflid Toevoegen</h3>
+          <form onsubmit="addStaff(event)">
+            <input type="text" id="staff-name" class="input-field" placeholder="Naam / Discord ID" required>
+            <input type="text" id="staff-role" class="input-field" placeholder="Rol (bijv. Developer, Admin)" required>
+            <button type="submit" class="btn">Toevoegen aan Website</button>
           </form>
+        </div>
+
+        <div class="panel-card">
+          <h3><i class="fa-solid fa-users"></i> Actief Staff Team op Hoofdpagina</h3>
+          <div id="admin-list"></div>
         </div>
       </div>
 
@@ -236,95 +157,69 @@
   </div>
 
   <script>
-    // Haal opgeslagen wachtwoord op of gebruik standaard
-    function getAdminCredentials() {
-      const saved = localStorage.getItem('nk_admin_account');
-      if (saved) return JSON.parse(saved);
-      return { user: 'admin', pass: 'admin123' };
-    }
-
-    // Login Check
-    document.getElementById('login-form').addEventListener('submit', function(e) {
+    function login(e) {
       e.preventDefault();
-      const u = document.getElementById('user').value;
-      const p = document.getElementById('pass').value;
-      const currentAcc = getAdminCredentials();
-
-      if (u === currentAcc.user && p === currentAcc.pass) {
+      if (document.getElementById('user').value === 'admin' && document.getElementById('pass').value === 'admin123') {
         document.getElementById('lock-screen').style.display = 'none';
-        renderAdmins();
+        loadStaffList();
       } else {
-        alert('Onjuiste inloggegevens! Probeer opnieuw.');
+        alert('Onjuiste gegevens!');
       }
-    });
+    }
 
-    // Wachtwoord Wijzigen
-    document.getElementById('change-pass-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const newUser = document.getElementById('new-user').value;
-      const newPass = document.getElementById('new-pass').value;
-
-      if (!newUser || !newPass) {
-        alert('Vul alle velden in!');
-        return;
-      }
-
-      localStorage.setItem('nk_admin_account', JSON.stringify({ user: newUser, pass: newPass }));
-      alert('Succes! Je inloggegevens zijn bijgewerkt. Gebruik vanaf nu jouw nieuwe wachtwoord.');
-      renderAdmins();
-    });
-
-    // Navigation Switcher
-    function switchTab(tabId, element) {
-      document.querySelectorAll('.panel-section').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    function switchTab(tabId, el) {
+      document.querySelectorAll('.panel-section').forEach(x => x.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
-      element.classList.add('active');
+      el.classList.add('active');
     }
 
-    // Toggle Server Status
-    function toggleServerStatus(isOnline) {
-      const badge = document.getElementById('server-status-badge');
-      if (isOnline) {
-        badge.className = 'badge-status status-online';
-        badge.innerText = 'ONLINE';
-      } else {
-        badge.className = 'badge-status status-offline';
-        badge.innerText = 'OFFLINE';
-      }
+    function updateServerStatus(online) {
+      db.collection("settings").doc("server").set({ online: online }, { merge: true });
+      alert("Server status direct bijgewerkt op de website!");
     }
 
-    // Notitie Opslaan
-    function saveNote() {
-      alert('Interne notitie opgeslagen!');
+    function updatePlayerCount() {
+      const count = document.getElementById("player-count").value;
+      db.collection("settings").doc("server").set({ players: count }, { merge: true });
+      alert("Spelersaantal bijgewerkt!");
     }
 
-    // Admins Renderen
-    function renderAdmins() {
-      const container = document.getElementById('admin-list-container');
-      const currentAcc = getAdminCredentials();
-      container.innerHTML = `
-        <div class="item-row">
-          <span><i class="fa-solid fa-user-shield"></i> ${currentAcc.user}</span> 
-          <span style="font-size: 0.8rem; color: var(--success); font-weight: bold;">Hoofdbeheerder</span>
-        </div>
-      `;
+    function updateHeroText() {
+      const text = document.getElementById("hero-text-input").value;
+      db.collection("settings").doc("server").set({ heroText: text }, { merge: true });
+      alert("Hoofdtekst live gewijzigd!");
     }
 
-    // Bans Registreren
-    function addBan() {
-      const player = document.getElementById('ban-player').value;
-      const reason = document.getElementById('ban-reason').value;
-      if (!player || !reason) return alert('Vul alle velden in.');
+    function addStaff(e) {
+      e.preventDefault();
+      const name = document.getElementById("staff-name").value;
+      const role = document.getElementById("staff-role").value;
 
-      const banList = document.getElementById('ban-list');
-      const row = document.createElement('div');
-      row.className = 'item-row';
-      row.innerHTML = `<div><strong>${player}</strong> - ${reason}</div> <button class="btn-small btn-danger" onclick="this.closest('.item-row').remove()">Verwijder</button>`;
-      banList.appendChild(row);
+      db.collection("staff").add({ name, role }).then(() => {
+        alert("Stafflid toegevoegd aan de website!");
+        e.target.reset();
+      });
+    }
 
-      document.getElementById('ban-player').value = '';
-      document.getElementById('ban-reason').value = '';
+    function removeStaff(id) {
+      db.collection("staff").doc(id).delete().then(() => alert("Stafflid verwijderd!"));
+    }
+
+    function loadStaffList() {
+      db.collection("staff").onSnapshot((snapshot) => {
+        const list = document.getElementById("admin-list");
+        list.innerHTML = "";
+        snapshot.forEach((doc) => {
+          const s = doc.data();
+          list.innerHTML += `
+            <div class="item-row">
+              <span><strong>${s.name}</strong> (${s.role})</span>
+              <button class="btn btn-danger" style="padding:4px 8px; font-size:0.8rem;" onclick="removeStaff('${doc.id}')">Verwijder</button>
+            </div>
+          `;
+        });
+      });
     }
   </script>
 </body>
