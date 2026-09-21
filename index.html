@@ -39,6 +39,7 @@
       background-color: rgba(3, 7, 18, 0.9);
       backdrop-filter: blur(8px);
       z-index: 10;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .brand-container {
@@ -91,7 +92,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 60px 20px;
+      padding: 80px 20px;
     }
 
     .badge {
@@ -167,25 +168,63 @@
       background-color: rgba(255, 255, 255, 0.05);
     }
 
-    /* Secties */
+    /* Algemene Secties */
     section {
       padding: 80px 20px;
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
       text-align: center;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     section h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       margin-bottom: 15px;
       color: #3b82f6;
     }
 
-    section p {
+    section p.section-sub {
       color: #9ca3af;
-      font-size: 1rem;
-      margin-bottom: 25px;
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+    }
+
+    /* Grid layout voor Mogelijkheden */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      text-align: left;
+    }
+
+    .feature-card {
+      background-color: #0b0f19;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .feature-icon {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.15rem;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      line-height: 1.5;
     }
 
     /* APV / Regels Styling */
@@ -195,14 +234,14 @@
       border-radius: 12px;
       padding: 30px;
       text-align: left;
-      max-height: 500px;
+      max-height: 450px;
       overflow-y: auto;
     }
 
     .apv-container h3 {
       color: #60a5fa;
       margin: 20px 0 10px 0;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       padding-bottom: 5px;
     }
@@ -262,22 +301,47 @@
     </p>
 
     <div class="button-group">
-      <!-- Vul hier eventueel de uitnodigingslink in van je Main Discord tussen de quotes "" -->
       <a href="#discords" class="btn btn-primary">💬 Join Main Discord</a>
       <a href="#mogelijkheden" class="btn btn-secondary">Ontdek Noordkust →</a>
     </div>
   </main>
 
-  <!-- Losse Sectie: Mogelijkheden -->
+  <!-- Vernieuwde Sectie: Mogelijkheden -->
   <section id="mogelijkheden">
     <h2>Mogelijkheden</h2>
-    <p>Werken bij de Politie, Ambulance, ANWB, een eigen bedrijf runnen of een crimineel imperium opbouwen. In Noordkust bepaal jij je eigen pad.</p>
+    <p class="section-sub">Ontdek wat je allemaal kunt doen binnen Noordkust Roleplay.</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🚔</div>
+        <h3>Hulpdiensten</h3>
+        <p>Solliciteer bij de Politie, Ambulance of Brandweer en zorg voor orde en veiligheid in de stad.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">💼</div>
+        <h3>Eigen Onderneming</h3>
+        <p>Start je eigen bedrijf, neem personeel aan en bouw een succesvolle zakelijke carrière op.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔫</div>
+        <h3>De Onderwereld</h3>
+        <p>Vorm een gang, neem gebieden over en klim op tot de top van het criminele circuit.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🏎️</div>
+        <h3>Civiel Leven</h3>
+        <p>Werk als monteur, rijd luxe auto's, maak vrienden en geniet van het stadsleven.</p>
+      </div>
+    </div>
   </section>
 
   <!-- Losse Sectie: Regels (APV) -->
   <section id="regels">
     <h2>Algemene Plaatsingsvoorwaarden (APV)</h2>
-    <p>Lees hieronder de officiële regels van Noordkust Roleplay door om een ban te voorkomen.</p>
+    <p class="section-sub">Lees hieronder de officiële regels van Noordkust Roleplay door om een ban te voorkomen.</p>
     
     <div class="apv-container">
       <p><strong>Welkom bij Noordkust Roleplay!</strong> Om de roleplay leuk, eerlijk en realistisch te houden voor iedereen, hebben we een aantal regels opgesteld. Gebruik altijd je gezond verstand en behandel andere spelers met respect.</p>
@@ -325,9 +389,8 @@
   <!-- Losse Sectie: Discords -->
   <section id="discords">
     <h2>Onze Discords</h2>
-    <p>Sluit je aan bij de officiële Noordkust Roleplay Discord servers:</p>
+    <p class="section-sub">Sluit je aan bij de officiële Noordkust Roleplay Discord servers:</p>
     <div class="button-group">
-      <!-- Vul op de plek van de "#" de links van je Discord uitnodigingen in -->
       <a href="#" target="_blank" class="btn btn-primary">Main Discord</a>
       <a href="#" target="_blank" class="btn btn-secondary">Onderwereld Discord</a>
       <a href="#" target="_blank" class="btn btn-secondary">Overheid Discord</a>
