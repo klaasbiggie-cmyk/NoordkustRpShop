@@ -79,9 +79,29 @@
       font-size: 0.95rem;
     }
 
-    nav a:hover, nav a.active {
+    nav a:hover {
       color: var(--primary);
       text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+    }
+
+    /* Secret Login Button in Nav */
+    .btn-admin-login {
+      background: rgba(112, 0, 255, 0.3);
+      color: #fff;
+      border: 1px solid var(--secondary);
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.3s;
+    }
+
+    .btn-admin-login:hover {
+      background: var(--secondary);
+      box-shadow: 0 0 12px rgba(112, 0, 255, 0.6);
     }
 
     /* Container */
@@ -140,7 +160,6 @@
       padding: 25px;
       transition: all 0.3s ease;
       position: relative;
-      overflow: hidden;
       box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     }
 
@@ -190,7 +209,6 @@
 
     .btn-discord:hover {
       box-shadow: 0 0 15px rgba(88, 101, 242, 0.6);
-      transform: scale(1.02);
     }
 
     .btn-primary {
@@ -208,9 +226,12 @@
       padding: 6px 12px;
       font-size: 0.8rem;
       width: auto;
+      border-radius: 6px;
+      cursor: pointer;
+      border: none;
     }
 
-    /* Staff Panel & Form */
+    /* Staff Cards */
     .staff-card {
       display: flex;
       align-items: center;
@@ -234,10 +255,6 @@
       flex: 1;
     }
 
-    .staff-info h4 {
-      font-size: 1.1rem;
-    }
-
     .badge {
       display: inline-block;
       padding: 3px 10px;
@@ -251,13 +268,13 @@
       margin-top: 4px;
     }
 
-    /* Panel Box */
+    /* Panel Boxes & Admin Modals */
     .panel-box {
       background: rgba(15, 18, 25, 0.95);
       border: 1px solid var(--primary);
       border-radius: 16px;
       padding: 25px;
-      margin-top: 30px;
+      margin-top: 20px;
     }
 
     .form-group {
@@ -284,6 +301,52 @@
     .form-group input:focus, .form-group select:focus {
       border-color: var(--primary);
     }
+
+    /* Modal / Pop-up for Login */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: #12161f;
+      border: 1px solid var(--primary);
+      padding: 30px;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px; right: 15px;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .admin-list-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0a0c10;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border: 1px solid var(--border);
+    }
   </style>
 </head>
 <body>
@@ -295,8 +358,10 @@
     </div>
     <nav>
       <a href="#discords"><i class="fa-brands fa-discord"></i> Discords</a>
-      <a href="#staff"><i class="fa-solid fa-users-gear"></i> Staff Team</a>
-      <a href="#panel"><i class="fa-solid fa-sliders"></i> Staff Panel</a>
+      <a href="#staff"><i class="fa-solid fa-users-shield"></i> Staff Team</a>
+      <button class="btn-admin-login" onclick="openLoginModal()">
+        <i class="fa-solid fa-key"></i> Admin Panel
+      </button>
     </nav>
   </header>
 
@@ -313,41 +378,37 @@
       <h2 class="section-title"><i class="fa-brands fa-discord"></i> Community Discords</h2>
       <div class="grid">
         
-        <!-- Main Discord -->
         <div class="card">
           <i class="fa-solid fa-city card-icon"></i>
           <h3>Main Discord</h3>
-          <p>De hoofdserver voor algemene chat, announcements, updates en gezelligheid.</p>
+          <p>De hoofdserver voor algemene chat, announcements en updates.</p>
           <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="btn btn-discord">
-            <i class="fa-brands fa-discord"></i> Join Main Discord
+            <i class="fa-brands fa-discord"></i> Join Main
           </a>
         </div>
 
-        <!-- Support Discord -->
         <div class="card">
           <i class="fa-solid fa-headset card-icon"></i>
           <h3>Support Discord</h3>
-          <p>Heb je hulp nodig, een vraag of wil je een ticket aanmaken? Ons team staat klaar!</p>
+          <p>Heb je hulp nodig of vragen? Maak een ticket aan!</p>
           <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="btn btn-discord">
             <i class="fa-brands fa-discord"></i> Join Support
           </a>
         </div>
 
-        <!-- Overheids Discord -->
         <div class="card">
           <i class="fa-solid fa-shield-halved card-icon"></i>
           <h3>Overheids Discord</h3>
-          <p>Voor Politie, Ambulance, KMar en overige overheidsdiensten binnen de stad.</p>
+          <p>Voor Politie, Ambulance, KMar en overige overheidsdiensten.</p>
           <a href="https://discord.gg/3Kvry4F2BC" target="_blank" class="btn btn-discord">
             <i class="fa-brands fa-discord"></i> Join Overheid
           </a>
         </div>
 
-        <!-- Onderwereld Discord -->
         <div class="card">
           <i class="fa-solid fa-mask card-icon"></i>
           <h3>Onderwereld Discord</h3>
-          <p>Voor gangs, illegale organisaties, verzoeken en criminaliteit zaken.</p>
+          <p>Voor gangs, illegale organisaties en criminaliteit zaken.</p>
           <a href="https://discord.gg/4rtk2dzUqr" target="_blank" class="btn btn-discord">
             <i class="fa-brands fa-discord"></i> Join Onderwereld
           </a>
@@ -360,31 +421,25 @@
     <section id="staff">
       <h2 class="section-title"><i class="fa-solid fa-users-shield"></i> Ons Staff Team</h2>
       <div class="grid" id="staff-grid">
-        <!-- Default Staff Members -->
-        <div class="card staff-card" data-id="1">
+        <div class="card staff-card">
           <div class="staff-avatar"><i class="fa-solid fa-crown"></i></div>
           <div class="staff-info">
             <h4>KlaasBiggie</h4>
             <span class="badge">Eigenaar / Developer</span>
           </div>
         </div>
-        
-        <div class="card staff-card" data-id="2">
-          <div class="staff-avatar"><i class="fa-solid fa-user-shield"></i></div>
-          <div class="staff-info">
-            <h4>StaffLid 1</h4>
-            <span class="badge">Head Admin</span>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- Staff Management Panel -->
-    <section id="panel">
-      <h2 class="section-title"><i class="fa-solid fa-sliders"></i> Custom Staff Panel</h2>
+    <!-- Protected Staff Management Panel -->
+    <section id="panel" class="hidden" style="margin-top: 40px;">
+      <h2 class="section-title"><i class="fa-solid fa-sliders"></i> Beveiligd Admin Panel</h2>
+      
+      <!-- Panel 1: Staff Leden Toevoegen -->
       <div class="panel-box">
-        <p style="color: var(--text-muted); margin-bottom: 20px;">
-          <i class="fa-solid fa-circle-info"></i> Gebruik dit paneel om direct live staffleden op de website toe te voegen of te verwijderen.
+        <h3><i class="fa-solid fa-user-plus"></i> Stafflid Toevoegen aan Website</h3>
+        <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem;">
+          Voeg hier nieuwe teamleden toe die zichtbaar worden op de homepage.
         </p>
 
         <form id="add-staff-form">
@@ -406,33 +461,118 @@
           </div>
 
           <button type="submit" class="btn btn-primary">
-            <i class="fa-solid fa-user-plus"></i> Stafflid Toevoegen
+            <i class="fa-solid fa-plus"></i> Voeg Toe Aan Stafflijst
           </button>
         </form>
+      </div>
+
+      <!-- Panel 2: Nieuwe Admins voor Panel Toevoegen -->
+      <div class="panel-box">
+        <h3><i class="fa-solid fa-user-lock"></i> Beheerders van Admin Panel</h3>
+        <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.9rem;">
+          Geef anderen toegang tot dit beveiligde paneel.
+        </p>
+
+        <div id="admin-list" style="margin-bottom: 20px;">
+          <!-- Active Admins will show here -->
+        </div>
+
+        <form id="add-admin-form">
+          <div class="form-group">
+            <label for="new-admin-user">Nieuwe Admin Gebruikersnaam:</label>
+            <input type="text" id="new-admin-user" placeholder="Gebruikersnaam" required>
+          </div>
+          <div class="form-group">
+            <label for="new-admin-pass">Wachtwoord:</label>
+            <input type="password" id="new-admin-pass" placeholder="Wachtwoord" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-shield"></i> Nieuwe Admin Aanmaken
+          </button>
+        </form>
+      </div>
+
+      <div style="margin-top: 20px; text-align: right;">
+        <button class="btn-danger" onclick="logoutAdmin()" style="padding: 10px 20px;">
+          <i class="fa-solid fa-right-from-bracket"></i> Uitloggen uit Admin Panel
+        </button>
       </div>
     </section>
 
   </div>
 
-  <!-- Interactive JavaScript for Staff Panel -->
+  <!-- Modal Login Window -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeLoginModal()">&times;</span>
+      <h3 style="margin-bottom: 15px; color: var(--primary);"><i class="fa-solid fa-lock"></i> Admin Inloggen</h3>
+      
+      <form id="login-form">
+        <div class="form-group">
+          <label for="login-user">Gebruikersnaam:</label>
+          <input type="text" id="login-user" required>
+        </div>
+        <div class="form-group">
+          <label for="login-pass">Wachtwoord:</label>
+          <input type="password" id="login-pass" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Inloggen</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
   <script>
-    const form = document.getElementById('add-staff-form');
-    const staffGrid = document.getElementById('staff-grid');
+    // Standaard Admin Gegevens
+    let adminAccounts = JSON.parse(localStorage.getItem('adminAccounts')) || [
+      { user: 'admin', pass: 'admin123' }
+    ];
 
-    // Handle Adding New Staff Member
-    form.addEventListener('submit', function(e) {
+    function openLoginModal() {
+      document.getElementById('loginModal').style.display = 'flex';
+    }
+
+    function closeLoginModal() {
+      document.getElementById('loginModal').style.display = 'none';
+    }
+
+    // Inloggen
+    document.getElementById('login-form').addEventListener('submit', function(e) {
       e.preventDefault();
+      const u = document.getElementById('login-user').value;
+      const p = document.getElementById('login-pass').value;
 
+      const isValid = adminAccounts.some(acc => acc.user === u && acc.pass === p);
+
+      if (isValid) {
+        alert('Succesvol ingelogd!');
+        closeLoginModal();
+        document.getElementById('panel').classList.remove('hidden');
+        renderAdminList();
+        window.location.href = "#panel";
+      } else {
+        alert('Foute gebruikersnaam of wachtwoord!');
+      }
+    });
+
+    function logoutAdmin() {
+      document.getElementById('panel').classList.add('hidden');
+      alert('Je bent uitgelogd.');
+    }
+
+    // Staff toevoegen
+    document.getElementById('add-staff-form').addEventListener('submit', function(e) {
+      e.preventDefault();
       const name = document.getElementById('staff-name').value;
       const role = document.getElementById('staff-role').value;
 
-      // Icon chooser based on role
       let iconClass = 'fa-user-shield';
       if(role === 'Eigenaar') iconClass = 'fa-crown';
       if(role === 'Developer') iconClass = 'fa-code';
       if(role === 'Support Team') iconClass = 'fa-headset';
 
-      // Create new card element
+      const staffGrid = document.getElementById('staff-grid');
       const card = document.createElement('div');
       card.className = 'card staff-card';
       card.innerHTML = `
@@ -441,22 +581,49 @@
           <h4>${name}</h4>
           <span class="badge">${role}</span>
         </div>
-        <button class="btn btn-danger" onclick="removeStaff(this)">
+        <button class="btn-danger" onclick="this.closest('.staff-card').remove()">
           <i class="fa-solid fa-trash"></i>
         </button>
       `;
 
       staffGrid.appendChild(card);
-
-      // Reset form
-      form.reset();
-      alert(`Stafflid ${name} is succesvol toegevoegd!`);
+      document.getElementById('add-staff-form').reset();
+      alert(`Stafflid ${name} is toegevoegd!`);
     });
 
-    // Remove Staff Function
-    function removeStaff(button) {
-      if (confirm("Weet je zeker dat je dit stafflid wilt verwijderen?")) {
-        button.closest('.staff-card').remove();
+    // Nieuwe Admin Toevoegen
+    document.getElementById('add-admin-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const u = document.getElementById('new-admin-user').value;
+      const p = document.getElementById('new-admin-pass').value;
+
+      adminAccounts.push({ user: u, pass: p });
+      localStorage.setItem('adminAccounts', JSON.stringify(adminAccounts));
+      
+      renderAdminList();
+      document.getElementById('add-admin-form').reset();
+      alert(`Nieuwe admin '${u}' aangemaakt!`);
+    });
+
+    function renderAdminList() {
+      const list = document.getElementById('admin-list');
+      list.innerHTML = '';
+      adminAccounts.forEach((acc, index) => {
+        const item = document.createElement('div');
+        item.className = 'admin-list-item';
+        item.innerHTML = `
+          <span><i class="fa-solid fa-user"></i> ${acc.user}</span>
+          ${index !== 0 ? `<button class="btn-danger" onclick="removeAdmin(${index})"><i class="fa-solid fa-trash"></i></button>` : '<span style="font-size:0.8rem; color:var(--text-muted);">(Hoofdadmin)</span>'}
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function removeAdmin(index) {
+      if(confirm('Weet je zeker dat je deze admin wilt verwijderen?')) {
+        adminAccounts.splice(index, 1);
+        localStorage.setItem('adminAccounts', JSON.stringify(adminAccounts));
+        renderAdminList();
       }
     }
   </script>
