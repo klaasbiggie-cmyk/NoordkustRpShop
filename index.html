@@ -1,334 +1,444 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NoordKust Roleplay - Official FiveM Portal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDSgeqJqqf_7NDo2Fi9j4On4k9iWNODczs",
-      authDomain: "noordkustrp-7a0bd.firebaseapp.com",
-      projectId: "noordkustrp-7a0bd",
-      storageBucket: "noordkustrp-7a0bd.firebasestorage.app",
-      messagingSenderId: "395759032224",
-      appId: "1:395759032224:web:389a9f24s756af091db6c6",
-      measurementId: "G-TRXCE8MX4X"
-    };
+    <title>Noordkust Roleplay | FiveM Roleplay</title>
 
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
-  </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <style>
-    :root {
-      --primary: #00e5ff;
-      --secondary: #7000ff;
-      --accent: #ff0055;
-      --bg-dark: rgba(7, 9, 14, 0.88);
-      --card-bg: rgba(15, 18, 26, 0.85);
-      --border: rgba(0, 229, 255, 0.3);
-      --text: #f0f4f8;
-      --text-muted: #94a3b8;
-    }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080b10;
+            color: white;
+        }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(8, 11, 16, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
 
-    body {
-      background: linear-gradient(rgba(7, 9, 14, 0.75), rgba(7, 9, 14, 0.92)), 
-                  url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
-      background-size: cover; color: var(--text); min-height: 100vh; padding-bottom: 60px;
-    }
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
 
-    header {
-      background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(15px);
-      border-bottom: 2px solid var(--primary); position: sticky; top: 0; z-index: 100;
-      padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
-      box-shadow: 0 4px 20px rgba(0, 229, 255, 0.2);
-    }
+        .logo span {
+            color: #36a9ff;
+        }
 
-    .logo {
-      font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900;
-      color: #fff; letter-spacing: 1px; display: flex; align-items: center; gap: 10px;
-    }
-    .logo span { color: var(--primary); text-shadow: 0 0 15px var(--primary); }
+        nav a {
+            color: #ddd;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+        }
 
-    nav { display: flex; gap: 25px; align-items: center; }
-    nav a { color: var(--text-muted); text-decoration: none; font-weight: 600; transition: 0.3s; font-size: 0.95rem; }
-    nav a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+        nav a:hover {
+            color: #36a9ff;
+        }
 
-    .btn-apply-nav {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff !important; padding: 8px 18px; border-radius: 8px;
-      font-weight: 700 !important; border: 1px solid var(--primary);
-      transition: 0.3s; box-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
-    }
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 60px;
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+            background:
+                radial-gradient(circle at center, rgba(0,140,255,0.18), transparent 45%),
+                linear-gradient(180deg, #0b1724, #080b10);
+        }
 
-    .hero { text-align: center; padding: 90px 20px 50px; }
-    .server-status-pill {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(0, 255, 102, 0.1); border: 1px solid #00ff66;
-      padding: 6px 16px; border-radius: 30px; color: #00ff66;
-      font-weight: 700; font-size: 0.85rem; margin-bottom: 20px;
-    }
-    .server-status-pill.offline {
-      background: rgba(255, 0, 85, 0.1); border-color: #ff0055; color: #ff0055;
-    }
+        .hero-content {
+            max-width: 900px;
+        }
 
-    .hero h1 {
-      font-family: 'Orbitron', sans-serif; font-size: 3.8rem; font-weight: 900; margin-bottom: 15px;
-      background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase;
-    }
-    .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 750px; margin: 0 auto 30px; }
+        .badge {
+            display: inline-block;
+            padding: 9px 18px;
+            border-radius: 30px;
+            background: rgba(54,169,255,0.12);
+            border: 1px solid rgba(54,169,255,0.4);
+            color: #55b7ff;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
 
-    .section-title {
-      font-family: 'Orbitron', sans-serif; font-size: 2rem; margin: 60px 0 30px;
-      border-left: 5px solid var(--primary); padding-left: 15px; text-transform: uppercase;
-    }
+        h1 {
+            font-size: clamp(50px, 9vw, 100px);
+            line-height: 0.95;
+            font-weight: 900;
+            letter-spacing: -4px;
+        }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        h1 span {
+            color: #36a9ff;
+        }
 
-    .card {
-      background: var(--card-bg); border: 1px solid var(--border);
-      border-radius: 18px; padding: 28px; backdrop-filter: blur(10px); transition: 0.3s;
-      display: flex; flex-direction: column; justify-content: space-between;
-    }
-    .card:hover { transform: translateY(-6px); border-color: var(--primary); box-shadow: 0 0 20px rgba(0, 229, 255, 0.2); }
+        .hero p {
+            margin: 30px auto;
+            max-width: 650px;
+            color: #aeb7c2;
+            font-size: 19px;
+            line-height: 1.7;
+        }
 
-    .card-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 15px; }
-    .card h3 { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; margin-bottom: 10px; color: #fff; }
-    .card p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.5; }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
 
-    .btn-discord {
-      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-      background: #5865F2; color: #fff; text-decoration: none; padding: 12px 20px;
-      border-radius: 10px; font-weight: 700; transition: 0.3s; border: none; width: 100%;
-    }
-    .btn-discord:hover { background: #4752C4; transform: scale(1.02); }
+        .button {
+            display: inline-block;
+            padding: 16px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.25s;
+        }
 
-    .staff-card { display: flex; flex-direction: row; align-items: center; gap: 18px; }
-    .staff-avatar {
-      width: 60px; height: 60px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--secondary), var(--primary));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.6rem; color: #fff; border: 2px solid var(--primary); flex-shrink: 0;
-    }
-    .badge {
-      display: inline-block; padding: 4px 12px; border-radius: 20px;
-      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
-      background: rgba(0, 229, 255, 0.15); color: var(--primary); border: 1px solid var(--primary); margin-top: 5px;
-    }
+        .discord {
+            background: #5865F2;
+            color: white;
+        }
 
-    .apply-box {
-      background: var(--card-bg); border: 2px solid var(--border);
-      border-radius: 20px; padding: 35px; backdrop-filter: blur(12px); margin-bottom: 40px;
-    }
-    .form-group { margin-bottom: 20px; }
-    .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
-    .form-control {
-      width: 100%; padding: 12px 16px; background: rgba(7, 9, 14, 0.9);
-      border: 1px solid var(--border); border-radius: 10px; color: #fff; outline: none;
-    }
-    .btn-hero {
-      padding: 14px 28px; border-radius: 12px; font-weight: 700; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
-      background: linear-gradient(135deg, var(--secondary), var(--primary)); color: #fff; border: none; cursor: pointer;
-    }
-  </style>
+        .discord:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(88,101,242,0.35);
+        }
+
+        .info {
+            border: 1px solid #303844;
+            color: white;
+        }
+
+        .info:hover {
+            background: #151b23;
+        }
+
+        /* FEATURES */
+        .section {
+            padding: 100px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: #8993a0;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            background: #10151c;
+            border: 1px solid #202832;
+            padding: 35px;
+            border-radius: 18px;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            border-color: #36a9ff;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .icon {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #929daa;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* CTA / DISCORDS SECTION */
+        .cta {
+            margin: 40px auto 100px;
+            max-width: 1200px;
+            padding: 70px 30px;
+            text-align: center;
+            border-radius: 25px;
+            background:
+                radial-gradient(circle at center, rgba(54,169,255,0.2), transparent 60%),
+                #101720;
+            border: 1px solid #263340;
+        }
+
+        .cta h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #9ba6b3;
+            margin-bottom: 40px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid #1d252e;
+            color: #68727e;
+        }
+
+        footer strong {
+            color: #36a9ff;
+        }
+
+        /* MOBILE */
+        @media (max-width: 800px) {
+            nav {
+                padding: 18px 5%;
+            }
+
+            nav div:last-child {
+                display: none;
+            }
+
+            .section {
+                padding: 70px 5%;
+            }
+
+            h1 {
+                letter-spacing: -2px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-  <header>
-    <div class="logo"><i class="fa-solid fa-city"></i> NoordKust <span>RP</span></div>
+    <!-- NAVIGATIE -->
     <nav>
-      <a href="#discords"><i class="fa-brands fa-discord"></i> Discords</a>
-      <a href="#solliciteren"><i class="fa-solid fa-file-signature"></i> Solliciteren</a>
-      <a href="#staff"><i class="fa-solid fa-users"></i> Staff Team</a>
-      <a href="#solliciteren" class="btn-apply-nav"><i class="fa-solid fa-paper-plane"></i> Word Staff</a>
+        <div class="logo">
+            NOORDKUST<span>RP</span>
+        </div>
+
+        <div>
+            <a href="#home">Home</a>
+            <a href="#mogelijkheden">Mogelijkheden</a>
+            <a href="#discords">Discords</a>
+        </div>
     </nav>
-  </header>
 
-  <div class="container">
-    
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <div id="status-pill" class="server-status-pill">
-        <i class="fa-solid fa-circle"></i> <span id="status-text">Server Status: Laden...</span>
-      </div>
-      <h1>Welkom in NoordKust RP</h1>
-      <p id="hero-subtext">Stap in de meest unieke FiveM roleplay ervaring. Koppel met onze overheid, bouw je eigen onderwereld imperium op of versterk ons Staff Team!</p>
-    </section>
 
-    <!-- DISCORD SECTIE -->
-    <section id="discords">
-      <h2 class="section-title"><i class="fa-brands fa-discord"></i> Community Discords</h2>
-      <div class="grid">
-        
-        <div class="card">
-          <div>
-            <div class="card-icon"><i class="fa-solid fa-city"></i></div>
-            <h3>Main Discord</h3>
-            <p>De centrale hub voor aankondigingen, updates en community chat.</p>
-          </div>
-          <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="btn-discord"><i class="fa-brands fa-discord"></i> Join Main</a>
-        </div>
+    <!-- HERO -->
+    <section class="hero" id="home">
 
-        <div class="card">
-          <div>
-            <div class="card-icon"><i class="fa-solid fa-headset"></i></div>
-            <h3>Support Discord</h3>
-            <p>Heb je vragen of support nodig? Open direct een ticket bij onze staf.</p>
-          </div>
-          <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="btn-discord"><i class="fa-brands fa-discord"></i> Join Support</a>
-        </div>
+        <div class="hero-content">
 
-        <div class="card">
-          <div>
-            <div class="card-icon"><i class="fa-solid fa-shield-halved"></i></div>
-            <h3>Overheids Discord</h3>
-            <p>Voor sollicitaties en zaken omtrent Politie, Ambulance en KMar.</p>
-          </div>
-          <a href="https://discord.gg/3Kvry4F2BC" target="_blank" class="btn-discord"><i class="fa-brands fa-discord"></i> Join Overheid</a>
-        </div>
-
-        <div class="card">
-          <div>
-            <div class="card-icon"><i class="fa-solid fa-mask"></i></div>
-            <h3>Onderwereld Discord</h3>
-            <p>Voor bende-aanvragen, illegaal beheer en gang roleplay.</p>
-          </div>
-          <a href="https://discord.gg/4rtk2dzUqr" target="_blank" class="btn-discord"><i class="fa-brands fa-discord"></i> Join Onderwereld</a>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SOLLICITEREN SECTIE -->
-    <section id="solliciteren">
-      <h2 class="section-title"><i class="fa-solid fa-file-signature"></i> Solliciteer voor een Functie</h2>
-      <div class="apply-box">
-        <p style="color: var(--text-muted); margin-bottom: 25px;">Vul het formulier in om te solliciteren. Jouw aanvraag wordt direct doorgestuurd naar ons Discord Staff Kanaal!</p>
-        
-        <form onsubmit="submitForm(event)">
-          <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-bottom: 0;">
-            <div class="form-group">
-              <label><i class="fa-solid fa-user"></i> Discord Username / ID</label>
-              <input type="text" id="discName" class="form-control" placeholder="Bijv. klaasbiggie" required>
+            <div class="badge">
+                🌊 Welkom bij Noordkust Roleplay
             </div>
-            <div class="form-group">
-              <label><i class="fa-solid fa-briefcase"></i> Functie waarvoor je solliciteert</label>
-              <select id="functSelect" class="form-control" style="background:#07090e; color:#fff;" required>
-                <option value="Staff Team">Staff Team (Support/Moderator)</option>
-                <option value="Politie Korps">Politie Korps</option>
-                <option value="Ambulance Broeder">Ambulance Broeder</option>
-                <option value="Gang / Onderwereld">Gang / Onderwereld Aanvraag</option>
-              </select>
+
+            <h1>
+                JOUW STAD.<br>
+                <span>JOUW VERHAAL.</span>
+            </h1>
+
+            <p>
+                Stap in de wereld van Noordkust Roleplay.
+                Beleef unieke roleplay, bouw je eigen carrière,
+                maak vrienden en bepaal zelf hoe jouw verhaal eindigt.
+            </p>
+
+            <div class="buttons">
+
+                <!-- HOOFD DISCORD LINK -->
+                <a class="button discord"
+                   href="https://discord.gg/h7egVfy3h6"
+                   target="_blank">
+                    💬 Join Main Discord
+                </a>
+
+                <a class="button info" href="#mogelijkheden">
+                    Ontdek Noordkust →
+                </a>
+
             </div>
-          </div>
 
-          <div class="form-group">
-            <label><i class="fa-solid fa-comment-dots"></i> Motivatie & Ervaring</label>
-            <textarea id="motiText" class="form-control" rows="4" placeholder="Leg uit waarom jij geschikt bent voor deze functie..." required></textarea>
-          </div>
+        </div>
 
-          <button type="submit" class="btn-hero" style="width: 100%; justify-content: center;">
-            <i class="fa-solid fa-paper-plane"></i> Verstuur Sollicitatie
-          </button>
-        </form>
-      </div>
     </section>
 
-    <!-- STAFF TEAM SECTIE -->
-    <section id="staff">
-      <h2 class="section-title"><i class="fa-solid fa-users-shield"></i> Leidinggevend Staff Team</h2>
-      <div class="grid" id="staff-grid">
-        <!-- Live ingeladen via Firebase -->
-      </div>
+
+    <!-- MOGELIJKHEDEN -->
+    <section class="section" id="mogelijkheden">
+
+        <div class="section-title">
+
+            <h2>Ervaar jouw eigen verhaal</h2>
+
+            <p>
+                Kies jouw pad en maak Noordkust tot jouw stad.
+            </p>
+
+        </div>
+
+
+        <div class="cards">
+
+            <div class="card">
+                <div>
+                    <div class="icon">👮</div>
+                    <h3>Politie</h3>
+                    <p>
+                        Handhaaf de orde, voer verkeerscontroles uit,
+                        reageer op meldingen en bescherm de inwoners
+                        van Noordkust.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div>
+                    <div class="icon">🚑</div>
+                    <h3>Ambulance</h3>
+                    <p>
+                        Red levens en help inwoners tijdens ongelukken,
+                        medische incidenten en andere noodsituaties.
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <div>
+                    <div class="icon">🔫</div>
+                    <h3>Criminelen</h3>
+                    <p>
+                        Bouw jouw criminele carrière op, werk samen met
+                        anderen en creëer spannende roleplay-situaties.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
     </section>
 
-  </div>
 
-  <script>
-    // Live Server Status & Berichten Ophalen
-    db.collection("settings").doc("server").onSnapshot((doc) => {
-      if (doc.exists) {
-        const data = doc.data();
-        const pill = document.getElementById("status-pill");
-        const statusText = document.getElementById("status-text");
+    <!-- DISCORDS SECTIE -->
+    <section class="cta" id="discords">
 
-        if (data.online) {
-          pill.className = "server-status-pill";
-          statusText.innerText = `Server Status: ONLINE (${data.players || '0'}/150)`;
-        } else {
-          pill.className = "server-status-pill offline";
-          statusText.innerText = "Server Status: OFFLINE";
-        }
+        <h2>Word onderdeel van Noordkust</h2>
 
-        if (data.heroText) {
-          document.getElementById("hero-subtext").innerText = data.heroText;
-        }
-      }
-    });
+        <p>
+            Sluit je aan bij onze verschillende community-kanalen en blijf op de hoogte
+            van alle updates, evenementen en ontwikkelingen.
+        </p>
 
-    // Live Staff Leden Ophalen
-    db.collection("staff").onSnapshot((snapshot) => {
-      const grid = document.getElementById("staff-grid");
-      grid.innerHTML = "";
-      snapshot.forEach((doc) => {
-        const staff = doc.data();
-        grid.innerHTML += `
-          <div class="card staff-card">
-            <div class="staff-avatar"><i class="fa-solid fa-user-shield"></i></div>
-            <div>
-              <h4 style="font-size: 1.1rem; font-weight:700;">${staff.name}</h4>
-              <span class="badge">${staff.role}</span>
+        <div class="cards">
+
+            <!-- MAIN DISCORD -->
+            <div class="card">
+                <div>
+                    <div class="icon">🌐</div>
+                    <h3>Main Discord</h3>
+                    <p>De centrale hub voor updates, evenementen en de community.</p>
+                </div>
+                <a class="button discord" href="https://discord.gg/h7egVfy3h6" target="_blank">
+                    💬 Join Main
+                </a>
             </div>
-          </div>
-        `;
-      });
-    });
 
-    // Discord Webhook Sollicitatie
-    async function submitForm(e) {
-      e.preventDefault();
-      const webhookUrl = "https://discord.com/api/webhooks/1551724774336757842/s6j_KmNp28Pby8yEn-NprvLLePyhPWcuAX-DDANn4Kh_8XzWzOjQLwzBlm0ytekdmvHe"; 
+            <!-- SUPPORT DISCORD -->
+            <div class="card">
+                <div>
+                    <div class="icon">🎧</div>
+                    <h3>Support Discord</h3>
+                    <p>Hulp nodig of een vraag voor ons team? Open een ticket.</p>
+                </div>
+                <a class="button discord" href="https://discord.gg/ZavzUfwZVt" target="_blank">
+                    💬 Join Support
+                </a>
+            </div>
 
-      const payload = {
-        embeds: [{
-          title: "📝 Nieuwe Website Sollicitatie!",
-          color: 5814783,
-          fields: [
-            { name: "👤 Discord User", value: document.getElementById('discName').value, inline: true },
-            { name: "💼 Functie", value: document.getElementById('functSelect').value, inline: true },
-            { name: "📄 Motivatie & Ervaring", value: document.getElementById('motiText').value }
-          ],
-          footer: { text: "NoordKust RP Website Portal" },
-          timestamp: new Date().toISOString()
-        }]
-      };
+            <!-- OVERHEID DISCORD -->
+            <div class="card">
+                <div>
+                    <div class="icon">🛡️</div>
+                    <h3>Overheid Discord</h3>
+                    <p>Voor sollicitaties en informatie van Politie, Ambulance en KMar.</p>
+                </div>
+                <a class="button discord" href="https://discord.gg/3Kvry4F2BC" target="_blank">
+                    💬 Join Overheid
+                </a>
+            </div>
 
-      try {
-        await fetch(webhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        alert('Je sollicitatie is succesvol verzonden naar ons Discord Staff Kanaal!');
-        e.target.reset();
-      } catch (err) {
-        alert('Er ging iets mis bij het versturen.');
-      }
-    }
-  </script>
+            <!-- ONDERWERELD DISCORD -->
+            <div class="card">
+                <div>
+                    <div class="icon">🥷</div>
+                    <h3>Onderwereld Discord</h3>
+                    <p>Voor bende-aanvragen, illegaal beheer en gang roleplay.</p>
+                </div>
+                <a class="button discord" href="https://discord.gg/4rtk2dzUqr" target="_blank">
+                    💬 Join Onderwereld
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        © 2026 <strong>Noordkust Roleplay</strong> —
+        FiveM Roleplay Community
+
+    </footer>
 
 </body>
 </html>
