@@ -1,444 +1,133 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noordkust Roleplay - Webshop</title>
+  <style>
+    /* Algemene stijlen */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f172a;
+      color: #ffffff;
+      line-height: 1.6;
+    }
 
-    <title>Noordkust Roleplay | FiveM Roleplay</title>
+    /* Navigatiebalk & Header */
+    header {
+      background-color: #1e293b;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid #0284c7;
+    }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
 
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #080b10;
-            color: white;
-        }
+    /* Logo styling */
+    .site-logo {
+      height: 65px;
+      width: auto;
+      border-radius: 50%;
+      object-fit: contain;
+      box-shadow: 0 0 10px rgba(2, 132, 199, 0.5);
+    }
 
-        /* NAVBAR */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(8, 11, 16, 0.85);
-            backdrop-filter: blur(12px);
-            z-index: 100;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
+    .site-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #38bdf8;
+    }
 
-        .logo {
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: 1px;
-        }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
 
-        .logo span {
-            color: #36a9ff;
-        }
+    nav a {
+      color: #f8fafc;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.2s;
+    }
 
-        nav a {
-            color: #ddd;
-            text-decoration: none;
-            margin-left: 25px;
-            font-weight: bold;
-        }
+    nav a:hover {
+      color: #38bdf8;
+    }
 
-        nav a:hover {
-            color: #36a9ff;
-        }
+    /* Hoofdcontent */
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+    }
 
-        /* HERO */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 120px 20px 60px;
+    .welcome-card {
+      background-color: #1e293b;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
 
-            background:
-                radial-gradient(circle at center, rgba(0,140,255,0.18), transparent 45%),
-                linear-gradient(180deg, #0b1724, #080b10);
-        }
+    h1 {
+      margin-bottom: 15px;
+      color: #38bdf8;
+    }
 
-        .hero-content {
-            max-width: 900px;
-        }
+    p {
+      color: #cbd5e1;
+      font-size: 1.1rem;
+    }
 
-        .badge {
-            display: inline-block;
-            padding: 9px 18px;
-            border-radius: 30px;
-            background: rgba(54,169,255,0.12);
-            border: 1px solid rgba(54,169,255,0.4);
-            color: #55b7ff;
-            font-weight: bold;
-            margin-bottom: 25px;
-        }
-
-        h1 {
-            font-size: clamp(50px, 9vw, 100px);
-            line-height: 0.95;
-            font-weight: 900;
-            letter-spacing: -4px;
-        }
-
-        h1 span {
-            color: #36a9ff;
-        }
-
-        .hero p {
-            margin: 30px auto;
-            max-width: 650px;
-            color: #aeb7c2;
-            font-size: 19px;
-            line-height: 1.7;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 16px 28px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.25s;
-        }
-
-        .discord {
-            background: #5865F2;
-            color: white;
-        }
-
-        .discord:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(88,101,242,0.35);
-        }
-
-        .info {
-            border: 1px solid #303844;
-            color: white;
-        }
-
-        .info:hover {
-            background: #151b23;
-        }
-
-        /* FEATURES */
-        .section {
-            padding: 100px 7%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 42px;
-            margin-bottom: 12px;
-        }
-
-        .section-title p {
-            color: #8993a0;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .card {
-            background: #10151c;
-            border: 1px solid #202832;
-            padding: 35px;
-            border-radius: 18px;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card:hover {
-            transform: translateY(-7px);
-            border-color: #36a9ff;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-        }
-
-        .icon {
-            font-size: 45px;
-            margin-bottom: 20px;
-        }
-
-        .card h3 {
-            font-size: 25px;
-            margin-bottom: 12px;
-        }
-
-        .card p {
-            color: #929daa;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        /* CTA / DISCORDS SECTION */
-        .cta {
-            margin: 40px auto 100px;
-            max-width: 1200px;
-            padding: 70px 30px;
-            text-align: center;
-            border-radius: 25px;
-            background:
-                radial-gradient(circle at center, rgba(54,169,255,0.2), transparent 60%),
-                #101720;
-            border: 1px solid #263340;
-        }
-
-        .cta h2 {
-            font-size: 42px;
-            margin-bottom: 15px;
-        }
-
-        .cta p {
-            color: #9ba6b3;
-            margin-bottom: 40px;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 30px;
-            border-top: 1px solid #1d252e;
-            color: #68727e;
-        }
-
-        footer strong {
-            color: #36a9ff;
-        }
-
-        /* MOBILE */
-        @media (max-width: 800px) {
-            nav {
-                padding: 18px 5%;
-            }
-
-            nav div:last-child {
-                display: none;
-            }
-
-            .section {
-                padding: 70px 5%;
-            }
-
-            h1 {
-                letter-spacing: -2px;
-            }
-        }
-    </style>
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #64748b;
+      margin-top: 50px;
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- NAVIGATIE -->
+  <header>
+    <div class="brand-container">
+      <!-- Logo -->
+      <img src="logo.jpg" alt="Noordkust RP Logo" class="site-logo">
+      <span class="site-title">Noordkust RP</span>
+    </div>
     <nav>
-        <div class="logo">
-            NOORDKUST<span>RP</span>
-        </div>
-
-        <div>
-            <a href="#home">Home</a>
-            <a href="#mogelijkheden">Mogelijkheden</a>
-            <a href="#discords">Discords</a>
-        </div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="admin.html">Admin</a></li>
+      </ul>
     </nav>
+  </header>
 
+  <main>
+    <div class="welcome-card">
+      <h1>Welkom bij Noordkust Roleplay! 🚓</h1>
+      <p>
+        Een unieke FiveM Roleplay-server waar realistisch roleplay, actie en gezelligheid samenkomen.
+        Politie, Ambulance, Auto's, Criminelen & Actieve community.
+      </p>
+    </div>
+  </main>
 
-    <!-- HERO -->
-    <section class="hero" id="home">
-
-        <div class="hero-content">
-
-            <div class="badge">
-                🌊 Welkom bij Noordkust Roleplay
-            </div>
-
-            <h1>
-                JOUW STAD.<br>
-                <span>JOUW VERHAAL.</span>
-            </h1>
-
-            <p>
-                Stap in de wereld van Noordkust Roleplay.
-                Beleef unieke roleplay, bouw je eigen carrière,
-                maak vrienden en bepaal zelf hoe jouw verhaal eindigt.
-            </p>
-
-            <div class="buttons">
-
-                <!-- HOOFD DISCORD LINK -->
-                <a class="button discord"
-                   href="https://discord.gg/h7egVfy3h6"
-                   target="_blank">
-                    💬 Join Main Discord
-                </a>
-
-                <a class="button info" href="#mogelijkheden">
-                    Ontdek Noordkust →
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- MOGELIJKHEDEN -->
-    <section class="section" id="mogelijkheden">
-
-        <div class="section-title">
-
-            <h2>Ervaar jouw eigen verhaal</h2>
-
-            <p>
-                Kies jouw pad en maak Noordkust tot jouw stad.
-            </p>
-
-        </div>
-
-
-        <div class="cards">
-
-            <div class="card">
-                <div>
-                    <div class="icon">👮</div>
-                    <h3>Politie</h3>
-                    <p>
-                        Handhaaf de orde, voer verkeerscontroles uit,
-                        reageer op meldingen en bescherm de inwoners
-                        van Noordkust.
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="card">
-                <div>
-                    <div class="icon">🚑</div>
-                    <h3>Ambulance</h3>
-                    <p>
-                        Red levens en help inwoners tijdens ongelukken,
-                        medische incidenten en andere noodsituaties.
-                    </p>
-                </div>
-            </div>
-
-
-            <div class="card">
-                <div>
-                    <div class="icon">🔫</div>
-                    <h3>Criminelen</h3>
-                    <p>
-                        Bouw jouw criminele carrière op, werk samen met
-                        anderen en creëer spannende roleplay-situaties.
-                    </p>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- DISCORDS SECTIE -->
-    <section class="cta" id="discords">
-
-        <h2>Word onderdeel van Noordkust</h2>
-
-        <p>
-            Sluit je aan bij onze verschillende community-kanalen en blijf op de hoogte
-            van alle updates, evenementen en ontwikkelingen.
-        </p>
-
-        <div class="cards">
-
-            <!-- MAIN DISCORD -->
-            <div class="card">
-                <div>
-                    <div class="icon">🌐</div>
-                    <h3>Main Discord</h3>
-                    <p>De centrale hub voor updates, evenementen en de community.</p>
-                </div>
-                <a class="button discord" href="https://discord.gg/h7egVfy3h6" target="_blank">
-                    💬 Join Main
-                </a>
-            </div>
-
-            <!-- SUPPORT DISCORD -->
-            <div class="card">
-                <div>
-                    <div class="icon">🎧</div>
-                    <h3>Support Discord</h3>
-                    <p>Hulp nodig of een vraag voor ons team? Open een ticket.</p>
-                </div>
-                <a class="button discord" href="https://discord.gg/ZavzUfwZVt" target="_blank">
-                    💬 Join Support
-                </a>
-            </div>
-
-            <!-- OVERHEID DISCORD -->
-            <div class="card">
-                <div>
-                    <div class="icon">🛡️</div>
-                    <h3>Overheid Discord</h3>
-                    <p>Voor sollicitaties en informatie van Politie, Ambulance en KMar.</p>
-                </div>
-                <a class="button discord" href="https://discord.gg/3Kvry4F2BC" target="_blank">
-                    💬 Join Overheid
-                </a>
-            </div>
-
-            <!-- ONDERWERELD DISCORD -->
-            <div class="card">
-                <div>
-                    <div class="icon">🥷</div>
-                    <h3>Onderwereld Discord</h3>
-                    <p>Voor bende-aanvragen, illegaal beheer en gang roleplay.</p>
-                </div>
-                <a class="button discord" href="https://discord.gg/4rtk2dzUqr" target="_blank">
-                    💬 Join Onderwereld
-                </a>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-    <footer>
-
-        © 2026 <strong>Noordkust Roleplay</strong> —
-        FiveM Roleplay Community
-
-    </footer>
+  <footer>
+    &copy; 2026 Noordkust Roleplay. Alle rechten voorbehouden.
+  </footer>
 
 </body>
 </html>
