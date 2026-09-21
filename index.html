@@ -134,6 +134,8 @@
     .button-group {
       display: flex;
       gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     .btn {
@@ -165,7 +167,7 @@
       background-color: rgba(255, 255, 255, 0.05);
     }
 
-    /* Secties voor Mogelijkheden en Discords */
+    /* Secties */
     section {
       padding: 80px 20px;
       max-width: 900px;
@@ -183,6 +185,7 @@
     section p {
       color: #9ca3af;
       font-size: 1rem;
+      margin-bottom: 25px;
     }
   </style>
 </head>
@@ -212,25 +215,28 @@
     </p>
 
     <div class="button-group">
-      <!-- PAS HIER JE DISCORD LINK AAN -->
-      <a href="https://discord.gg/jouw-discord-link" target="_blank" class="btn btn-primary">💬 Join Main Discord</a>
+      <a href="https://discord.gg/vM4MThxG9X" target="_blank" class="btn btn-primary">💬 Join Main Discord</a>
       <a href="#mogelijkheden" class="btn btn-secondary">Ontdek Noordkust →</a>
     </div>
   </main>
 
   <!-- Mogelijkheden Sectie -->
   <section id="mogelijkheden">
-    <h2>Mogelijkheden</h2>
-    <p>Werken bij de Politie, Ambulance, ANWB of je eigen onderneming / criminele organisatie starten. Alles is mogelijk in Noordkust!</p>
+    <h2>Mogelijkheden & Regels</h2>
+    <p>Lees ons reglement goed door of bekijk wat er allemaal mogelijk is binnen Noordkust Roleplay.</p>
+    <div class="button-group">
+      <a href="https://docs.google.com/document/d/1yN_82l_J9191M31B9M_J8J4eN0s2O3a1l2M3N4O5P6Q/edit" target="_blank" class="btn btn-secondary">📜 Bekijk Reglement</a>
+    </div>
   </section>
 
   <!-- Discords Sectie -->
   <section id="discords">
     <h2>Onze Discords</h2>
-    <p>Word lid van de Main Discord voor updates, verzoeken en sollicitaties.</p>
-    <br>
-    <!-- PAS HIER JE DISCORD LINK AAN -->
-    <a href="https://discord.gg/jouw-discord-link" target="_blank" class="btn btn-primary">Open Discord Server</a>
+    <p>Word lid van onze Main Discord of bezoek de VIP Shop voor extra's in de stad.</p>
+    <div class="button-group">
+      <a href="https://discord.gg/vM4MThxG9X" target="_blank" class="btn btn-primary">Main Discord</a>
+      <a href="https://discord.gg/E8qJ56T6bM" target="_blank" class="btn btn-secondary">VIP Shop Discord</a>
+    </div>
   </section>
 
 </body>
