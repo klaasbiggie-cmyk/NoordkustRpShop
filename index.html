@@ -7,6 +7,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDSgeqJqqf_7NDo2Fi9j4On4k9iWNODczs",
+      authDomain: "noordkustrp-7a0bd.firebaseapp.com",
+      projectId: "noordkustrp-7a0bd",
+      storageBucket: "noordkustrp-7a0bd.firebasestorage.app",
+      messagingSenderId: "395759032224",
+      appId: "1:395759032224:web:389a9f24s756af091db6c6",
+      measurementId: "G-TRXCE8MX4X"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+  </script>
+
   <style>
     :root {
       --primary: #00e5ff;
@@ -24,27 +43,19 @@
     body {
       background: linear-gradient(rgba(7, 9, 14, 0.75), rgba(7, 9, 14, 0.92)), 
                   url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
-      background-size: cover;
-      color: var(--text);
-      min-height: 100vh;
-      padding-bottom: 60px;
+      background-size: cover; color: var(--text); min-height: 100vh; padding-bottom: 60px;
     }
 
     header {
-      background: rgba(7, 9, 14, 0.95);
-      backdrop-filter: blur(15px);
-      border-bottom: 2px solid var(--primary);
-      position: sticky; top: 0; z-index: 100;
-      padding: 15px 5%;
-      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(7, 9, 14, 0.95); backdrop-filter: blur(15px);
+      border-bottom: 2px solid var(--primary); position: sticky; top: 0; z-index: 100;
+      padding: 15px 5%; display: flex; justify-content: space-between; align-items: center;
       box-shadow: 0 4px 20px rgba(0, 229, 255, 0.2);
     }
 
     .logo {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.8rem; font-weight: 900;
-      color: #fff; letter-spacing: 1px;
-      display: flex; align-items: center; gap: 10px;
+      font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 900;
+      color: #fff; letter-spacing: 1px; display: flex; align-items: center; gap: 10px;
     }
     .logo span { color: var(--primary); text-shadow: 0 0 15px var(--primary); }
 
@@ -58,87 +69,39 @@
       font-weight: 700 !important; border: 1px solid var(--primary);
       transition: 0.3s; box-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
     }
-    .btn-apply-nav:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--primary); }
 
     .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-    .hero { text-align: center; padding: 90px 20px 50px; position: relative; }
+    .hero { text-align: center; padding: 90px 20px 50px; }
     .server-status-pill {
       display: inline-flex; align-items: center; gap: 10px;
       background: rgba(0, 255, 102, 0.1); border: 1px solid #00ff66;
       padding: 6px 16px; border-radius: 30px; color: #00ff66;
       font-weight: 700; font-size: 0.85rem; margin-bottom: 20px;
-      box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
     }
-    .pulse-dot {
-      width: 8px; height: 8px; background: #00ff66; border-radius: 50%;
-      box-shadow: 0 0 10px #00ff66; animation: pulse 1.5s infinite;
+    .server-status-pill.offline {
+      background: rgba(255, 0, 85, 0.1); border-color: #ff0055; color: #ff0055;
     }
-    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
     .hero h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3.8rem; font-weight: 900; margin-bottom: 15px;
+      font-family: 'Orbitron', sans-serif; font-size: 3.8rem; font-weight: 900; margin-bottom: 15px;
       background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      text-transform: uppercase; letter-spacing: 2px;
-      text-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-transform: uppercase;
     }
     .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 750px; margin: 0 auto 30px; }
 
-    .hero-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-    .btn-hero {
-      padding: 14px 28px; border-radius: 12px; font-weight: 700;
-      text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
-      transition: 0.3s; font-size: 1rem;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, var(--secondary), var(--primary));
-      color: #fff; border: 1px solid var(--primary);
-      box-shadow: 0 0 20px rgba(112, 0, 255, 0.5);
-    }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 30px var(--primary); }
-
     .section-title {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2rem; margin: 60px 0 30px;
-      border-left: 5px solid var(--primary); padding-left: 15px;
-      display: flex; align-items: center; gap: 12px; text-transform: uppercase;
+      font-family: 'Orbitron', sans-serif; font-size: 2rem; margin: 60px 0 30px;
+      border-left: 5px solid var(--primary); padding-left: 15px; text-transform: uppercase;
     }
 
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
 
     .card {
       background: var(--card-bg); border: 1px solid var(--border);
-      border-radius: 18px; padding: 28px; backdrop-filter: blur(10px);
-      transition: 0.3s; position: relative; overflow: hidden;
+      border-radius: 18px; padding: 28px; backdrop-filter: blur(10px); transition: 0.3s;
     }
-    .card:hover { transform: translateY(-6px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0, 229, 255, 0.25); }
-
-    .card i.card-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 18px; }
-    .card h3 { font-size: 1.35rem; margin-bottom: 10px; font-family: 'Orbitron', sans-serif; }
-    .card p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 22px; line-height: 1.5; }
-
-    .btn-discord {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      width: 100%; padding: 12px; border-radius: 10px; font-weight: 700;
-      text-decoration: none; color: #fff; background: #5865F2; transition: 0.3s;
-    }
-    .btn-discord:hover { box-shadow: 0 0 18px rgba(88, 101, 242, 0.8); transform: scale(1.02); }
-
-    .apply-box {
-      background: var(--card-bg); border: 2px solid var(--border);
-      border-radius: 20px; padding: 35px; backdrop-filter: blur(12px);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5); margin-bottom: 40px;
-    }
-    .form-group { margin-bottom: 20px; }
-    .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--text); }
-    .form-control {
-      width: 100%; padding: 12px 16px; background: rgba(7, 9, 14, 0.9);
-      border: 1px solid var(--border); border-radius: 10px; color: #fff;
-      font-size: 0.95rem; outline: none; transition: 0.3s;
-    }
-    .form-control:focus { border-color: var(--primary); box-shadow: 0 0 12px rgba(0,229,255,0.4); }
+    .card:hover { transform: translateY(-6px); border-color: var(--primary); }
 
     .staff-card { display: flex; align-items: center; gap: 18px; }
     .staff-avatar {
@@ -146,12 +109,27 @@
       background: linear-gradient(135deg, var(--secondary), var(--primary));
       display: flex; align-items: center; justify-content: center;
       font-size: 1.6rem; color: #fff; border: 2px solid var(--primary);
-      box-shadow: 0 0 15px rgba(0,229,255,0.3);
     }
     .badge {
       display: inline-block; padding: 4px 12px; border-radius: 20px;
       font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
       background: rgba(0, 229, 255, 0.15); color: var(--primary); border: 1px solid var(--primary);
+    }
+
+    .apply-box {
+      background: var(--card-bg); border: 2px solid var(--border);
+      border-radius: 20px; padding: 35px; backdrop-filter: blur(12px); margin-bottom: 40px;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+    .form-control {
+      width: 100%; padding: 12px 16px; background: rgba(7, 9, 14, 0.9);
+      border: 1px solid var(--border); border-radius: 10px; color: #fff; outline: none;
+    }
+    .btn-hero {
+      padding: 14px 28px; border-radius: 12px; font-weight: 700; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
+      background: linear-gradient(135deg, var(--secondary), var(--primary)); color: #fff; border: none; cursor: pointer;
     }
   </style>
 </head>
@@ -160,7 +138,6 @@
   <header>
     <div class="logo"><i class="fa-solid fa-city"></i> NoordKust <span>RP</span></div>
     <nav>
-      <a href="#discords"><i class="fa-brands fa-discord"></i> Discords</a>
       <a href="#solliciteren"><i class="fa-solid fa-file-signature"></i> Solliciteren</a>
       <a href="#staff"><i class="fa-solid fa-users"></i> Staff Team</a>
       <a href="#solliciteren" class="btn-apply-nav"><i class="fa-solid fa-paper-plane"></i> Word Staff</a>
@@ -170,46 +147,11 @@
   <div class="container">
     
     <section class="hero">
-      <div class="server-status-pill">
-        <span class="pulse-dot"></span> Server Status: ONLINE (128/150)
+      <div id="status-pill" class="server-status-pill">
+        <i class="fa-solid fa-circle"></i> <span id="status-text">Server Status: Laden...</span>
       </div>
       <h1>Welkom in NoordKust RP</h1>
-      <p>Stap in de meest unieke FiveM roleplay ervaring. Koppel met onze overheid, bouw je eigen onderwereld imperium op of versterk ons Staff Team!</p>
-      
-      <div class="hero-buttons">
-        <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="btn-hero btn-primary"><i class="fa-brands fa-discord"></i> Join Main Discord</a>
-        <a href="#solliciteren" class="btn-hero" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff;"><i class="fa-solid fa-pen-to-square"></i> Solliciteer Direct</a>
-      </div>
-    </section>
-
-    <section id="discords">
-      <h2 class="section-title"><i class="fa-brands fa-discord"></i> Community Discords</h2>
-      <div class="grid">
-        <div class="card">
-          <i class="fa-solid fa-city card-icon"></i>
-          <h3>Main Discord</h3>
-          <p>De centrale hub voor aankondigingen, updates en community chat.</p>
-          <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="btn-discord"><i class="fa-brands fa-discord"></i> Join Main</a>
-        </div>
-        <div class="card">
-          <i class="fa-solid fa-headset card-icon"></i>
-          <h3>Support Discord</h3>
-          <p>Heb je vragen of support nodig? Open direct een ticket bij onze staf.</p>
-          <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="btn-discord"><i class="fa-brands fa-discord"></i> Join Support</a>
-        </div>
-        <div class="card">
-          <i class="fa-solid fa-shield-halved card-icon"></i>
-          <h3>Overheids Discord</h3>
-          <p>Voor sollicitaties en zaken omtrent Politie, Ambulance en KMar.</p>
-          <a href="https://discord.gg/3Kvry4F2BC" target="_blank" class="btn-discord"><i class="fa-brands fa-discord"></i> Join Overheid</a>
-        </div>
-        <div class="card">
-          <i class="fa-solid fa-mask card-icon"></i>
-          <h3>Onderwereld Discord</h3>
-          <p>Voor bende-aanvragen, illegaal beheer en gang roleplay.</p>
-          <a href="https://discord.gg/4rtk2dzUqr" target="_blank" class="btn-discord"><i class="fa-brands fa-discord"></i> Join Onderwereld</a>
-        </div>
-      </div>
+      <p id="hero-subtext">Stap in de meest unieke FiveM roleplay ervaring. Koppel met onze overheid, bouw je eigen onderwereld imperium op of versterk ons Staff Team!</p>
     </section>
 
     <section id="solliciteren">
@@ -218,7 +160,7 @@
         <p style="color: var(--text-muted); margin-bottom: 25px;">Vul het formulier in om te solliciteren. Jouw aanvraag wordt direct doorgestuurd naar ons Discord Staff Kanaal!</p>
         
         <form onsubmit="submitForm(event)">
-          <div class="grid" style="margin-bottom: 0;">
+          <div class="grid">
             <div class="form-group">
               <label><i class="fa-solid fa-user"></i> Discord Username / ID</label>
               <input type="text" id="discName" class="form-control" placeholder="Bijv. klaasbiggie" required>
@@ -239,7 +181,7 @@
             <textarea id="motiText" class="form-control" rows="4" placeholder="Leg uit waarom jij geschikt bent voor deze functie..." required></textarea>
           </div>
 
-          <button type="submit" class="btn-hero btn-primary" style="width: 100%; justify-content: center; cursor: pointer; border: none;">
+          <button type="submit" class="btn-hero" style="width: 100%; justify-content: center;">
             <i class="fa-solid fa-paper-plane"></i> Verstuur Sollicitatie
           </button>
         </form>
@@ -248,37 +190,66 @@
 
     <section id="staff">
       <h2 class="section-title"><i class="fa-solid fa-users-shield"></i> Leidinggevend Staff Team</h2>
-      <div class="grid">
-        <div class="card staff-card">
-          <div class="staff-avatar"><i class="fa-solid fa-crown"></i></div>
-          <div>
-            <h4 style="font-size: 1.1rem; font-weight:700;">KlaasBiggie</h4>
-            <span class="badge">Eigenaar / Developer</span>
-          </div>
-        </div>
+      <div class="grid" id="staff-grid">
+        <!-- Live ingeladen via Firebase -->
       </div>
     </section>
 
   </div>
 
   <script>
+    // Live Server Status & Berichten Ophalen
+    db.collection("settings").doc("server").onSnapshot((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+        const pill = document.getElementById("status-pill");
+        const statusText = document.getElementById("status-text");
+
+        if (data.online) {
+          pill.className = "server-status-pill";
+          statusText.innerText = `Server Status: ONLINE (${data.players || '0'}/150)`;
+        } else {
+          pill.className = "server-status-pill offline";
+          statusText.innerText = "Server Status: OFFLINE";
+        }
+
+        if (data.heroText) {
+          document.getElementById("hero-subtext").innerText = data.heroText;
+        }
+      }
+    });
+
+    // Live Staff Leden Ophalen
+    db.collection("staff").onSnapshot((snapshot) => {
+      const grid = document.getElementById("staff-grid");
+      grid.innerHTML = "";
+      snapshot.forEach((doc) => {
+        const staff = doc.data();
+        grid.innerHTML += `
+          <div class="card staff-card">
+            <div class="staff-avatar"><i class="fa-solid fa-user-shield"></i></div>
+            <div>
+              <h4 style="font-size: 1.1rem; font-weight:700;">${staff.name}</h4>
+              <span class="badge">${staff.role}</span>
+            </div>
+          </div>
+        `;
+      });
+    });
+
+    // Discord Webhook Sollicitatie
     async function submitForm(e) {
       e.preventDefault();
-      
       const webhookUrl = "https://discord.com/api/webhooks/1551724774336757842/s6j_KmNp28Pby8yEn-NprvLLePyhPWcuAX-DDANn4Kh_8XzWzOjQLwzBlm0ytekdmvHe"; 
-
-      const discordUser = document.getElementById('discName').value;
-      const functie = document.getElementById('functSelect').value;
-      const motivatie = document.getElementById('motiText').value;
 
       const payload = {
         embeds: [{
           title: "📝 Nieuwe Website Sollicitatie!",
           color: 5814783,
           fields: [
-            { name: "👤 Discord User", value: discordUser, inline: true },
-            { name: "💼 Functie", value: functie, inline: true },
-            { name: "📄 Motivatie & Ervaring", value: motivatie }
+            { name: "👤 Discord User", value: document.getElementById('discName').value, inline: true },
+            { name: "💼 Functie", value: document.getElementById('functSelect').value, inline: true },
+            { name: "📄 Motivatie & Ervaring", value: document.getElementById('motiText').value }
           ],
           footer: { text: "NoordKust RP Website Portal" },
           timestamp: new Date().toISOString()
@@ -291,11 +262,10 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-
         alert('Je sollicitatie is succesvol verzonden naar ons Discord Staff Kanaal!');
         e.target.reset();
       } catch (err) {
-        alert('Er ging iets mis bij het versturen. Probeer het later opnieuw.');
+        alert('Er ging iets mis bij het versturen.');
       }
     }
   </script>
