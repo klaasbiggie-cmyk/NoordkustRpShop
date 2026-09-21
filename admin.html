@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NoordKust RP - Geavanceerd Staff Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #00e5ff;
+      --secondary: #7000ff;
+      --danger: #ff0055;
+      --success: #00ff66;
+      --bg-dark: #07090e;
+      --card-bg: rgba(15, 18, 26, 0.95);
+      --border: rgba(0, 229, 255, 0.25);
+      --text: #f0f4f8;
+      --text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; }
+
+    body {
+      background: linear-gradient(rgba(7, 9, 14, 0.9), rgba(7, 9, 14, 0.95)),
+                  url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=1920&auto=format&fit=crop') no-repeat center center fixed;
+      background-size: cover; color: var(--text); min-height: 100vh;
+    }
+
+    /* Lock Screen Modal */
+    #lock-screen {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(5, 6, 10, 0.95); backdrop-filter: blur(15px);
+      display: flex; align-items: center; justify-content: center; z-index: 9999;
+    }
+
+    .login-box {
+      background: var(--card-bg); border: 2px solid var(--primary);
+      padding: 40px; border-radius: 20px; width: 90%; max-width: 420px;
+      text-align: center; box-shadow: 0 0 30px rgba(0, 229, 255, 0.3);
+    }
+
+    .login-box h2 { font-family: 'Orbitron', sans-serif; margin-bottom: 20px; color: var(--primary); }
+
+    .input-field {
+      width: 100%; padding: 12px 15px; margin-bottom: 15px;
+      background: #0a0c10; border: 1px solid var(--border);
+      border-radius: 8px; color: #fff; outline: none;
+    }
+    .input-field:focus { border-color: var(--primary); box-shadow: 0 0 8px var(--primary); }
+
+    .btn {
+      width: 100%; padding: 12px; border: none; border-radius: 8px;
+      font-weight: 700; cursor: pointer; transition: 0.3s;
+      background: linear-gradient(135deg, var(--secondary), var(--primary)); color: #fff;
+    }
+    .btn:hover { box-shadow: 0 0 15px var(--primary); transform: scale(1.02); }
+
+    /* Main Dashboard Layout */
+    .dashboard { display: flex; min-height: 100vh; }
+    
+    .sidebar {
+      width: 260px; background: rgba(10, 12, 18, 0.98); border-right: 1px solid var(--border);
+      padding: 25px; display: flex; flex-direction: column; gap: 10px;
+    }
+
+    .sidebar h2 { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; color: var(--primary); margin-bottom: 25px; }
+
+    .nav-item {
+      padding: 12px 15px; border-radius: 10px; color: var(--text-muted);
+      cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 12px; transition: 0.3s;
+    }
+    .nav-item:hover, .nav-item.active { background: rgba(0, 229, 255, 0.1); color: var(--primary); border: 1px solid var(--border); }
+
+    .content-area { flex: 1; padding: 30px; overflow-y: auto; }
+
+    .panel-section { display: none; }
+    .panel-section.active { display: block; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+
+    .panel-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: 16px; padding: 25px; margin-bottom: 20px;
+    }
+
+    .panel-card h3 { font-family: 'Orbitron', sans-serif; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; color: #fff; }
+
+    .badge-status {
+      padding: 5px 12px; border-radius: 20px; font-weight: 700; font-size: 0.8rem;
+    }
+    .status-online { background: rgba(0, 255, 102, 0.2); color: var(--success); border: 1px solid var(--success); }
+    .status-offline { background: rgba(255, 0, 85, 0.2); color: var(--danger); border: 1px solid var(--danger); }
+
+    .item-row {
+      display: flex; justify-content: space-between; align-items: center;
+      background: #0a0c10; padding: 12px 15px; border-radius: 8px; margin-bottom: 10px; border: 1px solid var(--border);
+    }
+
+    .btn-small { padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; border: none; cursor: pointer; color: #fff; }
+    .btn-danger { background: var(--danger); }
+    .btn-success { background: var(--success); color: #000; font-weight: 700; }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <!-- Inlogscherm Pop-up -->
+  <div id="lock-screen">
+    <div class="login-box">
+      <h2><i class="fa-solid fa-shield-halved"></i> STAFF LOGIN</h2>
+      <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 20px;">Geef je beheerdersgegevens op om toegang te krijgen tot het beveiligde paneel.</p>
+      
+      <form id="login-form">
+        <input type="text" id="user" class="input-field" placeholder="Gebruikersnaam" required>
+        <input type="password" id="pass" class="input-field" placeholder="Wachtwoord" required>
+        <button type="submit" class="btn"><i class="fa-solid fa-key"></i> Inloggen</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div class="dashboard">
+    <div class="sidebar">
+      <h2>NOORDKUST <span style="color:#fff;">RP</span></h2>
+      <div class="nav-item active" onclick="switchTab('tab-overview')"><i class="fa-solid fa-chart-pie"></i> Overzicht</div>
+      <div class="nav-item" onclick="switchTab('tab-staff')"><i class="fa-solid fa-users-gear"></i> Staff Beheer</div>
+      <div class="nav-item" onclick="switchTab('tab-bans')"><i class="fa-solid fa-ban"></i> Bans & Warns</div>
+      <div class="nav-item" onclick="switchTab('tab-apps')"><i class="fa-solid fa-file-signature"></i> Sollicitaties</div>
+      
+      <div style="margin-top: auto;">
+        <button class="btn btn-danger" onclick="location.reload()"><i class="fa-solid fa-power-off"></i> Uitloggen</button>
+      </div>
+    </div>
+
+    <div class="content-area">
+      
+      <!-- TAB 1: OVERZICHT -->
+      <div id="tab-overview" class="panel-section active">
+        <h1 style="font-family: 'Orbitron'; margin-bottom: 20px;">Server Dashboard</h1>
+        
+        <div class="grid-2">
+          <div class="panel-card">
+            <h3><i class="fa-solid fa-server"></i> Server Status Control</h3>
+            <p style="color: var(--text-muted); margin-bottom: 15px;">Pas hier de status van de FiveM server aan op de website.</p>
+            <div style="display: flex; gap: 15px; align-items: center;">
+              <span id="server-status-badge" class="badge-status status-online">ONLINE</span>
+              <button class="btn-small btn-danger" onclick="toggleServerStatus(false)">Zet Offline</button>
+              <button class="btn-small btn-success" onclick="toggleServerStatus(true)">Zet Online</button>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <h3><i class="fa-solid fa-note-sticky"></i> Interne Staff Notitie</h3>
+            <textarea id="staff-note" class="input-field" style="height: 80px;" placeholder="Plaats een mededeling voor ander staffpersoneel..."></textarea>
+            <button class="btn" style="padding: 8px;" onclick="saveNote()">Notitie Opslaan</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: STAFF BEHEER -->
+      <div id="tab-staff" class="panel-section">
+        <h1 style="font-family: 'Orbitron'; margin-bottom: 20px;">Staff Team & Admins Beheren</h1>
+        
+        <div class="grid-2">
+          <div class="panel-card">
+            <h3><i class="fa-solid fa-user-plus"></i> Nieuwe Staff Toevoegen</h3>
+            <form id="add-staff-form">
+              <input type="text" id="staff-name" class="input-field" placeholder="Naam / Discord Username" required>
+              <select id="staff-role" class="input-field" style="background:#0a0c10; color:#fff;" required>
+                <option value="Eigenaar">Eigenaar</option>
+                <option value="Developer">Developer</option>
+                <option value="Head Admin">Head Admin</option>
+                <option value="Admin">Admin</option>
+                <option value="Moderator">Moderator</option>
+              </select>
+              <button type="submit" class="btn">Voeg Toe</button>
+            </form>
+          </div>
+
+          <div class="panel-card">
+            <h3><i class="fa-solid fa-shield"></i> Panel Toegang (Admins)</h3>
+            <div id="admin-list-container">
+              <!-- Admins komen hier -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: BANS & WARNS -->
+      <div id="tab-bans" class="panel-section">
+        <h1 style="font-family: 'Orbitron'; margin-bottom: 20px;">Waarschuwingen & Bans Registreren</h1>
+        <div class="panel-card">
+          <h3><i class="fa-solid fa-triangle-exclamation"></i> Registreer Straf</h3>
+          <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+            <input type="text" id="ban-player" class="input-field" placeholder="Speler Naam / ID" style="margin:0;">
+            <input type="text" id="ban-reason" class="input-field" placeholder="Reden" style="margin:0;">
+            <button class="btn btn-danger" style="width: auto; white-space: nowrap;" onclick="addBan()">Registreer</button>
+          </div>
+          <div id="ban-list"></div>
+        </div>
+      </div>
+
+      <!-- TAB 4: SOLLICITATIES -->
+      <div id="tab-apps" class="panel-section">
+        <h1 style="font-family: 'Orbitron'; margin-bottom: 20px;">Inkomende Sollicitaties</h1>
+        <div class="panel-card">
+          <div class="item-row">
+            <div>
+              <strong>Kandidaat: Jan_Visser</strong> - Support Team Sollicitatie
+              <div style="font-size: 0.8rem; color: var(--text-muted);">"Ik wil graag de community helpen met tickets en vragen."</div>
+            </div>
+            <div>
+              <button class="btn-small btn-success" onclick="this.closest('.item-row').remove(); alert('Geaccepteerd!')">Accepteren</button>
+              <button class="btn-small btn-danger" onclick="this.closest('.item-row').remove(); alert('Afgewezen!')">Afwijzen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let adminAccounts = JSON.parse(localStorage.getItem('adminAccounts')) || [{ user: 'admin', pass: 'admin123' }];
+
+    // Login Check
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const u = document.getElementById('user').value;
+      const p = document.getElementById('pass').value;
+      const valid = adminAccounts.some(acc => acc.user === u && acc.pass === p);
+
+      if (valid) {
+        document.getElementById('lock-screen').style.display = 'none';
+        renderAdmins();
+      } else {
+        alert('Onjuiste inloggegevens!');
+      }
+    });
+
+    // Navigation Switcher
+    function switchTab(tabId) {
+      document.querySelectorAll('.panel-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.currentTarget.classList.add('active');
+    }
+
+    // Toggle Server Status
+    function toggleServerStatus(isOnline) {
+      const badge = document.getElementById('server-status-badge');
+      if (isOnline) {
+        badge.className = 'badge-status status-online';
+        badge.innerText = 'ONLINE';
+      } else {
+        badge.className = 'badge-status status-offline';
+        badge.innerText = 'OFFLINE';
+      }
+    }
+
+    // Notitie Opslaan
+    function saveNote() {
+      alert('Interne notitie opgeslagen!');
+    }
+
+    // Admins Rendere
+    function renderAdmins() {
+      const container = document.getElementById('admin-list-container');
+      container.innerHTML = '';
+      adminAccounts.forEach((acc) => {
+        const row = document.createElement('div');
+        row.className = 'item-row';
+        row.innerHTML = `<span><i class="fa-solid fa-user-shield"></i> ${acc.user}</span> <span style="font-size: 0.8rem; color: var(--text-muted);">Admin Access</span>`;
+        container.appendChild(row);
+      });
+    }
+
+    // Bans Registreren
+    function addBan() {
+      const player = document.getElementById('ban-player').value;
+      const reason = document.getElementById('ban-reason').value;
+      if (!player || !reason) return alert('Vul alle velden in.');
+
+      const banList = document.getElementById('ban-list');
+      const row = document.createElement('div');
+      row.className = 'item-row';
+      row.innerHTML = `<div><strong>${player}</strong> - ${reason}</div> <button class="btn-small btn-danger" onclick="this.closest('.item-row').remove()">Verwijder</button>`;
+      banList.appendChild(row);
+
+      document.getElementById('ban-player').value = '';
+      document.getElementById('ban-reason').value = '';
+    }
+  </script>
+</body>
+</html>
