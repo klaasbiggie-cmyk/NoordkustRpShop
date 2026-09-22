@@ -227,6 +227,77 @@
       line-height: 1.5;
     }
 
+    /* Shop Grid Styling */
+    .category-title {
+      font-size: 1.4rem;
+      color: #60a5fa;
+      margin: 30px 0 20px 0;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 8px;
+    }
+
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .shop-card {
+      background-color: #0b0f19;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: left;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .shop-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .price {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #10b981;
+      margin-bottom: 15px;
+    }
+
+    .price-note {
+      font-size: 0.8rem;
+      color: #6b7280;
+      font-weight: 400;
+    }
+
+    .buy-btn {
+      display: block;
+      text-align: center;
+      background-color: #4f46e5;
+      color: #ffffff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: background-color 0.2s;
+    }
+
+    .buy-btn:hover {
+      background-color: #4338ca;
+    }
+
     /* APV / Regels Styling */
     .apv-container {
       background-color: #0b0f19;
@@ -284,6 +355,7 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="#mogelijkheden">Mogelijkheden</a>
+      <a href="#shop">Shop</a>
       <a href="#regels">Regels</a>
       <a href="#discords">Discords</a>
     </nav>
@@ -334,6 +406,112 @@
         <div class="feature-icon">🏎️</div>
         <h3>Civiel Leven</h3>
         <p>Werk als monteur, rijd luxe auto's, maak vrienden en geniet van het stadsleven.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sectie: Shop -->
+  <section id="shop">
+    <h2>Rangen & VIP Shop</h2>
+    <p class="section-sub">Koop je gewenste rang of VIP-status direct via onze Support Discord!</p>
+
+    <!-- Staff Rangen -->
+    <h3 class="category-title">🛡️ Staff Rangen</h3>
+    <div class="shop-grid">
+      <div class="shop-card">
+        <div>
+          <div class="card-title">Senior Administrator</div>
+          <div class="price">€25,00 <span class="price-note">/ p.m.</span></div>
+        </div>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
+      </div>
+
+      <div class="shop-card">
+        <div>
+          <div class="card-title">Administrator</div>
+          <div class="price">€20,00 <span class="price-note">/ p.m.</span></div>
+        </div>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
+      </div>
+
+      <div class="shop-card">
+        <div>
+          <div class="card-title">Junior Administrator</div>
+          <div class="price">€17,50 <span class="price-note">/ p.m.</span></div>
+        </div>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
+      </div>
+
+      <div class="shop-card">
+        <div>
+          <div class="card-title">Moderator</div>
+          <div class="price">€15,00 <span class="price-note">/ p.m.</span></div>
+        </div>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
+      </div>
+
+      <div class="shop-card">
+        <div>
+          <div class="card-title">Junior Moderator</div>
+          <div class="price">€10,00 <span class="price-note">/ p.m.</span></div>
+        </div>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
+      </div>
+    </div>
+
+    <!-- Directie / Management -->
+    <h3 class="category-title">💼 Directie & Management</h3>
+    <div class="shop-grid">
+      <div class="shop-card">
+        <div>
+          <div class="card-title">Bestuur</div>
+          <div class="price">€35,00 <span class="price-note">/ eenmalig</span></div>
+        </div>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
+      </div>
+
+      <div class="shop-card">
+        <div>
+          <div class="card-title">Directeur</div>
+          <div class="price">€30,00 <span class="price-note">/ eenmalig</span></div>
+        </div>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
+      </div>
+
+      <div class="shop-card">
+        <div>
+          <div class="card-title">Supervisor</div>
+          <div class="price">€22,50 <span class="price-note">/ eenmalig</span></div>
+        </div>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
+      </div>
+    </div>
+
+    <!-- VIP & Speciale Rangen -->
+    <h3 class="category-title">👑 VIP & Speciale Rangen</h3>
+    <div class="shop-grid">
+      <div class="shop-card">
+        <div>
+          <div class="card-title">Prins(es) van NSR</div>
+          <div class="price">€15,00 <span class="price-note">/ eenmalig</span></div>
+        </div>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
+      </div>
+
+      <div class="shop-card">
+        <div>
+          <div class="card-title">Burgemeester</div>
+          <div class="price">€20,00 <span class="price-note">/ eenmalig</span></div>
+        </div>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
+      </div>
+
+      <div class="shop-card">
+        <div>
+          <div class="card-title">Donateur Beheer</div>
+          <div class="price">€12,50 <span class="price-note">/ eenmalig</span></div>
+        </div>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
     </div>
   </section>
