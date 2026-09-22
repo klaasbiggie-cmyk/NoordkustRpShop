@@ -129,6 +129,16 @@
       color: #ffffff;
     }
 
+    .vip-badge {
+      background-color: #f59e0b;
+      color: #000000;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
     .logout-btn {
       background: none;
       border: none;
@@ -231,6 +241,9 @@
       font-size: 0.95rem;
       transition: all 0.2s;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .btn-primary {
@@ -250,6 +263,17 @@
 
     .btn-secondary:hover {
       background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .btn-vip {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000000;
+      border: none;
+      font-weight: 700;
+    }
+
+    .btn-vip:hover {
+      opacity: 0.9;
     }
 
     /* Algemene Secties */
@@ -514,11 +538,19 @@
       border-radius: 12px;
       padding: 24px;
       transition: transform 0.2s, border-color 0.2s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .feature-card:hover {
       transform: translateY(-4px);
       border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .feature-card.highlight-card {
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      background: linear-gradient(180deg, #0b0f19 0%, rgba(245, 158, 11, 0.05) 100%);
     }
 
     .feature-icon {
@@ -536,6 +568,40 @@
       color: #94a3b8;
       font-size: 0.9rem;
       line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .feature-btn {
+      margin-top: auto;
+      display: inline-block;
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      padding: 8px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: background-color 0.2s;
+    }
+
+    .feature-btn:hover {
+      background-color: #3b82f6;
+    }
+
+    /* VIP Discount Notice Banner */
+    .vip-banner {
+      background: linear-gradient(90deg, #f59e0b, #d97706);
+      color: #000000;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      text-align: left;
     }
 
     /* Shop Grid Styling */
@@ -579,11 +645,21 @@
       color: #ffffff;
     }
 
+    .price-container {
+      margin-bottom: 15px;
+    }
+
     .price {
       font-size: 1.25rem;
       font-weight: 800;
       color: #10b981;
-      margin-bottom: 15px;
+    }
+
+    .original-price {
+      text-decoration: line-through;
+      color: #6b7280;
+      font-size: 0.95rem;
+      margin-right: 6px;
     }
 
     .price-note {
@@ -753,6 +829,7 @@
     <div class="button-group">
       <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="btn btn-primary">💬 Join Main Discord</a>
       <a href="#mogelijkheden" class="btn btn-secondary">Ontdek Noordkust →</a>
+      <button onclick="toggleVipSim()" class="btn btn-vip">⭐ Test VIP Korting (15%)</button>
     </div>
   </main>
 
@@ -923,28 +1000,40 @@
     <p class="section-sub">Ontdek wat je allemaal kunt doen binnen Noordkust Roleplay.</p>
     
     <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🚔</div>
-        <h3>Hulpdiensten</h3>
-        <p>Solliciteer bij de Politie, Ambulance of Brandweer en zorg voor orde en veiligheid in de stad.</p>
+      <div class="feature-card highlight-card">
+        <div>
+          <div class="feature-icon">🛡️</div>
+          <h3>Staff Worden</h3>
+          <p>Help onze community te groeien! Als stafflid ondersteun je spelers, handel je tickets af en zorg je voor een fijne sfeer in de stad.</p>
+        </div>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="feature-btn">Solliciteer als Staff →</a>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon">💼</div>
-        <h3>Eigen Onderneming</h3>
-        <p>Start je eigen bedrijf, neem personeel aan en bouw een succesvolle zakelijke carrière op.</p>
+        <div>
+          <div class="feature-icon">🚔</div>
+          <h3>Hulpdiensten</h3>
+          <p>Solliciteer bij de Politie, Ambulance of Brandweer en zorg voor orde en veiligheid in de stad.</p>
+        </div>
+        <a href="https://discord.gg/3Kvry4F2BC" target="_blank" class="feature-btn">Bekijk Overheid →</a>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon">🔫</div>
-        <h3>De Onderwereld</h3>
-        <p>Vorm een gang, neem gebieden over en klim op tot de top van het criminele circuit.</p>
+        <div>
+          <div class="feature-icon">💼</div>
+          <h3>Eigen Onderneming</h3>
+          <p>Start je eigen bedrijf, neem personeel aan en bouw een succesvolle zakelijke carrière op.</p>
+        </div>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="feature-btn">Kamer van Koophandel →</a>
       </div>
 
       <div class="feature-card">
-        <div class="feature-icon">🏎️</div>
-        <h3>Civiel Leven</h3>
-        <p>Werk als monteur, rijd luxe auto's, maak vrienden en geniet van het stadsleven.</p>
+        <div>
+          <div class="feature-icon">🔫</div>
+          <h3>De Onderwereld</h3>
+          <p>Vorm een gang, neem gebieden over en klim op tot de top van het criminele circuit.</p>
+        </div>
+        <a href="https://discord.gg/4rtk2dzUqr" target="_blank" class="feature-btn">Bekijk Onderwereld →</a>
       </div>
     </div>
   </section>
@@ -954,69 +1043,88 @@
     <h2>Rangen Shop</h2>
     <p class="section-sub">Koop je gewenste rang direct via onze Support Discord!</p>
 
+    <!-- VIP Banner Status -->
+    <div id="vip-banner-container"></div>
+
     <!-- Staff Rangen -->
     <h3 class="category-title">🛡️ Staff Rangen</h3>
     <div class="shop-grid">
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="5.00">
         <div>
           <div class="card-title">Ticket Support</div>
-          <div class="price">€5,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€5,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="10.00">
         <div>
           <div class="card-title">Junior Moderator</div>
-          <div class="price">€10,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€10,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="15.00">
         <div>
           <div class="card-title">Moderator</div>
-          <div class="price">€15,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€15,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="20.00">
         <div>
           <div class="card-title">Super Moderator</div>
-          <div class="price">€20,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€20,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="25.00">
         <div>
           <div class="card-title">Junior Administrator</div>
-          <div class="price">€25,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€25,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="30.00">
         <div>
           <div class="card-title">Administrator</div>
-          <div class="price">€30,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€30,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="35.00">
         <div>
           <div class="card-title">Senior Administrator</div>
-          <div class="price">€35,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€35,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="40.00">
         <div>
           <div class="card-title">Head Staff</div>
-          <div class="price">€40,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€40,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
@@ -1025,82 +1133,102 @@
     <!-- Bestuur & Management -->
     <h3 class="category-title">💼 Bestuur & Management</h3>
     <div class="shop-grid">
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="45.00">
         <div>
           <div class="card-title">Adviseur</div>
-          <div class="price">€45,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€45,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="50.00">
         <div>
           <div class="card-title">Boekhouder</div>
-          <div class="price">€50,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€50,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="55.00">
         <div>
           <div class="card-title">Supervisor</div>
-          <div class="price">€55,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€55,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="60.00">
         <div>
           <div class="card-title">Hoge Raad</div>
-          <div class="price">€60,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€60,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="65.00">
         <div>
           <div class="card-title">Junior Management</div>
-          <div class="price">€65,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€65,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="70.00">
         <div>
           <div class="card-title">Management</div>
-          <div class="price">€70,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€70,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="75.00">
         <div>
           <div class="card-title">Head Management</div>
-          <div class="price">€75,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€75,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="80.00">
         <div>
           <div class="card-title">Directeur</div>
-          <div class="price">€80,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€80,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="85.00">
         <div>
           <div class="card-title">Mede-Bestuur</div>
-          <div class="price">€85,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€85,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="90.00">
         <div>
           <div class="card-title">Bestuur</div>
-          <div class="price">€90,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€90,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
@@ -1109,82 +1237,102 @@
     <!-- Beheer & Directie -->
     <h3 class="category-title">👑 Beheer & Directie</h3>
     <div class="shop-grid">
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="95.00">
         <div>
           <div class="card-title">Vice Director</div>
-          <div class="price">€95,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€95,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="100.00">
         <div>
           <div class="card-title">Director</div>
-          <div class="price">€100,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€100,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="105.00">
         <div>
           <div class="card-title">Lead Director</div>
-          <div class="price">€105,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€105,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="110.00">
         <div>
           <div class="card-title">Vice Administrator</div>
-          <div class="price">€110,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€110,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="115.00">
         <div>
           <div class="card-title">Executive</div>
-          <div class="price">€115,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€115,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="120.00">
         <div>
           <div class="card-title">Lead Executive</div>
-          <div class="price">€120,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€120,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="125.00">
         <div>
           <div class="card-title">Chief Executive</div>
-          <div class="price">€125,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€125,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="130.00">
         <div>
           <div class="card-title">Chief Manager</div>
-          <div class="price">€130,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€130,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="135.00">
         <div>
           <div class="card-title">Mede Beheer</div>
-          <div class="price">€135,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€135,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card">
+      <div class="shop-card" data-base-price="140.00">
         <div>
           <div class="card-title">Beheer</div>
-          <div class="price">€140,00 <span class="price-note">/ perm</span></div>
+          <div class="price-container">
+            <span class="price">€140,00</span> <span class="price-note">/ perm</span>
+          </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
@@ -1279,6 +1427,16 @@
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFAQ(this)">
+          Hoe krijg ik VIP korting in de shop?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          Zodra je de VIP rol bezit in onze Discord en inlogt via de website, wordt er automatisch 15% korting berekend op álle rangen in de shop!
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
           Hoe solliciteer ik bij de Politie of Ambulance?
           <span class="faq-toggle">+</span>
         </button>
@@ -1316,6 +1474,7 @@
     // ⚙️ DISCORD AUTHENTICATIE INSTELLINGEN
     const CLIENT_ID = '1551868847772926034'; 
     const REDIRECT_URI = window.location.href.split('#')[0]; 
+    let isVipActive = false;
 
     function loginWithDiscord() {
       const discordUrl = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify`;
@@ -1353,18 +1512,80 @@
         ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` 
         : 'https://cdn.discordapp.com/embed/avatars/0.png';
 
+      // Check of VIP status is opgeslagen
+      if (localStorage.getItem('is_vip') === 'true') {
+        isVipActive = true;
+      }
+
       authSection.innerHTML = `
         <div class="user-profile">
           <img src="${avatarUrl}" class="user-avatar" alt="Avatar">
           <span class="user-name">${user.username}</span>
+          ${isVipActive ? '<span class="vip-badge">⭐ VIP</span>' : ''}
           <button class="logout-btn" onclick="logout()">Uitloggen</button>
         </div>
       `;
+
+      updatePrices();
     }
 
     function logout() {
       localStorage.removeItem('discord_user');
+      localStorage.removeItem('is_vip');
       location.reload();
+    }
+
+    // Schakelen van VIP Simulatie voor Demonstratie
+    function toggleVipSim() {
+      isVipActive = !isVipActive;
+      localStorage.setItem('is_vip', isVipActive);
+      
+      const savedUser = localStorage.getItem('discord_user');
+      if (savedUser) {
+        displayUser(JSON.parse(savedUser));
+      } else {
+        updatePrices();
+      }
+    }
+
+    // Update de prijzen in de shop op basis van VIP status (15% korting)
+    function updatePrices() {
+      const shopCards = document.querySelectorAll('.shop-card');
+      const bannerContainer = document.getElementById('vip-banner-container');
+
+      if (isVipActive) {
+        bannerContainer.innerHTML = `
+          <div class="vip-banner">
+            <span>🎉 VIP Status Actief! Je ontvangt automatisch 15% korting op alle rangen.</span>
+            <span style="font-size: 1.2rem;">⭐</span>
+          </div>
+        `;
+
+        shopCards.forEach(card => {
+          const basePrice = parseFloat(card.getAttribute('data-base-price'));
+          const discountedPrice = (basePrice * 0.85).toFixed(2).replace('.', ',');
+          const formattedBase = basePrice.toFixed(2).replace('.', ',');
+          
+          const priceContainer = card.querySelector('.price-container');
+          priceContainer.innerHTML = `
+            <span class="original-price">€${formattedBase}</span>
+            <span class="price" style="color: #f59e0b;">€${discountedPrice}</span>
+            <span class="price-note">/ perm</span>
+          `;
+        });
+      } else {
+        bannerContainer.innerHTML = '';
+        shopCards.forEach(card => {
+          const basePrice = parseFloat(card.getAttribute('data-base-price'));
+          const formattedBase = basePrice.toFixed(2).replace('.', ',');
+          
+          const priceContainer = card.querySelector('.price-container');
+          priceContainer.innerHTML = `
+            <span class="price">€${formattedBase}</span>
+            <span class="price-note">/ perm</span>
+          `;
+        });
+      }
     }
 
     checkLogin();
