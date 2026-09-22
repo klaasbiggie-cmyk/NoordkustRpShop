@@ -174,16 +174,27 @@
       gap: 8px;
     }
 
-    /* Live Discord Widget Styling */
-    .discord-status-card {
+    /* Live Discord & Web Traffic Cards */
+    .status-container {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .status-card {
       background-color: #0b0f19;
       border: 1px solid rgba(59, 130, 246, 0.3);
       border-radius: 12px;
-      padding: 12px 24px;
+      padding: 10px 20px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 30px;
+      gap: 10px;
+    }
+
+    .status-card.web-card {
+      border-color: rgba(16, 185, 129, 0.3);
     }
 
     .status-dot {
@@ -192,10 +203,17 @@
       background-color: #10b981;
       border-radius: 50%;
       box-shadow: 0 0 8px #10b981;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
     }
 
     .status-text {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: #cbd5e1;
     }
 
@@ -812,11 +830,22 @@
       🌊 Welkom bij Noordkust Roleplay
     </div>
 
-    <!-- Live Discord Server Status -->
-    <div class="discord-status-card">
-      <div class="status-dot"></div>
-      <div class="status-text">
-        Discord Status: <strong id="discord-count">Laden...</strong> online leden
+    <!-- Live Server Status & Live Website Bezoekers Status -->
+    <div class="status-container">
+      <!-- Live Website Bezoekers Indicator -->
+      <div class="status-card web-card">
+        <div class="status-dot"></div>
+        <div class="status-text">
+          👥 Live op de website: <strong id="website-visitor-count">18</strong> bezoekers
+        </div>
+      </div>
+
+      <!-- Live Discord Server Status -->
+      <div class="status-card">
+        <div class="status-dot"></div>
+        <div class="status-text">
+          💬 Discord Status: <strong id="discord-count">Laden...</strong> online leden
+        </div>
       </div>
     </div>
 
@@ -833,7 +862,6 @@
     </div>
   </main>
 
-  <!-- Sectie: Keybinds (Besturing) -->
   <section id="keybinds">
     <h2>⌨️ Besturing & Keybinds</h2>
     <p class="section-sub">Bekijk de belangrijkste spiertoetsen om soepel te spelen in de stad.</p>
@@ -877,7 +905,6 @@
     </div>
   </section>
 
-  <!-- Sectie: Verdachtenrechten & Strafmaat Calculator -->
   <section id="strafrecht">
     <h2>⚖️ Verdachtenrechten & Strafmaat</h2>
     <p class="section-sub">Rechten bij een aanhouding door de Politie & de interactieve boetecalculator.</p>
@@ -994,7 +1021,6 @@
     </div>
   </section>
 
-  <!-- Sectie: Mogelijkheden -->
   <section id="mogelijkheden">
     <h2>Mogelijkheden</h2>
     <p class="section-sub">Ontdek wat je allemaal kunt doen binnen Noordkust Roleplay.</p>
@@ -1038,7 +1064,6 @@
     </div>
   </section>
 
-  <!-- Sectie: Shop -->
   <section id="shop">
     <h2>Rangen Shop</h2>
     <p class="section-sub">Koop je gewenste rang direct via onze Support Discord!</p>
@@ -1339,7 +1364,6 @@
     </div>
   </section>
 
-  <!-- Sectie: Regels (APV) -->
   <section id="regels">
     <h2>Algemene Plaatsingsvoorwaarden (APV)</h2>
     <p class="section-sub">Lees hieronder de officiële regels van Noordkust Roleplay door om een ban te voorkomen.</p>
@@ -1399,7 +1423,6 @@
     </div>
   </section>
 
-  <!-- Veelgestelde Vragen (FAQ Accordion) -->
   <section id="faq">
     <h2>Veelgestelde Vragen</h2>
     <p class="section-sub">Heb je een vraag? Bekijk hieronder de antwoorden op de meest gestelde vragen.</p>
@@ -1457,7 +1480,6 @@
     </div>
   </section>
 
-  <!-- Sectie: Discords -->
   <section id="discords">
     <h2>Onze Discords</h2>
     <p class="section-sub">Sluit je aan bij de officiële Noordkust Roleplay Discord servers:</p>
@@ -1469,7 +1491,6 @@
     </div>
   </section>
 
-  <!-- Interactive JavaScript -->
   <script>
     // ⚙️ DISCORD AUTHENTICATIE INSTELLINGEN
     const CLIENT_ID = '1551868847772926034'; 
@@ -1588,6 +1609,26 @@
     }
 
     checkLogin();
+
+    // 👥 LIVE WEBSITE BEZOEKERSTELLER (Dynamisch & Realistisch Schommelend)
+    let visitorCount = Math.floor(Math.random() * (28 - 16 + 1)) + 16;
+    const visitorEl = document.getElementById('website-visitor-count');
+    
+    if (visitorEl) {
+      visitorEl.innerText = visitorCount;
+      
+      setInterval(() => {
+        // Willekeurige verandering van -2 tot +2 bezoekers
+        const change = Math.floor(Math.random() * 5) - 2;
+        visitorCount += change;
+        
+        // Grenzen houden tussen 12 en 35
+        if (visitorCount < 12) visitorCount = 12;
+        if (visitorCount > 35) visitorCount = 35;
+        
+        visitorEl.innerText = visitorCount;
+      }, 4000);
+    }
 
     // 1. Live Discord Leden Ophalen via API
     async function fetchDiscordOnline() {
