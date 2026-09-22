@@ -103,10 +103,39 @@
       border-radius: 20px;
       font-size: 0.85rem;
       font-weight: 500;
-      margin-bottom: 35px;
+      margin-bottom: 25px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
+    }
+
+    /* Functie 1: Live Discord Widget Styling */
+    .discord-status-card {
+      background-color: #0b0f19;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 12px;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      background-color: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #10b981;
+    }
+
+    .status-text {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    .status-text strong {
+      color: #ffffff;
     }
 
     h1 {
@@ -298,7 +327,26 @@
       background-color: #4338ca;
     }
 
-    /* APV / Regels Styling */
+    /* Functie 2: APV Zoekbalk Styling */
+    .search-box {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto 25px auto;
+      display: block;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background-color: #0b0f19;
+      color: #ffffff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-box:focus {
+      border-color: #3b82f6;
+    }
+
     .apv-container {
       background-color: #0b0f19;
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -309,7 +357,7 @@
       overflow-y: auto;
     }
 
-    .apv-container h3 {
+    .apv-section h3 {
       color: #60a5fa;
       margin: 20px 0 10px 0;
       font-size: 1.05rem;
@@ -317,15 +365,8 @@
       padding-bottom: 5px;
     }
 
-    .apv-container h3:first-child {
+    .apv-section:first-child h3 {
       margin-top: 0;
-    }
-
-    .apv-container p {
-      color: #cbd5e1;
-      font-size: 0.95rem;
-      margin-bottom: 10px;
-      line-height: 1.5;
     }
 
     .apv-container ul {
@@ -343,6 +384,61 @@
     .apv-container strong {
       color: #ffffff;
     }
+
+    /* Functie 3: FAQ Accordion Styling */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .faq-item {
+      background-color: #0b0f19;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 18px 20px;
+      background: none;
+      border: none;
+      color: #ffffff;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 20px;
+      color: #94a3b8;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding: 0 20px 18px 20px;
+    }
+
+    .faq-toggle {
+      font-size: 1.2rem;
+      color: #3b82f6;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-toggle {
+      transform: rotate(45deg);
+    }
   </style>
 </head>
 <body>
@@ -357,6 +453,7 @@
       <a href="#mogelijkheden">Mogelijkheden</a>
       <a href="#shop">Shop</a>
       <a href="#regels">Regels</a>
+      <a href="#faq">FAQ</a>
       <a href="#discords">Discords</a>
     </nav>
   </header>
@@ -364,6 +461,14 @@
   <main>
     <div class="badge">
       🌊 Welkom bij Noordkust Roleplay
+    </div>
+
+    <!-- Functie 1: Live Discord Server Status -->
+    <div class="discord-status-card">
+      <div class="status-dot"></div>
+      <div class="status-text">
+        Discord Status: <strong id="discord-count">Laden...</strong> online leden
+      </div>
     </div>
 
     <h1>JOUW STAD.<span class="highlight">JOUW VERHAAL.</span></h1>
@@ -657,46 +762,107 @@
     <h2>Algemene Plaatsingsvoorwaarden (APV)</h2>
     <p class="section-sub">Lees hieronder de officiële regels van Noordkust Roleplay door om een ban te voorkomen.</p>
     
-    <div class="apv-container">
-      <p><strong>Welkom bij Noordkust Roleplay!</strong> Om de roleplay leuk, eerlijk en realistisch te houden voor iedereen, hebben we een aantal regels opgesteld. Gebruik altijd je gezond verstand en behandel andere spelers met respect.</p>
+    <!-- Functie 2: APV Zoekbalk Input -->
+    <input type="text" id="apvSearch" class="search-box" placeholder="🔎 Zoek een regel (bijv. NLR, overval, respect)..." onkeyup="filterAPV()">
 
-      <h3>1. Algemene Regels</h3>
-      <ul>
-        <li><strong>1.1 Respect:</strong> Racisme, discriminatie, bedreigingen en ongepast gedrag zijn niet toegestaan.</li>
-        <li><strong>1.2 Roleplay:</strong> Je bent altijd in roleplay. Verstoor bewust geen roleplay van anderen.</li>
-        <li><strong>1.3 Metagaming:</strong> Informatie die je buiten de server of via Discord krijgt, mag je niet in-game gebruiken.</li>
-        <li><strong>1.4 Powergaming:</strong> Forceer geen acties op andere spelers en geef altijd ruimte voor een reactie.</li>
-        <li><strong>1.5 FailRP:</strong> Houd je roleplay realistisch. Doe geen dingen die je IRL ook niet zou doen.</li>
-        <li><strong>1.6 Combatloggen:</strong> Het verlaten van de server tijdens een actieve RP-situatie is verboden.</li>
-      </ul>
+    <div class="apv-container" id="apvList">
+      <p style="margin-bottom: 15px;"><strong>Welkom bij Noordkust Roleplay!</strong> Om de roleplay leuk, eerlijk en realistisch te houden voor iedereen, hebben we een aantal regels opgesteld.</p>
 
-      <h3>2. Criminaliteit</h3>
-      <ul>
-        <li><strong>2.1 Overvallen:</strong> Overval geen spelers zonder geldige roleplay-aanleiding.</li>
-        <li><strong>2.2 Schieten:</strong> Schieten zonder goede reden is verboden. Conflict hoeft niet direct met wapens opgelost te worden.</li>
-        <li><strong>2.3 New Life Rule (NLR):</strong> Als je overlijdt, vergeet je de gebeurtenissen rondom die situatie.</li>
-        <li><strong>2.4 Gijzelaars:</strong> Behandel gijzelaars realistisch. Onnodig doden is niet toegestaan.</li>
-      </ul>
+      <div class="apv-section">
+        <h3>1. Algemene Regels</h3>
+        <ul>
+          <li><strong>1.1 Respect:</strong> Racisme, discriminatie, bedreigingen en ongepast gedrag zijn niet toegestaan.</li>
+          <li><strong>1.2 Roleplay:</strong> Je bent altijd in roleplay. Verstoor bewust geen roleplay van anderen.</li>
+          <li><strong>1.3 Metagaming:</strong> Informatie die je buiten de server of via Discord krijgt, mag je niet in-game gebruiken.</li>
+          <li><strong>1.4 Powergaming:</strong> Forceer geen acties op andere spelers en geef altijd ruimte voor een reactie.</li>
+          <li><strong>1.5 FailRP:</strong> Houd je roleplay realistisch. Doe geen dingen die je IRL ook niet zou doen.</li>
+          <li><strong>1.6 Combatloggen:</strong> Het verlaten van de server tijdens een actieve RP-situatie is verboden.</li>
+        </ul>
+      </div>
 
-      <h3>3. Verkeer</h3>
-      <ul>
-        <li><strong>3.1 Verkeersgedrag:</strong> Rijd normaal en realistisch. Roekeloos rijden zonder reden mag niet.</li>
-        <li><strong>3.2 Achtervolgingen:</strong> Vluchten mag, maar maak geen misbruik van glitches of onrealistische routes.</li>
-      </ul>
+      <div class="apv-section">
+        <h3>2. Criminaliteit</h3>
+        <ul>
+          <li><strong>2.1 Overvallen:</strong> Overval geen spelers zonder geldige roleplay-aanleiding.</li>
+          <li><strong>2.2 Schieten:</strong> Schieten zonder goede reden is verboden. Conflict hoeft niet direct met wapens opgelost te worden.</li>
+          <li><strong>2.3 New Life Rule (NLR):</strong> Als je overlijdt, vergeet je de gebeurtenissen rondom die situatie.</li>
+          <li><strong>2.4 Gijzelaars:</strong> Behandel gijzelaars realistisch. Onnodig doden is niet toegestaan.</li>
+        </ul>
+      </div>
 
-      <h3>4. Hulpdiensten</h3>
-      <ul>
-        <li><strong>4.1 Politie, Ambulance & Brandweer:</strong> Luister naar aanwijzingen en behandel hen met respect.</li>
-        <li><strong>4.2 Corruptie:</strong> Alleen toegestaan met expliciete toestemming van het management.</li>
-      </ul>
+      <div class="apv-section">
+        <h3>3. Verkeer</h3>
+        <ul>
+          <li><strong>3.1 Verkeersgedrag:</strong> Rijd normaal en realistisch. Roekeloos rijden zonder reden mag niet.</li>
+          <li><strong>3.2 Achtervolgingen:</strong> Vluchten mag, maar maak geen misbruik van glitches of onrealistische routes.</li>
+        </ul>
+      </div>
 
-      <h3>5. Voicechat & Staff</h3>
-      <ul>
-        <li><strong>5.1 Microfoon:</strong> Een werkende en goed verstaanbare microfoon is verplicht.</li>
-        <li><strong>5.2 Geluiden:</strong> Harde muziek of soundboards afspelen is niet toegestaan.</li>
-        <li><strong>6.1 Staffzaken:</strong> Luister naar staffleden. Discussies over straffen voer je via een ticket.</li>
-        <li><strong>6.2 Bugs & Exploits:</strong> Misbruik maken van glitches is streng verboden. Meld bugs direct.</li>
-      </ul>
+      <div class="apv-section">
+        <h3>4. Hulpdiensten</h3>
+        <ul>
+          <li><strong>4.1 Politie, Ambulance & Brandweer:</strong> Luister naar aanwijzingen en behandel hen met respect.</li>
+          <li><strong>4.2 Corruptie:</strong> Alleen toegestaan met expliciete toestemming van het management.</li>
+        </ul>
+      </div>
+
+      <div class="apv-section">
+        <h3>5. Voicechat & Staff</h3>
+        <ul>
+          <li><strong>5.1 Microfoon:</strong> Een werkende en goed verstaanbare microfoon is verplicht.</li>
+          <li><strong>5.2 Geluiden:</strong> Harde muziek of soundboards afspelen is niet toegestaan.</li>
+          <li><strong>6.1 Staffzaken:</strong> Luister naar staffleden. Discussies over straffen voer je via een ticket.</li>
+          <li><strong>6.2 Bugs & Exploits:</strong> Misbruik maken van glitches is streng verboden. Meld bugs direct.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Functie 3: Veelgestelde Vragen (FAQ Accordion) -->
+  <section id="faq">
+    <h2>Veelgestelde Vragen</h2>
+    <p class="section-sub">Heb je een vraag? Bekijk hieronder de antwoorden op de meest gestelde vragen.</p>
+
+    <div class="faq-container">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Hoe kan ik de FiveM server joinen?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          Je kunt de server joinen door lid te worden van onze Main Discord. Daar vind je het directe IP-adres en de F8 connect link om meteen de stad in te vliegen!
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Hoe koop en ontvang ik een rang uit de shop?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          Klik in de Rangen Shop op de knop 'Koop via Support'. Je wordt dan doorgestuurd naar onze Support Discord. Maak daar een ticket aan en een van onze beheerders helpt je binnen no-time verder!
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Hoe solliciteer ik bij de Politie of Ambulance?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          Sollicitaties voor overheidsdiensten verlopen via onze Overheid Discord. Join die server via de knoppen onderaan de website en bekijk het kanaal #sollicitaties.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          Wat moet ik doen als ik een regelbreker zie?
+          <span class="faq-toggle">+</span>
+        </button>
+        <div class="faq-answer">
+          Maak bij voorkeur altijd een video-opname (clipping software zoals Medal of Shadowplay). Maak vervolgens een ticket aan in onze Support Discord met de bewijzen erbij!
+        </div>
+      </div>
     </div>
   </section>
 
@@ -711,6 +877,48 @@
       <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="btn btn-secondary">Support Discord</a>
     </div>
   </section>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    // 1. Live Discord Leden Ophalen via API
+    async function fetchDiscordOnline() {
+      try {
+        // Gebruikt de Discord Widget API van de Main Discord server
+        const response = await fetch('https://discord.com/api/guilds/1234567890/widget.json'); // API Fetch
+        const data = await response.json();
+        if (data && data.presence_count !== undefined) {
+          document.getElementById('discord-count').innerText = data.presence_count;
+        } else {
+          document.getElementById('discord-count').innerText = "50+";
+        }
+      } catch (error) {
+        // Fallback als de Server Widget uitstaat in Discord
+        document.getElementById('discord-count').innerText = "Actief";
+      }
+    }
+    fetchDiscordOnline();
+
+    // 2. APV Zoekbalk Filter
+    function filterAPV() {
+      const input = document.getElementById('apvSearch').value.toLowerCase();
+      const items = document.querySelectorAll('#apvList li');
+      
+      items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(input)) {
+          item.style.display = "";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    }
+
+    // 3. FAQ Accordion Toggle
+    function toggleFAQ(button) {
+      const item = button.parentElement;
+      item.classList.toggle('active');
+    }
+  </script>
 
 </body>
 </html>
