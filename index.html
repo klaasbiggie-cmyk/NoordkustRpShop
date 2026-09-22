@@ -21,11 +21,58 @@
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #030712;
+      background-color: #020617;
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(30, 58, 138, 0.25) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(88, 28, 135, 0.2) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(15, 23, 42, 0.6) 0px, transparent 100%);
+      background-attachment: fixed;
       color: #ffffff;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Professional Grid Background Overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Ambient Glow Blobs */
+    .bg-glow-1 {
+      position: fixed;
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(0,0,0,0) 70%);
+      pointer-events: none;
+      z-index: 0;
+      animation: floatGlow 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(-50%, -10px) scale(0.95); }
+      100% { transform: translate(-50%, 10px) scale(1.05); }
+    }
+
+    /* Content Wrapper om boven achtergrond te blijven */
+    header, main, section, footer {
+      position: relative;
+      z-index: 1;
     }
 
     /* Navigatiebalk */
@@ -36,10 +83,11 @@
       justify-content: space-between;
       position: sticky;
       top: 0;
-      background-color: rgba(3, 7, 18, 0.9);
-      backdrop-filter: blur(8px);
+      background: rgba(2, 6, 23, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       z-index: 10;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .brand-container {
@@ -54,6 +102,8 @@
       width: auto;
       border-radius: 50%;
       object-fit: cover;
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
     }
 
     .brand-text {
@@ -100,11 +150,12 @@
       align-items: center;
       gap: 8px;
       text-decoration: none;
-      transition: background-color 0.2s;
+      transition: background-color 0.2s, box-shadow 0.2s;
     }
 
     .discord-auth-btn:hover {
       background-color: #4752C4;
+      box-shadow: 0 0 12px rgba(88, 101, 242, 0.4);
     }
 
     .user-profile {
@@ -157,21 +208,23 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 80px 20px;
+      padding: 100px 20px;
     }
 
     .badge {
-      background-color: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.15);
       color: #60a5fa;
       padding: 8px 18px;
       border-radius: 20px;
       font-size: 0.85rem;
-      font-weight: 500;
+      font-weight: 600;
       margin-bottom: 25px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      backdrop-filter: blur(8px);
     }
 
     /* Live Status Cards Container */
@@ -180,12 +233,13 @@
       gap: 15px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
 
     .status-card {
-      background-color: #0b0f19;
+      background: rgba(15, 23, 42, 0.65);
       border: 1px solid rgba(59, 130, 246, 0.3);
+      backdrop-filter: blur(10px);
       border-radius: 12px;
       padding: 12px 24px;
       display: flex;
@@ -221,23 +275,26 @@
     }
 
     h1 {
-      font-size: 4.5rem;
+      font-size: 4.8rem;
       font-weight: 900;
       line-height: 1.05;
       letter-spacing: -1.5px;
       margin-bottom: 25px;
       max-width: 900px;
+      text-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
     }
 
     h1 .highlight {
-      color: #3b82f6;
+      background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       display: block;
     }
 
     p.subtitle {
-      color: #9ca3af;
-      font-size: 1.1rem;
-      max-width: 600px;
+      color: #94a3b8;
+      font-size: 1.15rem;
+      max-width: 620px;
       margin-bottom: 40px;
       line-height: 1.6;
     }
@@ -251,12 +308,12 @@
     }
 
     .btn {
-      padding: 12px 24px;
-      border-radius: 8px;
+      padding: 12px 26px;
+      border-radius: 10px;
       font-weight: 600;
       text-decoration: none;
       font-size: 0.95rem;
-      transition: all 0.2s;
+      transition: all 0.25s ease;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -264,22 +321,27 @@
     }
 
     .btn-primary {
-      background-color: #4f46e5;
+      background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
       color: #ffffff;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
     }
 
     .btn-primary:hover {
-      background-color: #4338ca;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.45);
     }
 
     .btn-secondary {
-      background-color: transparent;
+      background: rgba(255, 255, 255, 0.05);
       color: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
     }
 
     .btn-secondary:hover {
-      background-color: rgba(255, 255, 255, 0.05);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
     }
 
     .btn-vip {
@@ -287,29 +349,32 @@
       color: #000000;
       border: none;
       font-weight: 700;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
     }
 
     .btn-vip:hover {
-      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5);
     }
 
     /* Algemene Secties */
     section {
-      padding: 80px 20px;
+      padding: 90px 20px;
       max-width: 1100px;
       margin: 0 auto;
       text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
     }
 
     section h2 {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-      color: #3b82f6;
+      font-size: 2.3rem;
+      margin-bottom: 12px;
+      color: #ffffff;
+      letter-spacing: -0.5px;
     }
 
     section p.section-sub {
-      color: #9ca3af;
+      color: #94a3b8;
       font-size: 1.05rem;
       margin-bottom: 40px;
     }
@@ -318,20 +383,22 @@
     .search-box {
       width: 100%;
       max-width: 500px;
-      margin: 0 auto 25px auto;
+      margin: 0 auto 30px auto;
       display: block;
-      padding: 12px 20px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background-color: #0b0f19;
+      padding: 14px 22px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(10px);
       color: #ffffff;
       font-size: 0.95rem;
       outline: none;
-      transition: border-color 0.2s;
+      transition: all 0.2s;
     }
 
     .search-box:focus {
       border-color: #3b82f6;
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.25);
     }
 
     /* Keybinds Styling */
@@ -343,18 +410,19 @@
     }
 
     .keybind-card {
-      background-color: #0b0f19;
+      background: rgba(15, 23, 42, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 20px;
+      backdrop-filter: blur(10px);
+      border-radius: 14px;
+      padding: 24px;
     }
 
     .keybind-card h3 {
       font-size: 1.1rem;
       color: #60a5fa;
       margin-bottom: 15px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 10px;
     }
 
     .keybind-list {
@@ -366,7 +434,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       font-size: 0.9rem;
       color: #cbd5e1;
     }
@@ -376,10 +444,10 @@
     }
 
     kbd {
-      background-color: #1e293b;
+      background-color: rgba(30, 41, 59, 0.8);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 6px;
-      box-shadow: 0 2px 0 rgba(255, 255, 255, 0.2);
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
       color: #38bdf8;
       display: inline-block;
       font-family: monospace;
@@ -390,9 +458,10 @@
 
     /* Verdachtenrechten & Boete Calculator Styling */
     .rights-card {
-      background-color: #0b0f19;
+      background: rgba(15, 23, 42, 0.5);
       border: 1px solid rgba(239, 68, 68, 0.3);
-      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border-radius: 14px;
       padding: 25px;
       text-align: left;
       margin-bottom: 35px;
@@ -415,10 +484,10 @@
     }
 
     .right-box {
-      background-color: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      padding: 15px;
+      background: rgba(2, 6, 23, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 16px;
     }
 
     .right-box h4 {
@@ -437,9 +506,10 @@
     }
 
     .calculator-container {
-      background-color: #0b0f19;
+      background: rgba(15, 23, 42, 0.5);
       border: 1px solid rgba(59, 130, 246, 0.3);
-      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border-radius: 14px;
       padding: 25px;
       text-align: left;
     }
@@ -458,20 +528,21 @@
     }
 
     .offense-item {
-      background-color: rgba(15, 23, 42, 0.6);
+      background: rgba(2, 6, 23, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 12px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       cursor: pointer;
       user-select: none;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, background 0.2s;
     }
 
     .offense-item:hover {
       border-color: rgba(59, 130, 246, 0.4);
+      background: rgba(15, 23, 42, 0.8);
     }
 
     .offense-info {
@@ -498,14 +569,15 @@
     }
 
     .calc-total-bar {
-      background-color: #1e293b;
-      border-radius: 8px;
+      background: rgba(30, 41, 59, 0.6);
+      border-radius: 10px;
       padding: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
       gap: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .total-title {
@@ -550,24 +622,26 @@
     }
 
     .feature-card {
-      background-color: #0b0f19;
+      background: rgba(15, 23, 42, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border-radius: 14px;
       padding: 24px;
-      transition: transform 0.2s, border-color 0.2s;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
     .feature-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
       border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
 
     .feature-card.highlight-card {
       border: 1px solid rgba(245, 158, 11, 0.4);
-      background: linear-gradient(180deg, #0b0f19 0%, rgba(245, 158, 11, 0.05) 100%);
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, rgba(245, 158, 11, 0.05) 100%);
     }
 
     .feature-icon {
@@ -585,17 +659,17 @@
       color: #94a3b8;
       font-size: 0.9rem;
       line-height: 1.5;
-      margin-bottom: 15px;
+      margin-bottom: 18px;
     }
 
     .feature-btn {
       margin-top: auto;
       display: inline-block;
       text-align: center;
-      background-color: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.08);
       color: #ffffff;
-      padding: 8px 12px;
-      border-radius: 6px;
+      padding: 9px 14px;
+      border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.85rem;
@@ -611,7 +685,7 @@
       background: linear-gradient(90deg, #f59e0b, #d97706);
       color: #000000;
       padding: 12px 20px;
-      border-radius: 8px;
+      border-radius: 10px;
       font-weight: 700;
       margin-bottom: 25px;
       display: flex;
@@ -619,6 +693,7 @@
       justify-content: space-between;
       gap: 10px;
       text-align: left;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.25);
     }
 
     /* Shop Grid Styling */
@@ -627,7 +702,7 @@
       color: #60a5fa;
       margin: 35px 0 20px 0;
       text-align: left;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       padding-bottom: 8px;
     }
 
@@ -639,20 +714,22 @@
     }
 
     .shop-card {
-      background-color: #0b0f19;
+      background: rgba(15, 23, 42, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border-radius: 14px;
       padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       text-align: left;
-      transition: transform 0.2s, border-color 0.2s;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
     }
 
     .shop-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
       border-color: rgba(59, 130, 246, 0.4);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
     .card-title {
@@ -688,25 +765,27 @@
     .buy-btn {
       display: block;
       text-align: center;
-      background-color: #4f46e5;
+      background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%);
       color: #ffffff;
       padding: 10px 14px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
       font-size: 0.85rem;
-      transition: background-color 0.2s;
+      transition: opacity 0.2s, transform 0.2s;
     }
 
     .buy-btn:hover {
-      background-color: #4338ca;
+      opacity: 0.9;
+      transform: translateY(-1px);
     }
 
     /* APV Styling */
     .apv-container {
-      background-color: #0b0f19;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 14px;
       padding: 30px;
       text-align: left;
       max-height: 450px;
@@ -717,7 +796,7 @@
       color: #60a5fa;
       margin: 20px 0 10px 0;
       font-size: 1.05rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       padding-bottom: 5px;
     }
 
@@ -749,9 +828,10 @@
     }
 
     .faq-item {
-      background-color: #0b0f19;
+      background: rgba(15, 23, 42, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
       margin-bottom: 12px;
       overflow: hidden;
     }
@@ -798,6 +878,9 @@
   </style>
 </head>
 <body>
+
+  <!-- Ambient Glow Background Blobs -->
+  <div class="bg-glow-1"></div>
 
   <header>
     <a href="index.html" class="brand-container">
