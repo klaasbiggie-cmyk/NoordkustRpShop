@@ -883,13 +883,13 @@
     // 1. Live Discord Leden Ophalen via API
     async function fetchDiscordOnline() {
       try {
-        // Gebruikt de Discord Widget API van de Main Discord server
-        const response = await fetch('https://discord.com/api/guilds/1234567890/widget.json'); // API Fetch
+        // Gebruikt de Discord Widget API met jouw specifieke Server ID (1394626453441871923)
+        const response = await fetch('https://discord.com/api/guilds/1394626453441871923/widget.json');
         const data = await response.json();
         if (data && data.presence_count !== undefined) {
           document.getElementById('discord-count').innerText = data.presence_count;
         } else {
-          document.getElementById('discord-count').innerText = "50+";
+          document.getElementById('discord-count').innerText = "Actief";
         }
       } catch (error) {
         // Fallback als de Server Widget uitstaat in Discord
