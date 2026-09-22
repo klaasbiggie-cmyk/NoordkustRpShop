@@ -371,155 +371,6 @@
       padding: 4px 8px;
     }
 
-    /* Showcase / Catalogus Styling */
-    .filter-buttons {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 25px;
-    }
-
-    .filter-btn {
-      background-color: #0b0f19;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #94a3b8;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: 600;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .filter-btn:hover, .filter-btn.active {
-      background-color: #3b82f6;
-      color: #ffffff;
-      border-color: #3b82f6;
-    }
-
-    .catalog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      text-align: left;
-    }
-
-    .catalog-card {
-      background-color: #0b0f19;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: transform 0.2s, border-color 0.2s;
-    }
-
-    .catalog-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(59, 130, 246, 0.4);
-    }
-
-    .catalog-img-wrapper {
-      position: relative;
-      width: 100%;
-      height: 160px;
-      background-color: #1e293b;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .catalog-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .catalog-tag {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background-color: rgba(3, 7, 18, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #38bdf8;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 4px 8px;
-      border-radius: 6px;
-    }
-
-    .catalog-content {
-      padding: 18px;
-    }
-
-    .catalog-title {
-      font-size: 1.1rem;
-      color: #ffffff;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .catalog-desc {
-      color: #94a3b8;
-      font-size: 0.85rem;
-      line-height: 1.4;
-    }
-
-    /* Staff Showcase Styling */
-    .staff-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      text-align: center;
-    }
-
-    .staff-card {
-      background-color: #0b0f19;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 24px 16px;
-      transition: transform 0.2s;
-    }
-
-    .staff-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(59, 130, 246, 0.4);
-    }
-
-    .staff-avatar {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      border: 2px solid #3b82f6;
-      object-fit: cover;
-      margin: 0 auto 12px auto;
-      display: block;
-    }
-
-    .staff-name {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 4px;
-    }
-
-    .staff-role {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: #60a5fa;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 10px;
-    }
-
-    .staff-badge-dev {
-      color: #f59e0b;
-    }
-
-    .staff-badge-lead {
-      color: #ef4444;
-    }
-
     /* Verdachtenrechten & Boete Calculator Styling */
     .rights-card {
       background-color: #0b0f19;
@@ -939,8 +790,6 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="#keybinds">Keybinds</a>
-      <a href="#showcase">Catalogus</a>
-      <a href="#staffteam">Team</a>
       <a href="#strafrecht">Strafrecht</a>
       <a href="#mogelijkheden">Mogelijkheden</a>
       <a href="#shop">Shop</a>
@@ -1024,128 +873,6 @@
           <li class="keybind-item"><span>Handen omhoog doen</span> <kbd>X</kbd></li>
           <li class="keybind-item"><span>Wapen wegsteken</span> <kbd>BACKSPACE</kbd></li>
         </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- NIEUWE SECTIE 1: Voertuig & Custom Content Showcase (Catalogus) -->
-  <section id="showcase">
-    <h2>🚗 Custom Content & Voertuig Showcase</h2>
-    <p class="section-sub">Bekijk een selectie van onze unieke custom voertuigen, hulpdienstwagens en MLO content.</p>
-
-    <!-- Filter Knoppen -->
-    <div class="filter-buttons">
-      <button class="filter-btn active" onclick="filterCatalog('all', this)">Alles</button>
-      <button class="filter-btn" onclick="filterCatalog('imports', this)">Custom Imports</button>
-      <button class="filter-btn" onclick="filterCatalog('emergency', this)">Hulpdiensten</button>
-      <button class="filter-btn" onclick="filterCatalog('underworld', this)">Onderwereld</button>
-    </div>
-
-    <!-- Live Zoekbalk -->
-    <input type="text" id="catalogSearch" class="search-box" placeholder="🔎 Zoek in catalogus (bijv. Audi, Politie, Villa)..." onkeyup="searchCatalog()">
-
-    <!-- Grid Met Items -->
-    <div class="catalog-grid" id="catalogGrid">
-      <div class="catalog-card" data-category="imports">
-        <div class="catalog-img-wrapper">
-          <span class="catalog-tag">Custom Import</span>
-          <div style="font-size: 3rem;">🏎️</div>
-        </div>
-        <div class="catalog-content">
-          <div class="catalog-title">Audi RS6 Custom</div>
-          <div class="catalog-desc">Inclusief aangepast geluid, custom velgen en tuning opties bij de garage.</div>
-        </div>
-      </div>
-
-      <div class="catalog-card" data-category="emergency">
-        <div class="catalog-img-wrapper">
-          <span class="catalog-tag">Hulpdiensten</span>
-          <div style="font-size: 3rem;">🚔</div>
-        </div>
-        <div class="catalog-content">
-          <div class="catalog-title">Politie Snelle Interventie</div>
-          <div class="catalog-desc">Unieke striping, werkende matrixborden en ELS zwaailichten voor de Politie.</div>
-        </div>
-      </div>
-
-      <div class="catalog-card" data-category="imports">
-        <div class="catalog-img-wrapper">
-          <span class="catalog-tag">Custom Import</span>
-          <div style="font-size: 3rem;">🚗</div>
-        </div>
-        <div class="catalog-content">
-          <div class="catalog-title">BMW M4 Competition</div>
-          <div class="catalog-desc">Ultieme snelheden en strakke handling voor de echte liefhebber.</div>
-        </div>
-      </div>
-
-      <div class="catalog-card" data-category="emergency">
-        <div class="catalog-img-wrapper">
-          <span class="catalog-tag">Hulpdiensten</span>
-          <div style="font-size: 3rem;">🚑</div>
-        </div>
-        <div class="catalog-content">
-          <div class="catalog-title">Ambulance Rapid Response</div>
-          <div class="catalog-desc">Snelle ziekenvervoer wagens met realistische sirenes en brancardsysteem.</div>
-        </div>
-      </div>
-
-      <div class="catalog-card" data-category="underworld">
-        <div class="catalog-img-wrapper">
-          <span class="catalog-tag">Onderwereld</span>
-          <div style="font-size: 3rem;">🏠</div>
-        </div>
-        <div class="catalog-content">
-          <div class="catalog-title">Gang Hideouts & MLO's</div>
-          <div class="catalog-desc">Op maat gemaakt interieur voor officiële onderwereld groeperingen.</div>
-        </div>
-      </div>
-
-      <div class="catalog-card" data-category="underworld">
-        <div class="catalog-img-wrapper">
-          <span class="catalog-tag">Onderwereld</span>
-          <div style="font-size: 3rem;">🏍️</div>
-        </div>
-        <div class="catalog-content">
-          <div class="catalog-title">Custom Choppers & Motors</div>
-          <div class="catalog-desc">Unieke motorfietsen met aanpasbare uitlaten en kledingstijlen.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- NIEUWE SECTIE 2: Staff & Bestuur Team Showcase -->
-  <section id="staffteam">
-    <h2>👥 Ons Staff & Bestuur Team</h2>
-    <p class="section-sub">Maak kennis met het team dat Noordkust Roleplay elke dag draaiende houdt.</p>
-
-    <div class="staff-grid">
-      <div class="staff-card">
-        <img src="logo.jpg" alt="Staff" class="staff-avatar">
-        <div class="staff-name">Eigenaar / Beheer</div>
-        <div class="staff-role staff-badge-lead">Server Directie</div>
-        <p style="font-size: 0.85rem; color: #94a3b8;">Eindverantwoordelijk voor de ontwikkeling en visie van de stad.</p>
-      </div>
-
-      <div class="staff-card">
-        <img src="logo.jpg" alt="Staff" class="staff-avatar">
-        <div class="staff-name">Head Management</div>
-        <div class="staff-role staff-badge-dev">Management</div>
-        <p style="font-size: 0.85rem; color: #94a3b8;">Verantwoordelijk voor de dagelijkse leiding en staffsturing.</p>
-      </div>
-
-      <div class="staff-card">
-        <img src="logo.jpg" alt="Staff" class="staff-avatar">
-        <div class="staff-name">Developer Team</div>
-        <div class="staff-role">Ontwikkeling</div>
-        <p style="font-size: 0.85rem; color: #94a3b8;">Zorgt voor unieke scripts, auto's, MLO's en bugfixes.</p>
-      </div>
-
-      <div class="staff-card">
-        <img src="logo.jpg" alt="Staff" class="staff-avatar">
-        <div class="staff-name">Support Team</div>
-        <div class="staff-role">Speler Ondersteuning</div>
-        <p style="font-size: 0.85rem; color: #94a3b8;">Staat klaar in Discord-tickets om al jouw vragen te beantwoorden.</p>
       </div>
     </div>
   </section>
@@ -1785,6 +1512,7 @@
         ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` 
         : 'https://cdn.discordapp.com/embed/avatars/0.png';
 
+      // Check of VIP status is opgeslagen
       if (localStorage.getItem('is_vip') === 'true') {
         isVipActive = true;
       }
@@ -1893,36 +1621,7 @@
       });
     }
 
-    // 3. Catalogus Categorie Filter & Live Zoeken
-    function filterCatalog(category, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const cards = document.querySelectorAll('#catalogGrid .catalog-card');
-      cards.forEach(card => {
-        if (category === 'all' || card.getAttribute('data-category') === category) {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
-      });
-    }
-
-    function searchCatalog() {
-      const input = document.getElementById('catalogSearch').value.toLowerCase();
-      const cards = document.querySelectorAll('#catalogGrid .catalog-card');
-
-      cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        if (text.includes(input)) {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
-      });
-    }
-
-    // 4. Strafmaat & Boete Calculator
+    // 3. Strafmaat & Boete Calculator
     function calculatePenalties() {
       let totalFine = 0;
       let totalJail = 0;
@@ -1939,7 +1638,7 @@
       document.getElementById('totalJail').innerText = totalJail + ' maanden';
     }
 
-    // 5. APV Zoekbalk Filter
+    // 4. APV Zoekbalk Filter
     function filterAPV() {
       const input = document.getElementById('apvSearch').value.toLowerCase();
       const items = document.querySelectorAll('#apvList li');
@@ -1954,7 +1653,7 @@
       });
     }
 
-    // 6. FAQ Accordion Toggle
+    // 5. FAQ Accordion Toggle
     function toggleFAQ(button) {
       const item = button.parentElement;
       item.classList.toggle('active');
