@@ -69,14 +69,15 @@
 
     nav {
       display: flex;
-      gap: 32px;
+      gap: 24px;
+      flex-wrap: wrap;
     }
 
     nav a {
       color: #9ca3af;
       text-decoration: none;
       font-weight: 500;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       transition: color 0.2s;
     }
 
@@ -109,7 +110,7 @@
       gap: 8px;
     }
 
-    /* Functie 1: Live Discord Widget Styling */
+    /* Live Discord Widget Styling */
     .discord-status-card {
       background-color: #0b0f19;
       border: 1px solid rgba(59, 130, 246, 0.3);
@@ -216,6 +217,233 @@
       color: #9ca3af;
       font-size: 1.05rem;
       margin-bottom: 40px;
+    }
+
+    /* Zoekbalk Styling */
+    .search-box {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto 25px auto;
+      display: block;
+      padding: 12px 20px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background-color: #0b0f19;
+      color: #ffffff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-box:focus {
+      border-color: #3b82f6;
+    }
+
+    /* Keybinds Styling */
+    .keybinds-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      text-align: left;
+    }
+
+    .keybind-card {
+      background-color: #0b0f19;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .keybind-card h3 {
+      font-size: 1.1rem;
+      color: #60a5fa;
+      margin-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 8px;
+    }
+
+    .keybind-list {
+      list-style: none;
+    }
+
+    .keybind-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    .keybind-item:last-child {
+      border-bottom: none;
+    }
+
+    kbd {
+      background-color: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      box-shadow: 0 2px 0 rgba(255, 255, 255, 0.2);
+      color: #38bdf8;
+      display: inline-block;
+      font-family: monospace;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 4px 8px;
+    }
+
+    /* Verdachtenrechten & Boete Calculator Styling */
+    .rights-card {
+      background-color: #0b0f19;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: 12px;
+      padding: 25px;
+      text-align: left;
+      margin-bottom: 35px;
+    }
+
+    .rights-card h3 {
+      color: #f87171;
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .rights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .right-box {
+      background-color: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .right-box h4 {
+      color: #ffffff;
+      font-size: 0.95rem;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .right-box p {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    .calculator-container {
+      background-color: #0b0f19;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 12px;
+      padding: 25px;
+      text-align: left;
+    }
+
+    .calculator-container h3 {
+      color: #60a5fa;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .offense-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .offense-item {
+      background-color: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      transition: border-color 0.2s;
+    }
+
+    .offense-item:hover {
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+
+    .offense-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .offense-title {
+      font-size: 0.9rem;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .offense-penalty {
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    .offense-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #3b82f6;
+      cursor: pointer;
+    }
+
+    .calc-total-bar {
+      background-color: #1e293b;
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .total-title {
+      font-size: 1rem;
+      color: #cbd5e1;
+    }
+
+    .total-values {
+      display: flex;
+      gap: 20px;
+    }
+
+    .total-box {
+      text-align: right;
+    }
+
+    .total-label {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .total-amount {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #10b981;
+    }
+
+    .total-jail {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #f87171;
     }
 
     /* Grid layout voor Mogelijkheden */
@@ -327,26 +555,7 @@
       background-color: #4338ca;
     }
 
-    /* Functie 2: APV Zoekbalk Styling */
-    .search-box {
-      width: 100%;
-      max-width: 500px;
-      margin: 0 auto 25px auto;
-      display: block;
-      padding: 12px 20px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background-color: #0b0f19;
-      color: #ffffff;
-      font-size: 0.95rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .search-box:focus {
-      border-color: #3b82f6;
-    }
-
+    /* APV Styling */
     .apv-container {
       background-color: #0b0f19;
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -385,7 +594,7 @@
       color: #ffffff;
     }
 
-    /* Functie 3: FAQ Accordion Styling */
+    /* FAQ Accordion Styling */
     .faq-container {
       max-width: 800px;
       margin: 0 auto;
@@ -450,6 +659,8 @@
     </a>
     <nav>
       <a href="index.html">Home</a>
+      <a href="#keybinds">Keybinds</a>
+      <a href="#strafrecht">Strafrecht</a>
       <a href="#mogelijkheden">Mogelijkheden</a>
       <a href="#shop">Shop</a>
       <a href="#regels">Regels</a>
@@ -463,7 +674,7 @@
       🌊 Welkom bij Noordkust Roleplay
     </div>
 
-    <!-- Functie 1: Live Discord Server Status -->
+    <!-- Live Discord Server Status -->
     <div class="discord-status-card">
       <div class="status-dot"></div>
       <div class="status-text">
@@ -482,6 +693,167 @@
       <a href="#mogelijkheden" class="btn btn-secondary">Ontdek Noordkust →</a>
     </div>
   </main>
+
+  <!-- Nieuwe Sectie: Keybinds (Besturing) -->
+  <section id="keybinds">
+    <h2>⌨️ Besturing & Keybinds</h2>
+    <p class="section-sub">Bekijk de belangrijkste spiertoetsen om soepel te spelen in de stad.</p>
+    
+    <input type="text" id="keybindSearch" class="search-box" placeholder="🔎 Zoek een keybind (bijv. telefoon, gordel, chat)..." onkeyup="filterKeybinds()">
+
+    <div class="keybinds-grid" id="keybindList">
+      <div class="keybind-card">
+        <h3>💬 Algemeen & Interactie</h3>
+        <ul class="keybind-list">
+          <li class="keybind-item"><span>Telefoon openen</span> <kbd>M</kbd></li>
+          <li class="keybind-item"><span>Radiaalmenu / Acties</span> <kbd>F1</kbd></li>
+          <li class="keybind-item"><span>Third-Eye (Interactie)</span> <kbd>L-ALT</kbd></li>
+          <li class="keybind-item"><span>Chat / Commands</span> <kbd>T</kbd></li>
+          <li class="keybind-item"><span>Animatie / Emote menu</span> <kbd>F6</kbd></li>
+          <li class="keybind-item"><span>Stem bereik aanpassen</span> <kbd>H</kbd></li>
+        </ul>
+      </div>
+
+      <div class="keybind-card">
+        <h3>🚗 Voertuig Besturing</h3>
+        <ul class="keybind-list">
+          <li class="keybind-item"><span>Gordel om/af doen</span> <kbd>B</kbd></li>
+          <li class="keybind-item"><span>Motor starten / stoppen</span> <kbd>G</kbd></li>
+          <li class="keybind-item"><span>Voertuig op slot / van slot</span> <kbd>L</kbd></li>
+          <li class="keybind-item"><span>Richtingaanwijzers</span> <kbd>←</kbd> <kbd>→</kbd></li>
+          <li class="keybind-item"><span>Snelheidsbegrenzer (Cruise)</span> <kbd>Y</kbd></li>
+        </ul>
+      </div>
+
+      <div class="keybind-card">
+        <h3>🎒 Inventaris & Wapens</h3>
+        <ul class="keybind-list">
+          <li class="keybind-item"><span>Inventaris openen</span> <kbd>TAB</kbd></li>
+          <li class="keybind-item"><span>Sneltoetsen 1 t/m 5</span> <kbd>1</kbd> - <kbd>5</kbd></li>
+          <li class="keybind-item"><span>Wapen herladen</span> <kbd>R</kbd></li>
+          <li class="keybind-item"><span>Handen omhoog doen</span> <kbd>X</kbd></li>
+          <li class="keybind-item"><span>Wapen wegsteken</span> <kbd>BACKSPACE</kbd></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nieuwe Sectie: Verdachtenrechten & Strafmaat Calculator -->
+  <section id="strafrecht">
+    <h2>⚖️ Verdachtenrechten & Strafmaat</h2>
+    <p class="section-sub">Rechten bij een aanhouding door de Politie & de interactieve boetecalculator.</p>
+
+    <!-- Rechten Card -->
+    <div class="rights-card">
+      <h3>🚨 Rechten bij Aanhouding (Verdachtenrechten)</h3>
+      <p>Indien je wordt aangehouden door de Politie van Noordkust Roleplay, heb je altijd recht op de onderstaande punten. De politie is verplicht je hierop te wijzen:</p>
+      
+      <div class="rights-grid">
+        <div class="right-box">
+          <h4>🍞 Eten & Drinken</h4>
+          <p>Je hebt recht op basisbehoeften zoals eten en drinken tijdens je celstraf of verhoor op het bureau.</p>
+        </div>
+        <div class="right-box">
+          <h4>🏥 Medische Zorg</h4>
+          <p>Indien je gewond bent, heb je direct recht op medische bijstand van de Ambulance (EMS).</p>
+        </div>
+        <div class="right-box">
+          <h4>⚖️ Recht op een Advocaat</h4>
+          <p>Je hebt recht op juridische bijstand van een advocaat voordat het verhoor plaatsvindt.</p>
+        </div>
+        <div class="right-box">
+          <h4>🗣️ Recht op een Tolk</h4>
+          <p>Begrijp je de Nederlandse taal niet goed? Dan heb je recht op een tolk die je bijstaat.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Boete Calculator -->
+    <div class="calculator-container">
+      <h3>📊 APV Strafmaat & Boete Calculator</h3>
+      <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px;">Vink de begane overtredingen aan om de totale boete en celstraf te berekenen:</p>
+
+      <div class="offense-list">
+        <label class="offense-item" onclick="calculatePenalties()">
+          <div class="offense-info">
+            <span class="offense-title">Snelheidsovertreding (>30 km/u)</span>
+            <span class="offense-penalty">€1.500 | 0 mnd</span>
+          </div>
+          <input type="checkbox" class="offense-check" data-price="1500" data-jail="0">
+        </label>
+
+        <label class="offense-item" onclick="calculatePenalties()">
+          <div class="offense-info">
+            <span class="offense-title">Rijden zonder Rijbewijs</span>
+            <span class="offense-penalty">€2.500 | 5 mnd</span>
+          </div>
+          <input type="checkbox" class="offense-check" data-price="2500" data-jail="5">
+        </label>
+
+        <label class="offense-item" onclick="calculatePenalties()">
+          <div class="offense-info">
+            <span class="offense-title">Vluchten voor Politie</span>
+            <span class="offense-penalty">€5.000 | 10 mnd</span>
+          </div>
+          <input type="checkbox" class="offense-check" data-price="5000" data-jail="10">
+        </label>
+
+        <label class="offense-item" onclick="calculatePenalties()">
+          <div class="offense-info">
+            <span class="offense-title">Illegaal Wapenbezit (Licht)</span>
+            <span class="offense-penalty">€7.500 | 15 mnd</span>
+          </div>
+          <input type="checkbox" class="offense-check" data-price="7500" data-jail="15">
+        </label>
+
+        <label class="offense-item" onclick="calculatePenalties()">
+          <div class="offense-info">
+            <span class="offense-title">Illegaal Wapenbezit (Zwaar)</span>
+            <span class="offense-penalty">€15.000 | 30 mnd</span>
+          </div>
+          <input type="checkbox" class="offense-check" data-price="15000" data-jail="30">
+        </label>
+
+        <label class="offense-item" onclick="calculatePenalties()">
+          <div class="offense-info">
+            <span class="offense-title">Overval op Winkel / ATM</span>
+            <span class="offense-penalty">€10.000 | 20 mnd</span>
+          </div>
+          <input type="checkbox" class="offense-check" data-price="10000" data-jail="20">
+        </label>
+
+        <label class="offense-item" onclick="calculatePenalties()">
+          <div class="offense-info">
+            <span class="offense-title">Overval op de Bank</span>
+            <span class="offense-penalty">€25.000 | 45 mnd</span>
+          </div>
+          <input type="checkbox" class="offense-check" data-price="25000" data-jail="45">
+        </label>
+
+        <label class="offense-item" onclick="calculatePenalties()">
+          <div class="offense-info">
+            <span class="offense-title">Poging tot Doodslag / Moord</span>
+            <span class="offense-penalty">€30.000 | 60 mnd</span>
+          </div>
+          <input type="checkbox" class="offense-check" data-price="30000" data-jail="60">
+        </label>
+      </div>
+
+      <div class="calc-total-bar">
+        <div class="total-title">Totale Strafmaat Berekening:</div>
+        <div class="total-values">
+          <div class="total-box">
+            <div class="total-label">Totale Boete</div>
+            <div class="total-amount" id="totalFine">€0</div>
+          </div>
+          <div class="total-box">
+            <div class="total-label">Celstraf</div>
+            <div class="total-jail" id="totalJail">0 maanden</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Sectie: Mogelijkheden -->
   <section id="mogelijkheden">
@@ -762,7 +1134,6 @@
     <h2>Algemene Plaatsingsvoorwaarden (APV)</h2>
     <p class="section-sub">Lees hieronder de officiële regels van Noordkust Roleplay door om een ban te voorkomen.</p>
     
-    <!-- Functie 2: APV Zoekbalk Input -->
     <input type="text" id="apvSearch" class="search-box" placeholder="🔎 Zoek een regel (bijv. NLR, overval, respect)..." onkeyup="filterAPV()">
 
     <div class="apv-container" id="apvList">
@@ -818,7 +1189,7 @@
     </div>
   </section>
 
-  <!-- Functie 3: Veelgestelde Vragen (FAQ Accordion) -->
+  <!-- Veelgestelde Vragen (FAQ Accordion) -->
   <section id="faq">
     <h2>Veelgestelde Vragen</h2>
     <p class="section-sub">Heb je een vraag? Bekijk hieronder de antwoorden op de meest gestelde vragen.</p>
@@ -883,7 +1254,6 @@
     // 1. Live Discord Leden Ophalen via API
     async function fetchDiscordOnline() {
       try {
-        // Gebruikt de Discord Widget API met jouw specifieke Server ID (1394626453441871923)
         const response = await fetch('https://discord.com/api/guilds/1394626453441871923/widget.json');
         const data = await response.json();
         if (data && data.presence_count !== undefined) {
@@ -892,13 +1262,44 @@
           document.getElementById('discord-count').innerText = "Actief";
         }
       } catch (error) {
-        // Fallback als de Server Widget uitstaat in Discord
         document.getElementById('discord-count').innerText = "Actief";
       }
     }
     fetchDiscordOnline();
 
-    // 2. APV Zoekbalk Filter
+    // 2. Keybinds Zoekbalk Filter
+    function filterKeybinds() {
+      const input = document.getElementById('keybindSearch').value.toLowerCase();
+      const items = document.querySelectorAll('#keybindList .keybind-item');
+      
+      items.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        if (text.includes(input)) {
+          item.style.display = "flex";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    }
+
+    // 3. Strafmaat & Boete Calculator
+    function calculatePenalties() {
+      let totalFine = 0;
+      let totalJail = 0;
+
+      const checkboxes = document.querySelectorAll('.offense-check');
+      checkboxes.forEach(box => {
+        if (box.checked) {
+          totalFine += parseInt(box.getAttribute('data-price')) || 0;
+          totalJail += parseInt(box.getAttribute('data-jail')) || 0;
+        }
+      });
+
+      document.getElementById('totalFine').innerText = '€' + totalFine.toLocaleString('nl-NL');
+      document.getElementById('totalJail').innerText = totalJail + ' maanden';
+    }
+
+    // 4. APV Zoekbalk Filter
     function filterAPV() {
       const input = document.getElementById('apvSearch').value.toLowerCase();
       const items = document.querySelectorAll('#apvList li');
@@ -913,7 +1314,7 @@
       });
     }
 
-    // 3. FAQ Accordion Toggle
+    // 5. FAQ Accordion Toggle
     function toggleFAQ(button) {
       const item = button.parentElement;
       item.classList.toggle('active');
