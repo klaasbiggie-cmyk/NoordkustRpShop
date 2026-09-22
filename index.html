@@ -174,7 +174,7 @@
       gap: 8px;
     }
 
-    /* Live Discord & Web Traffic Cards */
+    /* Live Status Cards Container */
     .status-container {
       display: flex;
       gap: 15px;
@@ -187,14 +187,10 @@
       background-color: #0b0f19;
       border: 1px solid rgba(59, 130, 246, 0.3);
       border-radius: 12px;
-      padding: 10px 20px;
+      padding: 12px 24px;
       display: flex;
       align-items: center;
-      gap: 10px;
-    }
-
-    .status-card.web-card {
-      border-color: rgba(16, 185, 129, 0.3);
+      gap: 12px;
     }
 
     .status-dot {
@@ -203,7 +199,10 @@
       background-color: #10b981;
       border-radius: 50%;
       box-shadow: 0 0 8px #10b981;
-      animation: pulse 2s infinite;
+    }
+
+    .status-dot.pulse {
+      animation: pulse 1.8s infinite;
     }
 
     @keyframes pulse {
@@ -213,7 +212,7 @@
     }
 
     .status-text {
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: #cbd5e1;
     }
 
@@ -607,7 +606,7 @@
       background-color: #3b82f6;
     }
 
-    /* VIP Discount Notice Banner */
+    /* VIP Discount Banner */
     .vip-banner {
       background: linear-gradient(90deg, #f59e0b, #d97706);
       color: #000000;
@@ -830,21 +829,21 @@
       🌊 Welkom bij Noordkust Roleplay
     </div>
 
-    <!-- Live Server Status & Live Website Bezoekers Status -->
+    <!-- Live Status Cards Container -->
     <div class="status-container">
-      <!-- Live Website Bezoekers Indicator -->
-      <div class="status-card web-card">
-        <div class="status-dot"></div>
-        <div class="status-text">
-          👥 Live op de website: <strong id="website-visitor-count">18</strong> bezoekers
-        </div>
-      </div>
-
       <!-- Live Discord Server Status -->
       <div class="status-card">
         <div class="status-dot"></div>
         <div class="status-text">
-          💬 Discord Status: <strong id="discord-count">Laden...</strong> online leden
+          Discord Status: <strong id="discord-count">Laden...</strong> online
+        </div>
+      </div>
+
+      <!-- Live Website Online Bezoekers Status -->
+      <div class="status-card">
+        <div class="status-dot pulse"></div>
+        <div class="status-text">
+          Website Bezoekers: <strong id="web-visitors-count">1</strong> online
         </div>
       </div>
     </div>
@@ -858,10 +857,11 @@
     <div class="button-group">
       <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="btn btn-primary">💬 Join Main Discord</a>
       <a href="#mogelijkheden" class="btn btn-secondary">Ontdek Noordkust →</a>
-      <button onclick="toggleVipSim()" class="btn btn-vip">⭐ Test VIP Korting (15%)</button>
+      <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="btn btn-vip">⭐ Koop VIP Rangen</a>
     </div>
   </main>
 
+  <!-- Sectie: Keybinds (Besturing) -->
   <section id="keybinds">
     <h2>⌨️ Besturing & Keybinds</h2>
     <p class="section-sub">Bekijk de belangrijkste spiertoetsen om soepel te spelen in de stad.</p>
@@ -905,6 +905,7 @@
     </div>
   </section>
 
+  <!-- Sectie: Verdachtenrechten & Strafmaat Calculator -->
   <section id="strafrecht">
     <h2>⚖️ Verdachtenrechten & Strafmaat</h2>
     <p class="section-sub">Rechten bij een aanhouding door de Politie & de interactieve boetecalculator.</p>
@@ -1021,6 +1022,7 @@
     </div>
   </section>
 
+  <!-- Sectie: Mogelijkheden -->
   <section id="mogelijkheden">
     <h2>Mogelijkheden</h2>
     <p class="section-sub">Ontdek wat je allemaal kunt doen binnen Noordkust Roleplay.</p>
@@ -1064,6 +1066,7 @@
     </div>
   </section>
 
+  <!-- Sectie: Shop -->
   <section id="shop">
     <h2>Rangen Shop</h2>
     <p class="section-sub">Koop je gewenste rang direct via onze Support Discord!</p>
@@ -1364,6 +1367,7 @@
     </div>
   </section>
 
+  <!-- Sectie: Regels (APV) -->
   <section id="regels">
     <h2>Algemene Plaatsingsvoorwaarden (APV)</h2>
     <p class="section-sub">Lees hieronder de officiële regels van Noordkust Roleplay door om een ban te voorkomen.</p>
@@ -1423,6 +1427,7 @@
     </div>
   </section>
 
+  <!-- Veelgestelde Vragen (FAQ Accordion) -->
   <section id="faq">
     <h2>Veelgestelde Vragen</h2>
     <p class="section-sub">Heb je een vraag? Bekijk hieronder de antwoorden op de meest gestelde vragen.</p>
@@ -1480,6 +1485,7 @@
     </div>
   </section>
 
+  <!-- Sectie: Discords -->
   <section id="discords">
     <h2>Onze Discords</h2>
     <p class="section-sub">Sluit je aan bij de officiële Noordkust Roleplay Discord servers:</p>
@@ -1491,6 +1497,7 @@
     </div>
   </section>
 
+  <!-- Interactive JavaScript -->
   <script>
     // ⚙️ DISCORD AUTHENTICATIE INSTELLINGEN
     const CLIENT_ID = '1551868847772926034'; 
@@ -1555,19 +1562,6 @@
       location.reload();
     }
 
-    // Schakelen van VIP Simulatie voor Demonstratie
-    function toggleVipSim() {
-      isVipActive = !isVipActive;
-      localStorage.setItem('is_vip', isVipActive);
-      
-      const savedUser = localStorage.getItem('discord_user');
-      if (savedUser) {
-        displayUser(JSON.parse(savedUser));
-      } else {
-        updatePrices();
-      }
-    }
-
     // Update de prijzen in de shop op basis van VIP status (15% korting)
     function updatePrices() {
       const shopCards = document.querySelectorAll('.shop-card');
@@ -1610,26 +1604,6 @@
 
     checkLogin();
 
-    // 👥 LIVE WEBSITE BEZOEKERSTELLER (Dynamisch & Realistisch Schommelend)
-    let visitorCount = Math.floor(Math.random() * (28 - 16 + 1)) + 16;
-    const visitorEl = document.getElementById('website-visitor-count');
-    
-    if (visitorEl) {
-      visitorEl.innerText = visitorCount;
-      
-      setInterval(() => {
-        // Willekeurige verandering van -2 tot +2 bezoekers
-        const change = Math.floor(Math.random() * 5) - 2;
-        visitorCount += change;
-        
-        // Grenzen houden tussen 12 en 35
-        if (visitorCount < 12) visitorCount = 12;
-        if (visitorCount > 35) visitorCount = 35;
-        
-        visitorEl.innerText = visitorCount;
-      }, 4000);
-    }
-
     // 1. Live Discord Leden Ophalen via API
     async function fetchDiscordOnline() {
       try {
@@ -1646,7 +1620,18 @@
     }
     fetchDiscordOnline();
 
-    // 2. Keybinds Zoekbalk Filter
+    // 2. Live Website Online Bezoekers Teller
+    let onlineVisitors = Math.floor(Math.random() * 5) + 3; // Willekeurige startwaarde (3 - 7)
+    const visitorsElem = document.getElementById('web-visitors-count');
+    if (visitorsElem) visitorsElem.innerText = onlineVisitors;
+
+    setInterval(() => {
+      const change = Math.floor(Math.random() * 3) - 1; // -1, 0, of +1
+      onlineVisitors = Math.max(1, onlineVisitors + change);
+      if (visitorsElem) visitorsElem.innerText = onlineVisitors;
+    }, 7000);
+
+    // 3. Keybinds Zoekbalk Filter
     function filterKeybinds() {
       const input = document.getElementById('keybindSearch').value.toLowerCase();
       const items = document.querySelectorAll('#keybindList .keybind-item');
@@ -1661,7 +1646,7 @@
       });
     }
 
-    // 3. Strafmaat & Boete Calculator
+    // 4. Strafmaat & Boete Calculator
     function calculatePenalties() {
       let totalFine = 0;
       let totalJail = 0;
@@ -1678,7 +1663,7 @@
       document.getElementById('totalJail').innerText = totalJail + ' maanden';
     }
 
-    // 4. APV Zoekbalk Filter
+    // 5. APV Zoekbalk Filter
     function filterAPV() {
       const input = document.getElementById('apvSearch').value.toLowerCase();
       const items = document.querySelectorAll('#apvList li');
@@ -1693,7 +1678,7 @@
       });
     }
 
-    // 5. FAQ Accordion Toggle
+    // 6. FAQ Accordion Toggle
     function toggleFAQ(button) {
       const item = button.parentElement;
       item.classList.toggle('active');
