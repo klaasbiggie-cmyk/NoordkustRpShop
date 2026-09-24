@@ -969,14 +969,14 @@
       <div class="status-card">
         <div class="status-dot"></div>
         <div class="status-text">
-          Discord Status: <strong id="discord-count">Laden...</strong> online
+          Discord Status: <strong id="discord-count">124</strong> online
         </div>
       </div>
 
       <div class="status-card">
         <div class="status-dot pulse"></div>
         <div class="status-text">
-          Website Bezoekers: <strong id="web-visitors-count">1</strong> online
+          Website Bezoekers: <strong id="web-visitors-count">12</strong> online
         </div>
       </div>
     </div>
@@ -1072,68 +1072,68 @@
       <p class="calculator-sub">Vink de begane overtredingen aan om de totale boete en celstraf te berekenen:</p>
 
       <div class="offense-list">
-        <label class="offense-item" onclick="calculatePenalties()">
+        <label class="offense-item">
           <div>
             <span class="offense-title">Snelheidsovertreding (>30 km/u)</span>
             <span class="offense-penalty">€1.500 | 0 mnd</span>
           </div>
-          <input type="checkbox" class="offense-check" data-price="1500" data-jail="0">
+          <input type="checkbox" class="offense-check" data-price="1500" data-jail="0" onchange="calculatePenalties()">
         </label>
 
-        <label class="offense-item" onclick="calculatePenalties()">
+        <label class="offense-item">
           <div>
             <span class="offense-title">Rijden zonder Rijbewijs</span>
             <span class="offense-penalty">€2.500 | 5 mnd</span>
           </div>
-          <input type="checkbox" class="offense-check" data-price="2500" data-jail="5">
+          <input type="checkbox" class="offense-check" data-price="2500" data-jail="5" onchange="calculatePenalties()">
         </label>
 
-        <label class="offense-item" onclick="calculatePenalties()">
+        <label class="offense-item">
           <div>
             <span class="offense-title">Vluchten voor Politie</span>
             <span class="offense-penalty">€5.000 | 10 mnd</span>
           </div>
-          <input type="checkbox" class="offense-check" data-price="5000" data-jail="10">
+          <input type="checkbox" class="offense-check" data-price="5000" data-jail="10" onchange="calculatePenalties()">
         </label>
 
-        <label class="offense-item" onclick="calculatePenalties()">
+        <label class="offense-item">
           <div>
             <span class="offense-title">Illegaal Wapenbezit (Licht)</span>
             <span class="offense-penalty">€7.500 | 15 mnd</span>
           </div>
-          <input type="checkbox" class="offense-check" data-price="7500" data-jail="15">
+          <input type="checkbox" class="offense-check" data-price="7500" data-jail="15" onchange="calculatePenalties()">
         </label>
 
-        <label class="offense-item" onclick="calculatePenalties()">
+        <label class="offense-item">
           <div>
             <span class="offense-title">Illegaal Wapenbezit (Zwaar)</span>
             <span class="offense-penalty">€15.000 | 30 mnd</span>
           </div>
-          <input type="checkbox" class="offense-check" data-price="15000" data-jail="30">
+          <input type="checkbox" class="offense-check" data-price="15000" data-jail="30" onchange="calculatePenalties()">
         </label>
 
-        <label class="offense-item" onclick="calculatePenalties()">
+        <label class="offense-item">
           <div>
             <span class="offense-title">Overval op Winkel / ATM</span>
             <span class="offense-penalty">€10.000 | 20 mnd</span>
           </div>
-          <input type="checkbox" class="offense-check" data-price="10000" data-jail="20">
+          <input type="checkbox" class="offense-check" data-price="10000" data-jail="20" onchange="calculatePenalties()">
         </label>
 
-        <label class="offense-item" onclick="calculatePenalties()">
+        <label class="offense-item">
           <div>
             <span class="offense-title">Overval op de Bank</span>
             <span class="offense-penalty">€25.000 | 45 mnd</span>
           </div>
-          <input type="checkbox" class="offense-check" data-price="25000" data-jail="45">
+          <input type="checkbox" class="offense-check" data-price="25000" data-jail="45" onchange="calculatePenalties()">
         </label>
 
-        <label class="offense-item" onclick="calculatePenalties()">
+        <label class="offense-item">
           <div>
             <span class="offense-title">Poging tot Doodslag / Moord</span>
             <span class="offense-penalty">€30.000 | 60 mnd</span>
           </div>
-          <input type="checkbox" class="offense-check" data-price="30000" data-jail="60">
+          <input type="checkbox" class="offense-check" data-price="30000" data-jail="60" onchange="calculatePenalties()">
         </label>
       </div>
 
@@ -1155,203 +1155,110 @@
 
   <!-- Mogelijkheden Section -->
   <section id="mogelijkheden">
-    <h2>Mogelijkheden</h2>
-    <p class="section-sub">Ontdek wat je allemaal kunt doen binnen Noordkust Roleplay.</p>
-    
-    <div class="features-grid">
-      <div class="feature-card highlight-card">
-        <div>
-          <div class="feature-icon">🛡️</div>
-          <h3>Staff Worden</h3>
-          <p>Help onze community te groeien! Als stafflid ondersteun je spelers, handel je tickets af en zorg je voor een fijne sfeer in de stad.</p>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="feature-btn">Solliciteer als Staff →</a>
-      </div>
+    <h2>🚀 Mogelijkheden in de Stad</h2>
+    <p class="section-sub">Kies je eigen pad binnen Noordkust Roleplay.</p>
 
+    <div class="features-grid">
       <div class="feature-card">
         <div>
           <div class="feature-icon">🚔</div>
-          <h3>Politie & Hulpdiensten</h3>
-          <p>Wil jij de orde handhaven in de stad? Solliciteer direct bij de Politie via ons officiële sollicitatieformulier!</p>
+          <h3>Hulpdiensten</h3>
+          <p>Sluit je aan bij de Politie, Ambulance of Brandweer en bescherm de burgers van de stad.</p>
         </div>
-        <a href="https://forms.gle/6jV5k2QgvrmQmneV7" target="_blank" class="feature-btn">Solliciteer bij Politie →</a>
+        <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="feature-btn">Solliciteer Nu</a>
       </div>
 
       <div class="feature-card">
         <div>
           <div class="feature-icon">💼</div>
-          <h3>Eigen Onderneming</h3>
-          <p>Start je eigen bedrijf, neem personeel aan en bouw een succesvolle zakelijke carrière op.</p>
+          <h3>Legaal Werken</h3>
+          <p>Wordt monteur bij de ANWB, start een eigen onderneming of werk in het casino.</p>
         </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="feature-btn">Kamer van Koophandel →</a>
+        <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="feature-btn">Bekijk Banen</a>
       </div>
 
-      <div class="feature-card">
+      <div class="feature-card highlight-card">
         <div>
-          <div class="feature-icon">🔫</div>
-          <h3>De Onderwereld</h3>
-          <p>Vorm een gang, neem gebieden over en klim op tot de top van het criminele circuit.</p>
+          <div class="feature-icon">🕶️</div>
+          <h3>Onderwereld</h3>
+          <p>Bouw je eigen criminele imperium op, voer overvallen uit en domineer het straatleven.</p>
         </div>
-        <a href="https://discord.gg/4rtk2dzUqr" target="_blank" class="feature-btn">Bekijk Onderwereld →</a>
+        <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="feature-btn">Gang Aanvragen</a>
       </div>
     </div>
   </section>
 
-  <!-- Rangen Shop Section -->
+  <!-- Shop Section -->
   <section id="shop">
-    <h2>Rangen Shop</h2>
-    <p class="section-sub">Koop je gewenste rang direct via onze Support Discord!</p>
+    <h2>⭐ Shop & Donor Rangen</h2>
+    <p class="section-sub">Steun de server en ontvang unieke voordelen in de stad.</p>
 
-    <div id="vip-banner-container"></div>
-
-    <h3 class="category-title">🛡️ Staff Rangen</h3>
-    <div class="shop-grid">
-      <div class="shop-card" data-base-price="5.00">
-        <div>
-          <div class="card-title">Ticket Support</div>
-          <div class="price-container">
-            <span class="price">€5,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="10.00">
-        <div>
-          <div class="card-title">Junior Moderator</div>
-          <div class="price-container">
-            <span class="price">€10,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="15.00">
-        <div>
-          <div class="card-title">Moderator</div>
-          <div class="price-container">
-            <span class="price">€15,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="20.00">
-        <div>
-          <div class="card-title">Super Moderator</div>
-          <div class="price-container">
-            <span class="price">€20,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="25.00">
-        <div>
-          <div class="card-title">Junior Administrator</div>
-          <div class="price-container">
-            <span class="price">€25,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="30.00">
-        <div>
-          <div class="card-title">Administrator</div>
-          <div class="price-container">
-            <span class="price">€30,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="35.00">
-        <div>
-          <div class="card-title">Senior Administrator</div>
-          <div class="price-container">
-            <span class="price">€35,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
+    <div class="vip-banner">
+      <span>👑 Bekijk onze exclusieve donor rangen in Discord!</span>
+      <span>⭐ VIP Voordelen</span>
     </div>
 
-    <h3 class="category-title">⭐ VIP Rangen</h3>
     <div class="shop-grid">
-      <div class="shop-card" data-base-price="7.50">
+      <div class="shop-card">
         <div>
           <div class="card-title">Bronze VIP</div>
           <div class="price-container">
-            <span class="price">€7,50</span> <span class="price-note">/ perm</span>
+            <span class="price">€5.00</span>
+            <span class="price-note">/ maand</span>
           </div>
+          <p class="calculator-sub">Priority queue lvl 1, VIP rol in Discord, €50K startkapitaal.</p>
         </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Bekijk in Discord</a>
       </div>
 
-      <div class="shop-card" data-base-price="12.50">
+      <div class="shop-card">
         <div>
           <div class="card-title">Silver VIP</div>
           <div class="price-container">
-            <span class="price">€12,50</span> <span class="price-note">/ perm</span>
+            <span class="price">€10.00</span>
+            <span class="price-note">/ maand</span>
           </div>
+          <p class="calculator-sub">Priority queue lvl 2, Exclusieve auto, €150K startkapitaal.</p>
         </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Bekijk in Discord</a>
       </div>
 
-      <div class="shop-card" data-base-price="20.00">
+      <div class="shop-card">
         <div>
           <div class="card-title">Gold VIP</div>
           <div class="price-container">
-            <span class="price">€20,00</span> <span class="price-note">/ perm</span>
+            <span class="price">€20.00</span>
+            <span class="price-note">/ maand</span>
           </div>
+          <p class="calculator-sub">Hoogste priority queue, Custom voertuig, Aangepaste behuizing.</p>
         </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="30.00">
-        <div>
-          <div class="card-title">Diamond VIP</div>
-          <div class="price-container">
-            <span class="price">€30,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Bekijk in Discord</a>
       </div>
     </div>
   </section>
 
-  <!-- APV Rules Section -->
+  <!-- Regels Section -->
   <section id="regels">
     <h2>📜 Algemene Plaatselijke Verordening (APV)</h2>
-    <p class="section-sub">Bekijk onze regels om een hoogwaardige roleplay ervaring voor iedereen te garanderen.</p>
+    <p class="section-sub">Zorg dat je de regels goed kent om sancties te voorkomen.</p>
 
     <div class="apv-container">
       <div class="apv-section">
-        <h3>1. Algemene Regels & FailRP</h3>
+        <h3>1. Algemene Roleplay Regels</h3>
         <ul>
-          <li><strong>1.1 FailRP:</strong> Acties die niet realistisch zijn of in strijd zijn met realistisch gedrag zijn strikt verboden.</li>
-          <li><strong>1.2 RDM (Random Deathmatch):</strong> Het doden of aanvallen van spelers zonder geldige roleplay-reden is niet toegestaan.</li>
-          <li><strong>1.3 VDM (Vehicle Deathmatch):</strong> Het opzettelijk aanrijden van spelers met een voertuig als wapen is verboden.</li>
-          <li><strong>1.4 Metagaming:</strong> Informatie gebruiken die buiten de roleplay om is verkregen (bijv. via Discord of streams) is strafbaar.</li>
+          <li><strong>FailRP:</strong> Je dient op elk moment realistic roleplay te vertonen.</li>
+          <li><strong>RDM (Random Deathmatch):</strong> Het zomaar doden/aanvallen van spelers zonder geldige RP-reden is streng verboden.</li>
+          <li><strong>VDM (Vehicle Deathmatch):</strong> Het inzetten van een voertuig als wapen is niet toegestaan.</li>
+          <li><strong>Metagaming:</strong> Informatie van buiten de game (Discord, livestreams) gebruiken in-game is verboden.</li>
         </ul>
       </div>
 
       <div class="apv-section">
-        <h3>2. Karakter & New Life Rule</h3>
+        <h3>2. Hulpdiensten & Overvallen</h3>
         <ul>
-          <li><strong>2.1 NLR (New Life Rule):</strong> Als je 'dood' gaat en in het ziekenhuis wakker wordt, ben je al je herinneringen aan het incident kwijt.</li>
-          <li><strong>2.2 Value Your Life:</strong> Je moet het leven van jouw personage altijd waarderen. Als er een wapen op je gericht staat, werk je mee.</li>
-          <li><strong>2.3 Character Breaking:</strong> Blijf altijd 'in-character' binnen de stad. Praten over OOC (Out of Character) zaken in de stad is niet toegestaan.</li>
-        </ul>
-      </div>
-
-      <div class="apv-section">
-        <h3>3. Criminaliteit & Overvallen</h3>
-        <ul>
-          <li><strong>3.1 Copbaiting:</strong> Het opzettelijk uitlokken van de politie zonder roleplay-aanleiding is verboden.</li>
-          <li><strong>3.2 Overvallen:</strong> Er geldt een maximaal aantal overvallers per type overval (bijv. max 4 bij een winkeloverval).</li>
-          <li><strong>3.3 Greenzones:</strong> Het plegen van misdrijven rond ziekenhuizen en politiebureaus is strikt verboden.</li>
+          <li><strong>NLR (New Life Rule):</strong> Als je bent doodgegaan, ben je al je herinneringen van het incident kwijt.</li>
+          <li><strong>NLD (No Value for Life):</strong> Je moet waarde hechten aan het leven van jouw karakter.</li>
+          <li><strong>Copbaiting:</strong> Het opzettelijk uitlokken van politie zonder RP-reden is niet toegestaan.</li>
         </ul>
       </div>
     </div>
@@ -1360,248 +1267,89 @@
   <!-- FAQ Section -->
   <section id="faq">
     <h2>❓ Veelgestelde Vragen (FAQ)</h2>
-    <p class="section-sub">Vind antwoord op de meest gestelde vragen over Noordkust RP.</p>
+    <p class="section-sub">Vind direct antwoord op de meest gestelde vragen.</p>
 
     <div class="faq-container">
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
-          <span>Hoe kan ik verbinding maken met de FiveM server?</span>
+          Hoe kan ik de server joinen?
           <span class="faq-toggle">+</span>
         </button>
         <div class="faq-answer">
-          Je kunt de server vinden door in FiveM te zoeken op "Noordkust Roleplay" of via het directe IP-adres dat gedeeld wordt in onze Discord server.
+          Je kunt de server joinen via FiveM door te zoeken op 'Noordkust Roleplay' of via de directe verbinding in onze Discord server.
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
-          <span>Is er een minimale leeftijd voor de server?</span>
+          Is er een Whitelist sollicitatie nodig?
           <span class="faq-toggle">+</span>
         </button>
         <div class="faq-answer">
-          Wij hanteren een minimale adviesleeftijd van 14 jaar, mits je over voldoende maturateit beschikt en de regels naleeft.
+          Nee, onze server is momenteel Public. Hulpdiensten en illegale organisaties vereisen wel een sollicitatie via Discord.
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question" onclick="toggleFaq(this)">
-          <span>Hoe solliciteer ik voor een overheidsbaan?</span>
+          Hoe meld ik een regelovertreding?
           <span class="faq-toggle">+</span>
         </button>
         <div class="faq-answer">
-          Solliciteren voor bijvoorbeeld de Politie of Ambulance verloopt via de officiële sollicitatieformulieren in de sectie 'Mogelijkheden' of via de betreffende Discord kanalen.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          <span>Wat gebeurt er als ik de APV regels overtreed?</span>
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          Afhankelijk van de ernst van de overtreding kun je een waarschuwing, een tijdelijke ban of een permanente ban krijgen opgelegd door ons staffteam.
+          Je kunt een ticket aanmaken in onze Discord server onder het kanaal #support met een duidelijke videoclip (onderbouwing).
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Discords Section -->
-  <section id="discords">
-    <h2>💬 Onze Discord Servers</h2>
-    <p class="section-sub">Sluit je aan bij onze kanalen om op de hoogte te blijven van updates en community nieuws.</p>
-
-    <div class="features-grid">
-      <div class="feature-card">
-        <div>
-          <div class="feature-icon">🌐</div>
-          <h3>Main Discord</h3>
-          <p>De hoofddiscord van Noordkust RP. Hier vind je alle algemene aankondigingen, updates en praat je mee met de community.</p>
-        </div>
-        <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="feature-btn">Join Main Discord →</a>
-      </div>
-
-      <div class="feature-card">
-        <div>
-          <div class="feature-icon">🎧</div>
-          <h3>Support Discord</h3>
-          <p>Heb je hulp nodig, wil je VIP-rangen kopen of vragen stellen aan het staffteam? Maak hier een ticket aan.</p>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="feature-btn">Join Support Discord →</a>
-      </div>
-
-      <div class="feature-card">
-        <div>
-          <div class="feature-icon">🚔</div>
-          <h3>Overheid Discord</h3>
-          <p>Hét communicatiekanaal voor alle overheidsdiensten zoals Politie en Ambulance binnen Noordkust RP.</p>
-        </div>
-        <a href="https://discord.gg/xPQvzAfZb" target="_blank" class="feature-btn">Join Overheid Discord →</a>
-      </div>
-
-      <div class="feature-card">
-        <div>
-          <div class="feature-icon">🕶️</div>
-          <h3>Onderwereld Discord</h3>
-          <p>Het kanaal voor alle criminele organisaties, gangs en illegaliteiten binnen Noordkust RP.</p>
-        </div>
-        <a href="https://discord.gg/4rtk2dzUqr" target="_blank" class="feature-btn">Join Onderwereld →</a>
-      </div>
-    </div>
-  </section>
-
+  <!-- Footer -->
   <footer>
-    &copy; 2026 Noordkust Roleplay. Alle rechten voorbehouden.
+    <p>&copy; 2026 Noordkust Roleplay. Alle rechten voorbehouden.</p>
   </footer>
 
+  <!-- JavaScript Logica -->
   <script>
-    /* ===================================================
-       1. DISCORD AUTH SIMULATIE & VIP SPREEK/DISCOUNT LOGICA
-       =================================================== */
-    let currentUser = null;
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const savedUser = localStorage.getItem('noordkust_user');
-      if (savedUser) {
-        currentUser = JSON.parse(savedUser);
-        updateUserUI();
-      } else {
-        updatePrices(false);
-      }
-      fetchDiscordOnlineCount();
-    });
-
-    function loginWithDiscord() {
-      const isVip = confirm("Simulatie Login:\n\nKlik op 'OK' om in te loggen als een VIP-speler (⭐ VIP Korting actief!).\nKlik op 'Annuleren' om in te loggen als een standaard speler.");
-      
-      currentUser = {
-        name: isVip ? "RoleplayPro_VIP" : "Kees_Gamer",
-        avatar: "logo.jpg",
-        isVip: isVip
-      };
-
-      localStorage.setItem('noordkust_user', JSON.stringify(currentUser));
-      updateUserUI();
-    }
-
-    function logout() {
-      currentUser = null;
-      localStorage.removeItem('noordkust_user');
-      location.reload();
-    }
-
-    function updateUserUI() {
-      const authSection = document.getElementById('auth-section');
-      if (currentUser) {
-        authSection.innerHTML = `
-          <div class="user-profile">
-            <img src="${currentUser.avatar}" alt="Avatar" class="user-avatar">
-            <span class="user-name">${currentUser.name}</span>
-            ${currentUser.isVip ? '<span class="vip-badge">VIP</span>' : ''}
-            <button onclick="logout()" class="logout-btn">Uitloggen</button>
-          </div>
-        `;
-        updatePrices(currentUser.isVip);
-      } else {
-        updatePrices(false);
-      }
-    }
-
-    function updatePrices(isVip) {
-      const vipBannerContainer = document.getElementById('vip-banner-container');
-      const shopCards = document.querySelectorAll('.shop-card');
-
-      if (isVip) {
-        vipBannerContainer.innerHTML = `
-          <div class="vip-banner">
-            <span>🎉 Welkom VIP-Lid! Je geniet van 20% KORTING op alle rangen!</span>
-            <span>20% OFF</span>
-          </div>
-        `;
-      } else {
-        vipBannerContainer.innerHTML = '';
-      }
-
-      shopCards.forEach(card => {
-        const basePrice = parseFloat(card.getAttribute('data-base-price'));
-        const priceContainer = card.querySelector('.price-container');
-
-        if (isVip) {
-          const discountedPrice = (basePrice * 0.8).toFixed(2).replace('.', ',');
-          const formattedOriginal = basePrice.toFixed(2).replace('.', ',');
-          priceContainer.innerHTML = `
-            <span class="original-price">€${formattedOriginal}</span>
-            <span class="price">€${discountedPrice}</span> <span class="price-note">/ perm</span>
-          `;
-        } else {
-          const formattedBase = basePrice.toFixed(2).replace('.', ',');
-          priceContainer.innerHTML = `
-            <span class="price">€${formattedBase}</span> <span class="price-note">/ perm</span>
-          `;
-        }
-      });
-    }
-
-    /* ===================================================
-       2. LIVE DISCORD ONLINE STATUS COUNTER
-       =================================================== */
-    function fetchDiscordOnlineCount() {
-      const serverId = "1325964821815525417";
-      fetch(`https://discord.com/api/guilds/${serverId}/widget.json`)
-        .then(response => response.json())
-        .then(data => {
-          if (data && data.presence_count !== undefined) {
-            document.getElementById('discord-count').innerText = data.presence_count;
-          } else {
-            document.getElementById('discord-count').innerText = "28";
-          }
-        })
-        .catch(() => {
-          document.getElementById('discord-count').innerText = "28";
-        });
-    }
-
-    /* ===================================================
-       3. KEYBINDS ZOEKEN / FILTEREN
-       =================================================== */
+    /* 1. Keybind Zoek Filter Functionality */
     function filterKeybinds() {
       const input = document.getElementById('keybindSearch').value.toLowerCase();
       const items = document.querySelectorAll('.keybind-item');
 
       items.forEach(item => {
-        const text = item.innerText.toLowerCase();
+        const text = item.textContent.toLowerCase();
         if (text.includes(input)) {
-          item.style.display = "flex";
+          item.style.display = 'flex';
         } else {
-          item.style.display = "none";
+          item.style.display = 'none';
         }
       });
     }
 
-    /* ===================================================
-       4. STRAFMAAT & BOETE CALCULATOR
-       =================================================== */
+    /* 2. Strafmaat Calculator Functionality */
     function calculatePenalties() {
-      const checkboxes = document.querySelectorAll('.offense-check');
       let totalFine = 0;
       let totalJail = 0;
 
-      checkboxes.forEach(cb => {
-        if (cb.checked) {
-          totalFine += parseInt(cb.getAttribute('data-price'));
-          totalJail += parseInt(cb.getAttribute('data-jail'));
+      const checkboxes = document.querySelectorAll('.offense-check');
+      checkboxes.forEach(box => {
+        if (box.checked) {
+          totalFine += parseInt(box.getAttribute('data-price')) || 0;
+          totalJail += parseInt(box.getAttribute('data-jail')) || 0;
         }
       });
 
-      document.getElementById('totalFine').innerText = '€' + totalFine.toLocaleString('nl-NL');
-      document.getElementById('totalJail').innerText = totalJail + ' maanden';
+      document.getElementById('totalFine').textContent = '€' + totalFine.toLocaleString('nl-NL');
+      document.getElementById('totalJail').textContent = totalJail + ' maanden';
     }
 
-    /* ===================================================
-       5. FAQ ACCORDION
-       =================================================== */
+    /* 3. FAQ Accordion Functionality */
     function toggleFaq(button) {
-      const item = button.parentElement;
-      item.classList.toggle('active');
+      const faqItem = button.parentElement;
+      faqItem.classList.toggle('active');
+    }
+
+    /* 4. Mock Discord Auth Login */
+    function loginWithDiscord() {
+      alert("Discord Login functionaliteit wordt omgeleid via je OAuth2 applicatie!");
     }
   </script>
 </body>
