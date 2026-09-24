@@ -1,29 +1,35 @@
 <!DOCTYPE html>
-<html lang="nl" class="dark scroll-smooth">
+<html lang="nl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noordkust Roleplay - FiveM Server</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Noordkust Roleplay | Officiële Community & Shop</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         brand: {
-                            50: '#eff6ff',
-                            100: '#dbeafe',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            900: '#1e3a8a',
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#06b6d4',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
                         },
-                        vip: {
-                            400: '#fbbf24',
-                            500: '#f59e0b',
-                            600: '#d97706',
+                        dark: {
+                            bg: '#0a0d14',
+                            card: '#121824',
+                            border: '#1e293b'
                         }
                     },
                     fontFamily: {
@@ -33,237 +39,348 @@
             }
         }
     </script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .glass {
-            background: rgba(17, 24, 39, 0.7);
+        body {
+            background-color: #0a0d14;
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(18, 24, 36, 0.75);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .glass-card {
-            background: rgba(31, 41, 55, 0.5);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .glass-panel-hover {
+            transition: all 0.3s ease;
         }
-        .glass-card:hover {
-            border-color: rgba(59, 130, 246, 0.3);
+        .glass-panel-hover:hover {
+            background: rgba(26, 35, 50, 0.85);
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-2px);
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(2, 132, 199, 0.3);
+        }
+        kbd {
+            background: #1e293b;
+            border: 1px solid #334155;
+            box-shadow: inset 0 -2px 0 #0f172a;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 0.8em;
+            font-weight: 600;
+            color: #38bdf8;
         }
     </style>
 </head>
-<body class="bg-[#030712] text-gray-100 min-h-screen flex flex-col selection:bg-blue-500 selection:text-white">
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
 
     <!-- Navigation Bar -->
-    <nav class="sticky top-0 z-50 glass border-b border-gray-800">
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
+                <!-- Logo & Brand -->
                 <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center shadow-lg shadow-blue-500/30">
-                        <i class="fa-solid font-bold text-white text-xl">N</i>
-                    </div>
-                    <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-gray-200 to-blue-400 bg-clip-text text-transparent">
-                        Noordkust <span class="text-blue-500">RP</span>
-                    </span>
+                    <a href="#" class="flex items-center space-x-3 group">
+                        <img src="logo.jpg" onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=NKRP'" alt="Noordkust RP Logo" class="h-12 w-12 rounded-xl object-cover ring-2 ring-brand-500/30 group-hover:ring-brand-400 transition-all">
+                        <div>
+                            <span class="text-xl font-black tracking-wider bg-gradient-to-r from-white via-slate-200 to-brand-400 bg-clip-text text-transparent block">NOORDKUST</span>
+                            <span class="text-xs font-semibold text-brand-400 tracking-widest uppercase block -mt-1">Roleplay</span>
+                        </div>
+                    </a>
                 </div>
 
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-6 text-sm font-medium">
-                    <a href="#about" class="hover:text-blue-400 transition-colors">Over Ons</a>
-                    <a href="#keybinds" class="hover:text-blue-400 transition-colors">Keybinds</a>
-                    <a href="#calculator" class="hover:text-blue-400 transition-colors">Strafmaat</a>
-                    <a href="#mogelijkheden" class="hover:text-blue-400 transition-colors">Mogelijkheden</a>
-                    <a href="#shop" class="hover:text-blue-400 transition-colors flex items-center gap-1 text-amber-400 font-semibold"><i class="fa-solid fa-crown text-xs"></i> Shop</a>
-                    <a href="#regels" class="hover:text-blue-400 transition-colors">APV</a>
-                    <a href="#discords" class="hover:text-blue-400 transition-colors">Discords</a>
-                </div>
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-sm font-medium">
+                    <a href="#home" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">Home</a>
+                    <a href="#keybinds" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">Keybinds</a>
+                    <a href="#strafrecht" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">Strafrecht</a>
+                    <a href="#mogelijkheden" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">Mogelijkheden</a>
+                    <a href="#shop" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">Winkel</a>
+                    <a href="#regels" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">Regels</a>
+                    <a href="#faq" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">FAQ</a>
+                    <a href="#discords" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">Discords</a>
+                </nav>
 
-                <!-- Simulation Toggle Login -->
-                <div class="flex items-center gap-3">
-                    <button id="vipToggleBtn" onclick="toggleVipStatus()" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center gap-2 border border-blue-500/30 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20">
-                        <i class="fa-brands fa-discord text-base"></i>
-                        <span id="vipToggleText">Simuleer Inloggen (Korting)</span>
+                <!-- Discord Login Simulation for VIP Discount -->
+                <div class="flex items-center space-x-3">
+                    <button id="vipAuthBtn" onclick="toggleVipStatus()" class="flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 shadow-sm">
+                        <i class="fa-brands fa-discord text-indigo-400 text-sm"></i>
+                        <span id="vipAuthText">Simuleer Discord VIP Login</span>
                     </button>
                 </div>
             </div>
         </div>
-    </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section class="relative py-20 lg:py-28 overflow-hidden border-b border-gray-800/50">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-3xl mx-auto">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold mb-6">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    FiveM Server Online
-                </div>
-                <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white mb-6 leading-tight">
-                    Welkom bij <span class="bg-gradient-to-r from-blue-400 via-indigo-300 to-blue-600 bg-clip-text text-transparent">Noordkust Roleplay</span>
-                </h1>
-                <p class="text-gray-400 text-base sm:text-lg mb-8 leading-relaxed">
-                    De meest realistische en innovatieve Dutch FiveM Roleplay ervaring. Stap in de wereld van Noordkust en bouw jouw eigen verhaal op als burger, agent, crimineel of ondernemer!
-                </p>
+    <section id="home" class="relative py-20 lg:py-28 overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-brand-600/15 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <!-- Badge & Server Status -->
+            <div class="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-full glass-panel border border-brand-500/20 mb-8 text-xs font-semibold text-slate-300">
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span>🌊 Welkom bij Noordkust RP</span>
+                <span class="text-slate-600">•</span>
+                <span class="text-brand-400" id="liveVisitorsCount"><i class="fa-solid fa-users text-xs mr-1"></i>-- Spelers Online</span>
+            </div>
 
-                <!-- Live Indicators -->
-                <div class="grid grid-cols-2 sm:grid-cols-2 gap-4 max-w-md mx-auto mb-10">
-                    <div class="glass-card p-4 rounded-2xl text-center">
-                        <div class="text-2xl font-extrabold text-blue-400 flex items-center justify-center gap-2">
-                            <i class="fa-brands fa-discord text-xl"></i>
-                            <span id="discordCount">1,420</span>
-                        </div>
-                        <div class="text-xs text-gray-400 mt-1">Discord Leden</div>
-                    </div>
-                    <div class="glass-card p-4 rounded-2xl text-center">
-                        <div class="text-2xl font-extrabold text-emerald-400 flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-users text-xl"></i>
-                            <span id="visitorCount">84</span>
-                        </div>
-                        <div class="text-xs text-gray-400 mt-1">Systeembezoekers Nu</div>
-                    </div>
-                </div>
+            <!-- Main Heading -->
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white mb-6">
+                JOUW STAD. <br class="hidden sm:inline" />
+                <span class="bg-gradient-to-r from-brand-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">JOUW VERHAAL.</span>
+            </h1>
 
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="px-8 py-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold shadow-lg shadow-blue-600/30 transition-all flex items-center gap-2">
-                        <i class="fa-brands fa-discord text-xl"></i> Join Hoofd Discord
-                    </a>
-                    <a href="#shop" class="px-8 py-4 rounded-2xl glass hover:bg-gray-800 text-amber-400 font-bold border border-amber-500/30 transition-all flex items-center gap-2">
-                        <i class="fa-solid fa-store text-xl"></i> Bekijk Rangen Shop
-                    </a>
-                </div>
+            <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-400 mb-10 leading-relaxed">
+                Stap binnen in de meest meeslepende FiveM roleplay ervaring van Nederland. Bouw je eigen imperium, handhaaf de wet als hulpdienst, of heers over de onderwereld van Noordkust.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
+                <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm transition-all flex items-center justify-center space-x-2 shadow-lg shadow-indigo-600/25">
+                    <i class="fa-brands fa-discord text-lg"></i>
+                    <span>Join Main Discord</span>
+                </a>
+                <a href="#mogelijkheden" class="w-full sm:w-auto px-6 py-3.5 rounded-xl glass-panel hover:bg-slate-800 text-white font-semibold text-sm transition-all flex items-center justify-center space-x-2 border border-slate-700">
+                    <span>Ontdek Noordkust</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm transition-all flex items-center justify-center space-x-2 shadow-lg shadow-amber-500/20">
+                    <i class="fa-solid fa-star text-sm"></i>
+                    <span>Koop VIP Rangen</span>
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Keybinds Section -->
-    <section id="keybinds" class="py-16 border-b border-gray-800/50 bg-gray-950/40">
+    <section id="keybinds" class="py-16 bg-slate-900/40 border-y border-slate-800/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-                <div>
-                    <h2 class="text-3xl font-bold text-white">Belangrijke Keybinds</h2>
-                    <p class="text-gray-400 text-sm mt-1">Handige sneltoetsen om meteen soepel te roleplayen op Noordkust.</p>
-                </div>
-                <!-- Search Filter Box -->
-                <div class="relative w-full md:w-72">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-gray-400 text-sm"></i>
-                    <input type="text" id="keybindSearch" oninput="filterKeybinds()" placeholder="Zoek keybind of actie..." class="w-full bg-gray-900 border border-gray-800 rounded-xl pl-10 pr-4 py-2.5 text-sm text-gray-200 focus:outline-none focus:border-blue-500 transition-colors">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Besturing & Keybinds</h2>
+                <p class="text-slate-400 text-sm mt-2">Belangrijkste sneltoetsen om soepel te spelen in Noordkust RP.</p>
+                
+                <!-- Live Search Box -->
+                <div class="max-w-md mx-auto mt-6 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
+                    <input type="text" id="keybindSearch" onkeyup="filterKeybinds()" placeholder="Zoek op functie of toets..." class="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 placeholder-slate-500 text-sm focus:outline-none focus:border-brand-500 transition">
                 </div>
             </div>
 
-            <div id="keybindGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="keybind-card glass-card p-4 rounded-xl flex items-center justify-between">
-                    <span class="text-gray-300 font-medium text-sm">Inventaris / Rugzak</span>
-                    <kbd class="px-3 py-1.5 bg-gray-800 border border-gray-700 text-blue-400 rounded-lg text-xs font-mono font-bold">F2 / TAB</kbd>
+            <!-- Keybind Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Algemeen -->
+                <div class="glass-panel rounded-2xl p-6 keybind-card">
+                    <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-800">
+                        <div class="p-2.5 rounded-lg bg-brand-500/10 text-brand-400">
+                            <i class="fa-solid fa-user-gear text-lg"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Algemeen & Interactie</h3>
+                    </div>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Interactie Menu</span>
+                            <kbd>F1</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Speler Menu / Animaties</span>
+                            <kbd>F2</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Telefoon Openen</span>
+                            <kbd>F3</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Stem Bereik Aanpassen</span>
+                            <kbd>H</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Handen Omhoog</span>
+                            <kbd>X</kbd>
+                        </li>
+                    </ul>
                 </div>
-                <div class="keybind-card glass-card p-4 rounded-xl flex items-center justify-between">
-                    <span class="text-gray-300 font-medium text-sm">Interactie Menu (Radial)</span>
-                    <kbd class="px-3 py-1.5 bg-gray-800 border border-gray-700 text-blue-400 rounded-lg text-xs font-mono font-bold">F1 / F6</kbd>
+
+                <!-- Voertuig -->
+                <div class="glass-panel rounded-2xl p-6 keybind-card">
+                    <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-800">
+                        <div class="p-2.5 rounded-lg bg-indigo-500/10 text-indigo-400">
+                            <i class="fa-solid fa-car text-lg"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Voertuig Besturing</h3>
+                    </div>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Motor Starten / Stoppen</span>
+                            <kbd>M</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Autoweld / Categoriemenu</span>
+                            <kbd>U</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Veiligheidsgordel Omdoen</span>
+                            <kbd>B</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Snelheidsbegrenzer (Cruise)</span>
+                            <kbd>Y</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Sirene / Noodverlichting</span>
+                            <kbd>Q / E</kbd>
+                        </li>
+                    </ul>
                 </div>
-                <div class="keybind-card glass-card p-4 rounded-xl flex items-center justify-between">
-                    <span class="text-gray-300 font-medium text-sm">Telefoon Openen</span>
-                    <kbd class="px-3 py-1.5 bg-gray-800 border border-gray-700 text-blue-400 rounded-lg text-xs font-mono font-bold">M / Pijl Boven</kbd>
-                </div>
-                <div class="keybind-card glass-card p-4 rounded-xl flex items-center justify-between">
-                    <span class="text-gray-300 font-medium text-sm">Voertuig Motor Aan/Uit</span>
-                    <kbd class="px-3 py-1.5 bg-gray-800 border border-gray-700 text-blue-400 rounded-lg text-xs font-mono font-bold">G</kbd>
-                </div>
-                <div class="keybind-card glass-card p-4 rounded-xl flex items-center justify-between">
-                    <span class="text-gray-300 font-medium text-sm">Handen Omhoog (Cuffs/Surrender)</span>
-                    <kbd class="px-3 py-1.5 bg-gray-800 border border-gray-700 text-blue-400 rounded-lg text-xs font-mono font-bold">X</kbd>
-                </div>
-                <div class="keybind-card glass-card p-4 rounded-xl flex items-center justify-between">
-                    <span class="text-gray-300 font-medium text-sm">Crouch / Bukken</span>
-                    <kbd class="px-3 py-1.5 bg-gray-800 border border-gray-700 text-blue-400 rounded-lg text-xs font-mono font-bold">CTRL</kbd>
+
+                <!-- Inventaris -->
+                <div class="glass-panel rounded-2xl p-6 keybind-card">
+                    <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-800">
+                        <div class="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-400">
+                            <i class="fa-solid fa-bag-shopping text-lg"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Inventaris & Wapens</h3>
+                    </div>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Inventaris Openen</span>
+                            <kbd>TAB</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Sneltoetsen Slots</span>
+                            <kbd>1 - 5</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Wapen Herladen</span>
+                            <kbd>R</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Wapen Wegsteken</span>
+                            <kbd>HOLSTER</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Kofferbak Openen</span>
+                            <kbd>L</kbd>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- APV / Penalties Calculator & Criminal Rights -->
-    <section id="calculator" class="py-16 border-b border-gray-800/50">
+    <!-- Strafrecht & APV Calculator Section -->
+    <section id="strafrecht" class="py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-3xl font-bold text-white">Strafmaat Calculator & Rechten</h2>
-                <p class="text-gray-400 text-sm mt-2">Bereken snel boetes en celstraffen voor overtredingen en bekijk de geldende verdachtenrechten.</p>
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Strafrecht & APV Calculator</h2>
+                <p class="text-slate-400 text-sm mt-2">Bereken direct boetes en celstraffen op basis van het Noordkust Wetboek.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <!-- Interactive Calculator Box -->
-                <div class="lg:col-span-2 glass-card p-6 rounded-2xl border border-gray-800">
-                    <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                        <i class="fa-solid fa-calculator text-blue-400"></i> Selecteer Overtredingen
-                    </h3>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 max-h-80 overflow-y-auto pr-2 custom-scrollbar">
-                        <label class="flex items-center gap-3 p-3 rounded-xl bg-gray-900/60 border border-gray-800 hover:border-gray-700 cursor-pointer text-sm">
-                            <input type="checkbox" data-fine="2500" data-months="10" onchange="calculatePenalty()" class="rounded bg-gray-800 border-gray-700 text-blue-500 focus:ring-0">
-                            <span>Snelheidsovertreding (>30km/h) (€2.500 / 10m)</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl bg-gray-900/60 border border-gray-800 hover:border-gray-700 cursor-pointer text-sm">
-                            <input type="checkbox" data-fine="5000" data-months="20" onchange="calculatePenalty()" class="rounded bg-gray-800 border-gray-700 text-blue-500 focus:ring-0">
-                            <span>Rijden zonder Rijbewijs (€5.000 / 20m)</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl bg-gray-900/60 border border-gray-800 hover:border-gray-700 cursor-pointer text-sm">
-                            <input type="checkbox" data-fine="15000" data-months="35" onchange="calculatePenalty()" class="rounded bg-gray-800 border-gray-700 text-blue-500 focus:ring-0">
-                            <span>Wapenbezit illegaal Categorie 1 (€15.000 / 35m)</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl bg-gray-900/60 border border-gray-800 hover:border-gray-700 cursor-pointer text-sm">
-                            <input type="checkbox" data-fine="30000" data-months="60" onchange="calculatePenalty()" class="rounded bg-gray-800 border-gray-700 text-blue-500 focus:ring-0">
-                            <span>Overval Winkel / Bankomand (€30.000 / 60m)</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl bg-gray-900/60 border border-gray-800 hover:border-gray-700 cursor-pointer text-sm">
-                            <input type="checkbox" data-fine="50000" data-months="90" onchange="calculatePenalty()" class="rounded bg-gray-800 border-gray-700 text-blue-500 focus:ring-0">
-                            <span>Gijzeling van Ambtenaar (€50.000 / 90m)</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-3 rounded-xl bg-gray-900/60 border border-gray-800 hover:border-gray-700 cursor-pointer text-sm">
-                            <input type="checkbox" data-fine="10000" data-months="25" onchange="calculatePenalty()" class="rounded bg-gray-800 border-gray-700 text-blue-500 focus:ring-0">
-                            <span>Drugsbezit / Handelen (€10.000 / 25m)</span>
-                        </label>
-                    </div>
-
-                    <!-- Summary Display -->
-                    <div class="p-4 rounded-xl bg-blue-950/30 border border-blue-800/40 flex flex-wrap items-center justify-between gap-4">
-                        <div>
-                            <span class="text-xs text-blue-300 font-semibold uppercase tracking-wider block">Totale Geldboete</span>
-                            <span id="totalFine" class="text-2xl font-black text-white">€0</span>
-                        </div>
-                        <div>
-                            <span class="text-xs text-blue-300 font-semibold uppercase tracking-wider block">Gevangenisstraf</span>
-                            <span id="totalMonths" class="text-2xl font-black text-amber-400">0 Maanden</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Verdachtenrechten Box -->
-                <div class="glass-card p-6 rounded-2xl border border-gray-800 flex flex-col justify-between">
+                <!-- Verdachtenrechten Card -->
+                <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between">
                     <div>
-                        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                            <i class="fa-solid fa-scale-balanced text-amber-400"></i> Verdachtenrechten
-                        </h3>
-                        <ul class="space-y-3 text-xs sm:text-sm text-gray-300">
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-check text-blue-400 mt-1"></i>
-                                <span>Recht op het weten van de reden van aanhouding.</span>
+                        <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-800">
+                            <div class="p-2.5 rounded-lg bg-amber-500/10 text-amber-400">
+                                <i class="fa-solid fa-scale-balanced text-lg"></i>
+                            </div>
+                            <h3 class="font-bold text-white">Verdachtenrechten</h3>
+                        </div>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Iedere verdachte die wordt aangehouden op het grondgebied van Noordkust RP heeft recht op:</p>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span><strong>Eten & Drinken:</strong> Recht op basisvoorzieningen bij langdurig verhoor.</span>
                             </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-check text-blue-400 mt-1"></i>
-                                <span>Recht op advocaat bij een gevangenisstraf > 30 maanden.</span>
+                            <li class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span><strong>Medische Zorg:</strong> Direct recht op een trauma-arts of ambulance bij verwondingen.</span>
                             </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-check text-blue-400 mt-1"></i>
-                                <span>Recht om te zwijgen tijdens verhoor.</span>
+                            <li class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span><strong>Recht op Advocaat:</strong> Recht op bijstand voor/tijdens het verhoor (indien beschikbaar).</span>
                             </li>
-                            <li class="flex items-start gap-2">
-                                <i class="fa-solid fa-check text-blue-400 mt-1"></i>
-                                <span>Recht op medische zorg indien gewond.</span>
+                            <li class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span><strong>Recht op Tolk:</strong> Bij gebrekkige taalbeheersing.</span>
                             </li>
                         </ul>
                     </div>
-                    <div class="mt-6 p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs">
-                        <i class="fa-solid fa-circle-info mr-1"></i> Ambtenaren dienen de rechten voor te lezen bij aanhouding.
+                    <div class="mt-6 pt-4 border-t border-slate-800/80 text-[11px] text-slate-500">
+                        * Let op: Het niet oplezen van rechten kan leiden tot strafvermindering door de Rechter.
+                    </div>
+                </div>
+
+                <!-- Interactive Calculator Grid -->
+                <div class="lg:col-span-2 glass-panel rounded-2xl p-6">
+                    <h3 class="font-bold text-white mb-4 text-base flex items-center justify-between">
+                        <span>Selecteer Overtredingen</span>
+                        <button onclick="resetCalculator()" class="text-xs text-brand-400 hover:text-brand-300 flex items-center gap-1 font-normal">
+                            <i class="fa-solid fa-rotate-left"></i> Reset Selection
+                        </button>
+                    </h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
+                        <label class="flex items-center p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition">
+                            <input type="checkbox" data-fine="2500" data-months="5" onchange="calculateStrafmaat()" class="straf-check rounded border-slate-700 text-brand-500 focus:ring-0 mr-3">
+                            <div class="text-xs">
+                                <div class="font-semibold text-slate-200">Snelheidsovertreding (>30 km/u)</div>
+                                <div class="text-slate-500">€2.500 | 5 Maanden</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition">
+                            <input type="checkbox" data-fine="7500" data-months="15" onchange="calculateStrafmaat()" class="straf-check rounded border-slate-700 text-brand-500 focus:ring-0 mr-3">
+                            <div class="text-xs">
+                                <div class="font-semibold text-slate-200">Rijden zonder Rijbewijs</div>
+                                <div class="text-slate-500">€7.500 | 15 Maanden</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition">
+                            <input type="checkbox" data-fine="15000" data-months="25" onchange="calculateStrafmaat()" class="straf-check rounded border-slate-700 text-brand-500 focus:ring-0 mr-3">
+                            <div class="text-xs">
+                                <div class="font-semibold text-slate-200">Wapenbezit Categorie 1</div>
+                                <div class="text-slate-500">€15.000 | 25 Maanden</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition">
+                            <input type="checkbox" data-fine="35000" data-months="45" onchange="calculateStrafmaat()" class="straf-check rounded border-slate-700 text-brand-500 focus:ring-0 mr-3">
+                            <div class="text-xs">
+                                <div class="font-semibold text-slate-200">Overval Kleine Winkel / ATM</div>
+                                <div class="text-slate-500">€35.000 | 45 Maanden</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition">
+                            <input type="checkbox" data-fine="50000" data-months="60" onchange="calculateStrafmaat()" class="straf-check rounded border-slate-700 text-brand-500 focus:ring-0 mr-3">
+                            <div class="text-xs">
+                                <div class="font-semibold text-slate-200">Bankoverval / Gijzeling</div>
+                                <div class="text-slate-500">€50.000 | 60 Maanden</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition">
+                            <input type="checkbox" data-fine="20000" data-months="30" onchange="calculateStrafmaat()" class="straf-check rounded border-slate-700 text-brand-500 focus:ring-0 mr-3">
+                            <div class="text-xs">
+                                <div class="font-semibold text-slate-200">Poging tot Doodslag / Ambtenaar</div>
+                                <div class="text-slate-500">€20.000 | 30 Maanden</div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Total Outputs -->
+                    <div class="grid grid-cols-2 gap-4 p-4 rounded-xl bg-slate-950 border border-slate-800">
+                        <div>
+                            <span class="text-xs text-slate-500 block uppercase font-bold tracking-wider">Totale Boete</span>
+                            <span id="totalFine" class="text-xl sm:text-2xl font-black text-emerald-400">€0</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 block uppercase font-bold tracking-wider">Gevangenisstraf</span>
+                            <span id="totalMonths" class="text-xl sm:text-2xl font-black text-amber-400">0 Maanden</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -271,518 +388,401 @@
     </section>
 
     <!-- Mogelijkheden Section -->
-    <section id="mogelijkheden" class="py-16 border-b border-gray-800/50 bg-gray-950/40">
+    <section id="mogelijkheden" class="py-16 bg-slate-900/30 border-t border-slate-800/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-3xl font-bold text-white">Mogelijkheden op Noordkust</h2>
-                <p class="text-gray-400 text-sm mt-2">Ontdek welke carrièrestappen en paden je kunt bewandelen in onze stad.</p>
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Carrière & Mogelijkheden</h2>
+                <p class="text-slate-400 text-sm mt-2">Kies jouw pad in de stad Noordkust.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Politie & Hulpdiensten -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                <!-- Staff -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-xl mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center mb-4 text-xl">
                             <i class="fa-solid fa-shield-halved"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-white mb-2">Politie & Ambulance</h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-6">
-                            Handhaaf de orde of red levens. Solliciteer direct voor een functie binnen onze hulpdiensten!
-                        </p>
+                        <h3 class="text-lg font-bold text-white mb-2">Staff Worden</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-6">Help mee om de community veilig en eerlijk te houden als gemotiveerd teamlid.</p>
                     </div>
-                    <a href="https://forms.gle/6jV5k2QgvrmQmneV7" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs text-center transition-colors block">
-                        Solliciteer Politie <i class="fa-solid fa-arrow-right text-xs ml-1"></i>
-                    </a>
+                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition text-center block">Solliciteer via Support</a>
                 </div>
 
-                <!-- KvK / Bedrijven -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                <!-- Politie -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-handcuffs"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Politie & Hulpdienst</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-6">Bescherm burgers, voorkom misdaad en rijd in de nieuwste dienstvoertuigen.</p>
+                    </div>
+                    <a href="https://forms.gle/6jV5k2QgvrmQmneV7" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition text-center block">Solliciteer Nu →</a>
+                </div>
+
+                <!-- Onderneming -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4 text-xl">
                             <i class="fa-solid fa-briefcase"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-white mb-2">KvK & Ondernemen</h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-6">
-                            Start je eigen garage, nachtclub, autodealer of restaurant. Dien je ondernemingsplan in!
-                        </p>
+                        <h3 class="text-lg font-bold text-white mb-2">Eigen Onderneming</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-6">Start een eigen garage, nachtclub of rijschool. Vraag een bedrijf aan via Discord.</p>
                     </div>
-                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs text-center transition-colors block">
-                        Open KvK Ticket
-                    </a>
+                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition text-center block">Bedrijf Aanvragen</a>
                 </div>
 
                 <!-- Onderwereld -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
                     <div>
-                        <div class="w-12 h-12 rounded-xl bg-red-600/20 text-red-400 flex items-center justify-center text-xl mb-4">
-                            <i class="fa-solid fa-mask"></i>
+                        <div class="w-12 h-12 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-skull"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-white mb-2">Onderwereld & Gangs</h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-6">
-                            Beheer de straten, bouw een imperium op met je gang of cartel en heers over illegale trades.
-                        </p>
+                        <h3 class="text-lg font-bold text-white mb-2">De Onderwereld</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-6">Richt een eigen Gang of Cartel op. Verover gebieden en heers over illegaal Noordkust.</p>
                     </div>
-                    <a href="https://discord.gg/4rtk2dzUqr" target="_blank" class="w-full py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-semibold text-xs text-center transition-colors block">
-                        Join Onderwereld DC
-                    </a>
-                </div>
-
-                <!-- Staff Team -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-purple-600/20 text-purple-400 flex items-center justify-center text-xl mb-4">
-                            <i class="fa-solid fa-user-gear"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2">Staff Sollicitaties</h3>
-                        <p class="text-gray-400 text-xs leading-relaxed mb-6">
-                            Help mee de community te ondersteunen als Moderator of Ticket Supporter.
-                        </p>
-                    </div>
-                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs text-center transition-colors block">
-                        Via Support Discord
-                    </a>
+                    <a href="https://discord.gg/4rtk2dzUqr" target="_blank" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition text-center block">Join Onderwereld</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Rangen Shop Section -->
-    <section id="shop" class="py-16 border-b border-gray-800/50">
+    <!-- Shop Section -->
+    <section id="shop" class="py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-10">
-                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold mb-3">
-                    <i class="fa-solid fa-crown text-xs"></i> Official Store
+            <div class="text-center mb-10">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full">Official Store</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-3">Noordkust Shop & Rangen</h2>
+                <p class="text-slate-400 text-sm mt-2 max-w-xl mx-auto">Steun de server en ontvang exclusieve perks, rangen en voordelen in-game.</p>
+
+                <!-- VIP Discount Banner Notice -->
+                <div id="vipNotice" class="hidden max-w-lg mx-auto mt-6 p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold animate-pulse">
+                    <i class="fa-solid fa-tag mr-2"></i> VIP Discount Actief! Je ontvangt 20% korting op alle rangen.
                 </div>
-                <h2 class="text-3xl font-bold text-white">Noordkust Rangen Shop</h2>
-                <p class="text-gray-400 text-sm mt-2">Ondersteun de server en ontgrendel exclusieve VIP of Staff functies. <br>Log in met Discord voor 20% korting op alles!</p>
             </div>
 
-            <!-- VIP Status Banner Indicator -->
-            <div id="vipNotice" class="hidden max-w-xl mx-auto mb-8 p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs text-center flex items-center justify-center gap-2">
-                <i class="fa-solid fa-circle-check text-amber-400"></i>
-                <span><strong>VIP Korting Actief!</strong> Je ontvangt 20% korting op het gehele assortiment.</span>
+            <!-- Category 1: Staff Rangen -->
+            <div class="mb-14">
+                <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="fa-solid fa-user-shield text-brand-400"></i> Staff Rangen
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Ticket Support -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-white text-base">Ticket Support</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Instap-staff functie voor het afhandelen van basistickets.</p>
+                            <div class="mb-6">
+                                <span class="text-2xl font-black text-white rank-price" data-original="5.00">€5,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs text-center block transition">Bestel via Support</a>
+                    </div>
+
+                    <!-- Junior Moderator -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-white text-base">Junior Moderator</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Ondersteun de miere van spelers in game en op Discord.</p>
+                            <div class="mb-6">
+                                <span class="text-2xl font-black text-white rank-price" data-original="10.00">€10,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs text-center block transition">Bestel via Support</a>
+                    </div>
+
+                    <!-- Moderator -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-white text-base">Moderator</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Volwaardige moderator perms en supportmogelijkheden.</p>
+                            <div class="mb-6">
+                                <span class="text-2xl font-black text-white rank-price" data-original="15.00">€15,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs text-center block transition">Bestel via Support</a>
+                    </div>
+
+                    <!-- Super Moderator -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-white text-base">Super Moderator</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Uitgebreide moderator rechten en begeleiding van nieuwe staff.</p>
+                            <div class="mb-6">
+                                <span class="text-2xl font-black text-white rank-price" data-original="20.00">€20,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs text-center block transition">Bestel via Support</a>
+                    </div>
+
+                    <!-- Junior Administrator -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-white text-base">Junior Administrator</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Administratieve permissies voor complexe ingame situaties.</p>
+                            <div class="mb-6">
+                                <span class="text-2xl font-black text-white rank-price" data-original="25.00">€25,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs text-center block transition">Bestel via Support</a>
+                    </div>
+
+                    <!-- Administrator -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-white text-base">Administrator</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Ervaren beheerder van serverzaken en geschillen.</p>
+                            <div class="mb-6">
+                                <span class="text-2xl font-black text-white rank-price" data-original="30.00">€30,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs text-center block transition">Bestel via Support</a>
+                    </div>
+
+                    <!-- Senior Administrator -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-white text-base">Senior Administrator</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Hoogste administratieve rang voor leidende teamleden.</p>
+                            <div class="mb-6">
+                                <span class="text-2xl font-black text-white rank-price" data-original="35.00">€35,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs text-center block transition">Bestel via Support</a>
+                    </div>
+                </div>
             </div>
 
-            <!-- Category Filter Tabs -->
-            <div class="flex justify-center mb-8 border-b border-gray-800 pb-4 gap-4">
-                <button onclick="switchShopTab('all')" id="tab-all" class="shop-tab text-sm font-semibold text-blue-400 border-b-2 border-blue-500 pb-2 px-2">Alle Rangen</button>
-                <button onclick="switchShopTab('vip')" id="tab-vip" class="shop-tab text-sm font-semibold text-gray-400 hover:text-white border-b-2 border-transparent pb-2 px-2">VIP Rangen</button>
-                <button onclick="switchShopTab('staff')" id="tab-staff" class="shop-tab text-sm font-semibold text-gray-400 hover:text-white border-b-2 border-transparent pb-2 px-2">Staff Rangen</button>
-            </div>
-
-            <!-- Products Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="shopGrid">
-                
-                <!-- Ticket Support -->
-                <div class="shop-item staff glass-card p-5 rounded-2xl flex flex-col justify-between border border-gray-800">
-                    <div>
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-400 border border-purple-500/20">Staff Rank</span>
-                            <div class="text-right">
-                                <span class="original-price hidden text-xs text-gray-500 line-through block">€5.00</span>
-                                <span class="price-tag text-xl font-black text-white" data-price="5.00">€5.00</span>
+            <!-- Category 2: VIP Rangen -->
+            <div>
+                <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="fa-solid fa-crown text-amber-400"></i> VIP Rangen
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Bronze VIP -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between border-amber-900/30">
+                        <div>
+                            <span class="px-2.5 py-0.5 rounded-full bg-amber-900/40 text-amber-400 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Bronze</span>
+                            <h4 class="font-bold text-white text-lg">Bronze VIP</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Starter VIP kit met basisvoordelen en kledingtoegang.</p>
+                            <div class="mb-6">
+                                <span class="text-3xl font-black text-amber-400 rank-price" data-original="7.50">€7,50</span>
                             </div>
                         </div>
-                        <h3 class="text-lg font-bold text-white mb-2">Ticket Support</h3>
-                        <p class="text-gray-400 text-xs mb-4">Toegang tot ticketafhandeling en basissupport binnen de server.</p>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs text-center block transition">Koop Bronze VIP</a>
                     </div>
-                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs text-center transition-colors block">
-                        Bestel via Ticket
-                    </a>
-                </div>
 
-                <!-- Jr Moderator -->
-                <div class="shop-item staff glass-card p-5 rounded-2xl flex flex-col justify-between border border-gray-800">
-                    <div>
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-400 border border-purple-500/20">Staff Rank</span>
-                            <div class="text-right">
-                                <span class="original-price hidden text-xs text-gray-500 line-through block">€10.00</span>
-                                <span class="price-tag text-xl font-black text-white" data-price="10.00">€10.00</span>
+                    <!-- Silver VIP -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between border-slate-600/30">
+                        <div>
+                            <span class="px-2.5 py-0.5 rounded-full bg-slate-700/40 text-slate-300 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Silver</span>
+                            <h4 class="font-bold text-white text-lg">Silver VIP</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Inclusief extra garage slots en maandelijks bonusgeld.</p>
+                            <div class="mb-6">
+                                <span class="text-3xl font-black text-slate-200 rank-price" data-original="12.50">€12,50</span>
                             </div>
                         </div>
-                        <h3 class="text-lg font-bold text-white mb-2">Jr Moderator</h3>
-                        <p class="text-gray-400 text-xs mb-4">Basis moderatie rechten voor ondersteuning in-game en Discord.</p>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-slate-200 hover:bg-white text-slate-950 font-bold text-xs text-center block transition">Koop Silver VIP</a>
                     </div>
-                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs text-center transition-colors block">
-                        Bestel via Ticket
-                    </a>
-                </div>
 
-                <!-- Moderator -->
-                <div class="shop-item staff glass-card p-5 rounded-2xl flex flex-col justify-between border border-gray-800">
-                    <div>
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-400 border border-purple-500/20">Staff Rank</span>
-                            <div class="text-right">
-                                <span class="original-price hidden text-xs text-gray-500 line-through block">€15.00</span>
-                                <span class="price-tag text-xl font-black text-white" data-price="15.00">€15.00</span>
+                    <!-- Gold VIP -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between border-yellow-500/30 relative">
+                        <div>
+                            <span class="px-2.5 py-0.5 rounded-full bg-yellow-500/20 text-yellow-300 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Popular</span>
+                            <h4 class="font-bold text-white text-lg">Gold VIP</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Toegang tot unieke voertuigen, meer huizen en prioriteit.</p>
+                            <div class="mb-6">
+                                <span class="text-3xl font-black text-yellow-400 rank-price" data-original="20.00">€20,00</span>
                             </div>
                         </div>
-                        <h3 class="text-lg font-bold text-white mb-2">Moderator</h3>
-                        <p class="text-gray-400 text-xs mb-4">Uitgebreide moderatie bevoegdheden en player-support.</p>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold text-xs text-center block transition">Koop Gold VIP</a>
                     </div>
-                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs text-center transition-colors block">
-                        Bestel via Ticket
-                    </a>
-                </div>
 
-                <!-- Sr Moderator -->
-                <div class="shop-item staff glass-card p-5 rounded-2xl flex flex-col justify-between border border-gray-800">
-                    <div>
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-purple-500/10 text-purple-400 border border-purple-500/20">Staff Rank</span>
-                            <div class="text-right">
-                                <span class="original-price hidden text-xs text-gray-500 line-through block">€20.00</span>
-                                <span class="price-tag text-xl font-black text-white" data-price="20.00">€20.00</span>
+                    <!-- Diamond VIP -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between border-cyan-500/30 glow-effect">
+                        <div>
+                            <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Ultimate</span>
+                            <h4 class="font-bold text-white text-lg">Diamond VIP</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">All-inclusive VIP status met maximale privileges en custom kenteken.</p>
+                            <div class="mb-6">
+                                <span class="text-3xl font-black text-cyan-400 rank-price" data-original="30.00">€30,00</span>
                             </div>
                         </div>
-                        <h3 class="text-lg font-bold text-white mb-2">Sr Moderator</h3>
-                        <p class="text-gray-400 text-xs mb-4">Aanspreekpunt voor moderators en geavanceerde klachtenafhandeling.</p>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs text-center block transition">Koop Diamond VIP</a>
                     </div>
-                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs text-center transition-colors block">
-                        Bestel via Ticket
-                    </a>
                 </div>
-
-                <!-- Jr Admin -->
-                <div class="shop-item staff glass-card p-5 rounded-2xl flex flex-col justify-between border border-gray-800">
-                    <div>
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Admin Rank</span>
-                            <div class="text-right">
-                                <span class="original-price hidden text-xs text-gray-500 line-through block">€25.00</span>
-                                <span class="price-tag text-xl font-black text-white" data-price="25.00">€25.00</span>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2">Jr Admin</h3>
-                        <p class="text-gray-400 text-xs mb-4">Administratieve permissies & toezicht op evenementen.</p>
-                    </div>
-                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs text-center transition-colors block">
-                        Bestel via Ticket
-                    </a>
-                </div>
-
-                <!-- Admin -->
-                <div class="shop-item staff glass-card p-5 rounded-2xl flex flex-col justify-between border border-gray-800">
-                    <div>
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Admin Rank</span>
-                            <div class="text-right">
-                                <span class="original-price hidden text-xs text-gray-500 line-through block">€30.00</span>
-                                <span class="price-tag text-xl font-black text-white" data-price="30.00">€30.00</span>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2">Admin</h3>
-                        <p class="text-gray-400 text-xs mb-4">Volledige administratieve permissies & staffbeheer.</p>
-                    </div>
-                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs text-center transition-colors block">
-                        Bestel via Ticket
-                    </a>
-                </div>
-
-                <!-- Sr Admin -->
-                <div class="shop-item staff glass-card p-5 rounded-2xl flex flex-col justify-between border border-gray-800">
-                    <div>
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Admin Rank</span>
-                            <div class="text-right">
-                                <span class="original-price hidden text-xs text-gray-500 line-through block">€35.00</span>
-                                <span class="price-tag text-xl font-black text-white" data-price="35.00">€35.00</span>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2">Sr Admin</h3>
-                        <p class="text-gray-400 text-xs mb-4">Senior leidinggevende permissies voor server management.</p>
-                    </div>
-                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs text-center transition-colors block">
-                        Bestel via Ticket
-                    </a>
-                </div>
-
-                <!-- Bronze VIP -->
-                <div class="shop-item vip glass-card p-5 rounded-2xl flex flex-col justify-between border border-amber-500/20 bg-amber-500/5">
-                    <div>
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20">Bronze VIP</span>
-                            <div class="text-right">
-                                <span class="original-price hidden text-xs text-gray-500 line-through block">€7.50</span>
-                                <span class="price-tag text-xl font-black text-amber-400" data-price="7.50">€7.50</span>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2">Bronze VIP</h3>
-                        <p class="text-gray-400 text-xs mb-4">1x Exclusieve Bronze auto + VIP Tag in Discord & Ingame.</p>
-                    </div>
-                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold text-xs text-center transition-colors block">
-                        Bestel via Ticket
-                    </a>
-                </div>
-
-                <!-- Silver VIP -->
-                <div class="shop-item vip glass-card p-5 rounded-2xl flex flex-col justify-between border border-amber-500/20 bg-amber-500/5">
-                    <div>
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-amber-500/10 text-amber-400 border border-amber-500/20">Silver VIP</span>
-                            <div class="text-right">
-                                <span class="original-price hidden text-xs text-gray-500 line-through block">€12.50</span>
-                                <span class="price-tag text-xl font-black text-amber-400" data-price="12.50">€12.50</span>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2">Silver VIP</h3>
-                        <p class="text-gray-400 text-xs mb-4">2x Exclusieve auto's + Prioriteit in de wachtrij (Queue Priority).</p>
-                    </div>
-                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold text-xs text-center transition-colors block">
-                        Bestel via Ticket
-                    </a>
-                </div>
-
-                <!-- Gold VIP -->
-                <div class="shop-item vip glass-card p-5 rounded-2xl flex flex-col justify-between border border-amber-500/30 bg-amber-500/10">
-                    <div>
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/30">Gold VIP</span>
-                            <div class="text-right">
-                                <span class="original-price hidden text-xs text-gray-500 line-through block">€20.00</span>
-                                <span class="price-tag text-xl font-black text-amber-400" data-price="20.00">€20.00</span>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2">Gold VIP</h3>
-                        <p class="text-gray-400 text-xs mb-4">3x Exclusieve VIP auto's + Huis op maat aanvragen + Queue boost.</p>
-                    </div>
-                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold text-xs text-center transition-colors block">
-                        Bestel via Ticket
-                    </a>
-                </div>
-
-                <!-- Diamond VIP -->
-                <div class="shop-item vip glass-card p-5 rounded-2xl flex flex-col justify-between border border-cyan-500/30 bg-cyan-500/5">
-                    <div>
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">Diamond VIP</span>
-                            <div class="text-right">
-                                <span class="original-price hidden text-xs text-gray-500 line-through block">€30.00</span>
-                                <span class="price-tag text-xl font-black text-cyan-400" data-price="30.00">€30.00</span>
-                            </div>
-                        </div>
-                        <h3 class="text-lg font-bold text-white mb-2">Diamond VIP</h3>
-                        <p class="text-gray-400 text-xs mb-4">Ultieme VIP status, unieke custom auto, aangepast kenteken & hoogste queue prioriteit.</p>
-                    </div>
-                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-gray-950 font-bold text-xs text-center transition-colors block">
-                        Bestel via Ticket
-                    </a>
-                </div>
-
             </div>
         </div>
     </section>
 
-    <!-- APV Rules & FAQ Accordion Section -->
-    <section id="regels" class="py-16 border-b border-gray-800/50 bg-gray-950/40">
+    <!-- APV Regels Section -->
+    <section id="regels" class="py-16 bg-slate-900/40 border-t border-slate-800/60">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Algemene Plaatselijke Verordening (APV)</h2>
+                <p class="text-slate-400 text-sm mt-2">Houd je aan de regels voor een hoogwaardige Roleplay ervaring.</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Algemeen -->
+                <div class="glass-panel rounded-2xl p-6">
+                    <h3 class="text-base font-bold text-brand-400 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-gavel"></i> 1. Algemene Regels & FailRP
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-xs text-slate-300 leading-relaxed">
+                        <li><strong>FailRP:</strong> Je dient te allen tijde realistisch te handelen naar je karakter. Onrealistische acties worden bestraft.</li>
+                        <li><strong>Metagaming:</strong> Het gebruiken van informatie die je buiten het karakter om hebt verkregen (via bijv. Discord of Streams) is ten strengste verboden.</li>
+                        <li><strong>Value of Life (VoL):</strong> Je dient het leven van jouw personage te beschermen alsof het je eigen leven is.</li>
+                    </ul>
+                </div>
+
+                <!-- NLR -->
+                <div class="glass-panel rounded-2xl p-6">
+                    <h3 class="text-base font-bold text-brand-400 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-skull-crossbones"></i> 2. Karakter & New Life Rule (NLR)
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-xs text-slate-300 leading-relaxed">
+                        <li>Wanneer je 'dood' bent gegaan en overgebracht wordt naar het ziekenhuis, vergeet je de hele situatie die leidde tot je dood.</li>
+                        <li>Het is niet toegestaan direct terug te keren naar de locatie waar je bent neergegaan (wachttijd: 30 minuten).</li>
+                    </ul>
+                </div>
+
+                <!-- Criminaliteit -->
+                <div class="glass-panel rounded-2xl p-6">
+                    <h3 class="text-base font-bold text-brand-400 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-mask"></i> 3. Criminaliteit & Overvallen
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-xs text-slate-300 leading-relaxed">
+                        <li>Overvallen op overheidsdiensten zonder gegronde roleplay-reden zijn niet toegestaan.</li>
+                        <li>Maximaal toegestane gijzelaars bij grote overvallen staat vast op 3 personen.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-16">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-white">Algemene Plaatselijke Verordening (APV) & FAQ</h2>
-                <p class="text-gray-400 text-sm mt-2">Houd je aan de regels om de roleplay voor iedereen leuk en kwalitatief te houden.</p>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Veelgestelde Vragen</h2>
+                <p class="text-slate-400 text-sm mt-2">Alles wat je moet weten over Noordkust RP.</p>
             </div>
 
-            <!-- Accordions -->
             <div class="space-y-4">
-                <!-- Rule 1 -->
-                <div class="glass-card rounded-xl border border-gray-800 overflow-hidden">
-                    <button onclick="toggleAccordion('faq1')" class="w-full p-4 text-left flex justify-between items-center font-semibold text-sm text-gray-200 hover:text-blue-400 transition-colors">
-                        <span>1. FailRP & RDM / VDM Regels</span>
-                        <i id="faq1-icon" class="fa-solid fa-chevron-down text-xs text-gray-400 transition-transform"></i>
+                <div class="glass-panel rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-sm text-white flex justify-between items-center hover:bg-slate-800/50 transition">
+                        <span>Hoe kan ik verbinding maken met de server?</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
                     </button>
-                    <div id="faq1" class="hidden p-4 pt-0 text-xs text-gray-400 border-t border-gray-800/50 leading-relaxed">
-                        FailRP is het niet realistisch handelen in situaties. Random Deathmatch (RDM) en Vehicle Deathmatch (VDM) zonder geldige roleplay aanleiding zijn ten strengste verboden en leiden direct tot een ban.
+                    <div class="faq-content hidden p-5 pt-0 text-xs text-slate-400 border-t border-slate-800/50 leading-relaxed">
+                        Je kunt inloggen door FiveM te openen, te zoeken naar "Noordkust Roleplay" in de serverlijst of direct te verbinden via F8 met het IP-adres in onze Discord.
                     </div>
                 </div>
 
-                <!-- Rule 2 -->
-                <div class="glass-card rounded-xl border border-gray-800 overflow-hidden">
-                    <button onclick="toggleAccordion('faq2')" class="w-full p-4 text-left flex justify-between items-center font-semibold text-sm text-gray-200 hover:text-blue-400 transition-colors">
-                        <span>2. Metagaming & Character Killing (CK)</span>
-                        <i id="faq2-icon" class="fa-solid fa-chevron-down text-xs text-gray-400 transition-transform"></i>
+                <div class="glass-panel rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-sm text-white flex justify-between items-center hover:bg-slate-800/50 transition">
+                        <span>Hoe ontvang ik mijn gekochte VIP rang?</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
                     </button>
-                    <div id="faq2" class="hidden p-4 pt-0 text-xs text-gray-400 border-t border-gray-800/50 leading-relaxed">
-                        Het gebruiken van buiten-game informatie (zoals Discord of streams) in-game is verklaard als Metagaming. Een CK kan alleen worden uitgevoerd met goedkeuring via een goedgekeurd ticket bij het High Command.
+                    <div class="faq-content hidden p-5 pt-0 text-xs text-slate-400 border-t border-slate-800/50 leading-relaxed">
+                        Na je bestelling op de Support Discord open je een donatie-ticket met je bewijs. Een administrator zal je rang direct toewijzen in-game en op Discord.
                     </div>
                 </div>
 
-                <!-- Rule 3 -->
-                <div class="glass-card rounded-xl border border-gray-800 overflow-hidden">
-                    <button onclick="toggleAccordion('faq3')" class="w-full p-4 text-left flex justify-between items-center font-semibold text-sm text-gray-200 hover:text-blue-400 transition-colors">
-                        <span>3. Hoe treed ik toe tot de server?</span>
-                        <i id="faq3-icon" class="fa-solid fa-chevron-down text-xs text-gray-400 transition-transform"></i>
+                <div class="glass-panel rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-sm text-white flex justify-between items-center hover:bg-slate-800/50 transition">
+                        <span>Wat zijn de minimale vereisten voor de server?</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
                     </button>
-                    <div id="faq3" class="hidden p-4 pt-0 text-xs text-gray-400 border-t border-gray-800/50 leading-relaxed">
-                        Join onze Hoofd Discord, lees de regels door, zorg dat je FiveM en Teamspeak/SaltyChat geinstalleerd hebt en zoek op 'Noordkust Roleplay' in de FiveM serverlijst!
+                    <div class="faq-content hidden p-5 pt-0 text-xs text-slate-400 border-t border-slate-800/50 leading-relaxed">
+                        Je hebt een legitieme exemplaar van GTA V nodig, FiveM geïnstalleerd en een werkende microfoon voor in-game spraakcommunicatie.
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Discords Grid Section -->
-    <section id="discords" class="py-16 border-b border-gray-800/50">
+    <!-- Discords Section -->
+    <section id="discords" class="py-16 bg-slate-900/40 border-t border-slate-800/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-3xl font-bold text-white">Onze Discord Community's</h2>
-                <p class="text-gray-400 text-sm mt-2">Word lid van de gewenste Discords om op de hoogte te blijven of support te ontvangen.</p>
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Onze Community Discords</h2>
+                <p class="text-slate-400 text-sm mt-2">Word lid van de juiste server voor updates, hulp of onderwereldzaken.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Main Discord -->
-                <div class="glass-card p-6 rounded-2xl text-center border border-gray-800 hover:border-blue-500/50 transition-all">
-                    <div class="w-14 h-14 mx-auto rounded-2xl bg-blue-600/20 text-blue-400 flex items-center justify-center text-2xl mb-4">
-                        <i class="fa-brands fa-discord"></i>
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 text-center flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-brands fa-discord"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-base">Main Discord</h3>
+                        <p class="text-xs text-slate-400 mt-1 mb-6">De algemene ontmoetingsplek voor alle spelers.</p>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-1">Hoofd Discord</h3>
-                    <p class="text-gray-400 text-xs mb-6">Algemene updates, aankondigingen en chats.</p>
-                    <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs transition-colors inline-block">
-                        Join Discord
-                    </a>
+                    <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition block">Join Server</a>
                 </div>
 
                 <!-- Support Discord -->
-                <div class="glass-card p-6 rounded-2xl text-center border border-gray-800 hover:border-emerald-500/50 transition-all">
-                    <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center text-2xl mb-4">
-                        <i class="fa-solid fa-headset"></i>
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 text-center flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-base">Support Discord</h3>
+                        <p class="text-xs text-slate-400 mt-1 mb-6">Voor vragen, winkel-tickets en vragen aan staff.</p>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-1">Support Discord</h3>
-                    <p class="text-gray-400 text-xs mb-6">Voor vragen, tickets en rang aankoop support.</p>
-                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-colors inline-block">
-                        Open Support
-                    </a>
+                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs transition block">Open Ticket</a>
                 </div>
 
                 <!-- Overheid Discord -->
-                <div class="glass-card p-6 rounded-2xl text-center border border-gray-800 hover:border-indigo-500/50 transition-all">
-                    <div class="w-14 h-14 mx-auto rounded-2xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center text-2xl mb-4">
-                        <i class="fa-solid fa-building-columns"></i>
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 text-center flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-base">Overheid Discord</h3>
+                        <p class="text-xs text-slate-400 mt-1 mb-6">Voor Politie, Ambulance en overheidspersoneel.</p>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-1">Overheid Discord</h3>
-                    <p class="text-gray-400 text-xs mb-6">Informatie & zaken rondom Politie en Hulpdiensten.</p>
-                    <a href="https://discord.gg/xPQvzAfZb" target="_blank" class="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-colors inline-block">
-                        Join Overheid
-                    </a>
+                    <a href="https://discord.gg/xPQvzAfZb" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition block">Join Overheid</a>
                 </div>
 
                 <!-- Onderwereld Discord -->
-                <div class="glass-card p-6 rounded-2xl text-center border border-gray-800 hover:border-red-500/50 transition-all">
-                    <div class="w-14 h-14 mx-auto rounded-2xl bg-red-600/20 text-red-400 flex items-center justify-center text-2xl mb-4">
-                        <i class="fa-solid fa-user-ninja"></i>
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 text-center flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-red-500/10 text-red-400 flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-mask"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-base">Onderwereld Discord</h3>
+                        <p class="text-xs text-slate-400 mt-1 mb-6">Voor Bends, Cartels en illegale zaken.</p>
                     </div>
-                    <h3 class="text-base font-bold text-white mb-1">Onderwereld Discord</h3>
-                    <p class="text-gray-400 text-xs mb-6">Gangs, cartels en illegale zaken support.</p>
-                    <a href="https://discord.gg/4rtk2dzUqr" target="_blank" class="w-full py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-semibold text-xs transition-colors inline-block">
-                        Join Onderwereld
-                    </a>
+                    <a href="https://discord.gg/4rtk2dzUqr" target="_blank" class="w-full py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs transition block">Join Onderwereld</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-10 bg-gray-950 border-t border-gray-900 text-xs text-gray-500">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-2">
-                <span class="font-bold text-gray-300">Noordkust Roleplay</span> &copy; 2026. Alle rechten voorbehouden.
-            </div>
-            <div class="flex items-center gap-6">
-                <a href="#about" class="hover:text-gray-300 transition-colors">Over Ons</a>
-                <a href="#shop" class="hover:text-gray-300 transition-colors">Shop</a>
-                <a href="#regels" class="hover:text-gray-300 transition-colors">APV</a>
-                <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="hover:text-gray-300 transition-colors">Discord</a>
-            </div>
+    <footer class="glass-panel border-t border-slate-800/80 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
+            <p>© 2026 Noordkust Roleplay. Alle rechten voorbehouden. Niet geaffilieerd met Rockstar Games of Take-Two Interactive.</p>
         </div>
     </footer>
 
+    <!-- Script Logic -->
     <script>
-        // State for Simulated Discord Login / VIP Discount
-        let isLoggedInVip = false;
+        // State variables
+        let isVipLoggedIn = false;
 
-        function toggleVipStatus() {
-            isLoggedInVip = !isLoggedInVip;
-            const btnText = document.getElementById('vipToggleText');
-            const vipNotice = document.getElementById('vipNotice');
-
-            if (isLoggedInVip) {
-                btnText.innerText = "Ingelogd (20% Korting Actief)";
-                vipNotice.classList.remove('hidden');
-            } else {
-                btnText.innerText = "Simuleer Inloggen (Korting)";
-                vipNotice.classList.add('hidden');
-            }
-
-            updateShopPrices();
-        }
-
-        function updateShopPrices() {
-            const priceTags = document.querySelectorAll('.price-tag');
-            priceTags.forEach(tag => {
-                const basePrice = parseFloat(tag.getAttribute('data-price'));
-                const originalPriceSpan = tag.previousElementSibling;
-
-                if (isLoggedInVip) {
-                    const discounted = (basePrice * 0.8).toFixed(2);
-                    originalPriceSpan.classList.remove('hidden');
-                    tag.innerText = `€${discounted}`;
-                } else {
-                    originalPriceSpan.classList.add('hidden');
-                    tag.innerText = `€${basePrice.toFixed(2)}`;
-                }
-            });
-        }
-
-        // Keybinds Filter Functionality
+        // Interactive Keybind Filter
         function filterKeybinds() {
             const query = document.getElementById('keybindSearch').value.toLowerCase();
-            const cards = document.querySelectorAll('#keybindGrid .keybind-card');
-
-            cards.forEach(card => {
-                const text = card.textContent.toLowerCase();
-                if (text.includes(query)) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-
-        // Interactive Penalties Calculator
-        function calculatePenalty() {
-            let totalFine = 0;
-            let totalMonths = 0;
-
-            const checkboxes = document.querySelectorAll('#calculator input[type="checkbox"]:checked');
-            checkboxes.forEach(cb => {
-                totalFine += parseInt(cb.getAttribute('data-fine') || 0);
-                totalMonths += parseInt(cb.getAttribute('data-months') || 0);
-            });
-
-            document.getElementById('totalFine').innerText = '€' + totalFine.toLocaleString();
-            document.getElementById('totalMonths').innerText = totalMonths + ' Maanden';
-        }
-
-        // Shop Category Switcher
-        function switchShopTab(category) {
-            const items = document.querySelectorAll('.shop-item');
-            const tabs = document.querySelectorAll('.shop-tab');
-
-            tabs.forEach(tab => {
-                tab.classList.remove('text-blue-400', 'border-blue-500');
-                tab.classList.add('text-gray-400', 'border-transparent');
-            });
-
-            const activeTab = document.getElementById(`tab-${category}`);
-            if (activeTab) {
-                activeTab.classList.add('text-blue-400', 'border-blue-500');
-                activeTab.classList.remove('text-gray-400', 'border-transparent');
-            }
+            const items = document.querySelectorAll('.keybind-item');
 
             items.forEach(item => {
-                if (category === 'all') {
-                    item.style.display = 'flex';
-                } else if (item.classList.contains(category)) {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(query)) {
                     item.style.display = 'flex';
                 } else {
                     item.style.display = 'none';
@@ -790,19 +790,87 @@
             });
         }
 
+        // Interactive Strafmaat & Boete Calculator
+        function calculateStrafmaat() {
+            let totalFine = 0;
+            let totalMonths = 0;
+            const checkboxes = document.querySelectorAll('.straf-check:checked');
+
+            checkboxes.forEach(cb => {
+                totalFine += parseInt(cb.getAttribute('data-fine') || '0');
+                totalMonths += parseInt(cb.getAttribute('data-months') || '0');
+            });
+
+            document.getElementById('totalFine').innerText = '€' + totalFine.toLocaleString('nl-NL');
+            document.getElementById('totalMonths').innerText = totalMonths + ' Maanden';
+        }
+
+        function resetCalculator() {
+            document.querySelectorAll('.straf-check').forEach(cb => cb.checked = false);
+            calculateStrafmaat();
+        }
+
+        // VIP Discount Simulation Logic
+        function toggleVipStatus() {
+            isVipLoggedIn = !isVipLoggedIn;
+            const btnText = document.getElementById('vipAuthText');
+            const notice = document.getElementById('vipNotice');
+            const priceElements = document.querySelectorAll('.rank-price');
+
+            if (isVipLoggedIn) {
+                btnText.innerText = 'VIP Ingelogd (20% Korting Actief)';
+                notice.classList.remove('hidden');
+                
+                priceElements.forEach(el => {
+                    const originalPrice = parseFloat(el.getAttribute('data-original'));
+                    const discountedPrice = (originalPrice * 0.8).toFixed(2);
+                    el.innerHTML = `<span class="line-through text-slate-500 text-sm mr-1">€${originalPrice.toFixed(2).replace('.', ',')}</span> €${discountedPrice.replace('.', ',')}`;
+                });
+            } else {
+                btnText.innerText = 'Simuleer Discord VIP Login';
+                notice.classList.add('hidden');
+
+                priceElements.forEach(el => {
+                    const originalPrice = parseFloat(el.getAttribute('data-original'));
+                    el.innerText = `€${originalPrice.toFixed(2).replace('.', ',')}`;
+                });
+            }
+        }
+
         // FAQ Accordion Toggle
-        function toggleAccordion(id) {
-            const content = document.getElementById(id);
-            const icon = document.getElementById(id + '-icon');
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
 
             if (content.classList.contains('hidden')) {
                 content.classList.remove('hidden');
-                icon.classList.add('rotate-180');
+                icon.style.transform = 'rotate(180deg)';
             } else {
                 content.classList.add('hidden');
-                icon.classList.remove('rotate-180');
+                icon.style.transform = 'rotate(0deg)';
             }
         }
+
+        // Simulated Live Discord / Visitor Counter
+        function initLiveCounters() {
+            const visitorsEl = document.getElementById('liveVisitorsCount');
+            
+            // Generate realistic random count between 42 and 78
+            const updateCount = () => {
+                const count = Math.floor(Math.random() * 37) + 42;
+                if(visitorsEl) {
+                    visitorsEl.innerHTML = `<i class="fa-solid fa-users text-xs mr-1"></i>${count} Spelers Online`;
+                }
+            };
+
+            updateCount();
+            setInterval(updateCount, 12000);
+        }
+
+        // Initialize on Load
+        window.onload = function() {
+            initLiveCounters();
+        };
     </script>
 </body>
 </html>
