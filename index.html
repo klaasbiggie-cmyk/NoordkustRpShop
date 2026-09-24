@@ -1,1356 +1,955 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Noordkust Roleplay | Officiële Website</title>
-
-  <!-- Favicon / Tabblad Icoontjes -->
-  <link rel="icon" type="image/jpeg" href="logo.jpg">
-  <link rel="shortcut icon" type="image/jpeg" href="logo.jpg">
-  <link rel="apple-touch-icon" href="logo.jpg">
-
-  <style>
-    /* ==========================================================================
-       1. GLOBAL RESET & BASE STYLES
-       ========================================================================== */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-      background-color: #030712;
-      color: #f3f4f6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      line-height: 1.5;
-      overflow-x: hidden;
-    }
-
-    /* Selection Styling */
-    ::selection {
-      background-color: #3b82f6;
-      color: #ffffff;
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 10px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #030712;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #1e293b;
-      border-radius: 5px;
-      border: 2px solid #030712;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #3b82f6;
-    }
-
-    /* ==========================================================================
-       2. NAVIGATION BAR
-       ========================================================================== */
-    header {
-      padding: 16px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      background-color: rgba(3, 7, 18, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      z-index: 1000;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      transition: all 0.3s ease;
-    }
-
-    .brand-container {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      transition: transform 0.2s ease;
-    }
-
-    .brand-container:hover {
-      transform: scale(1.02);
-    }
-
-    .site-logo {
-      height: 44px;
-      width: 44px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid rgba(59, 130, 246, 0.5);
-      box-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
-    }
-
-    .brand-text {
-      font-weight: 900;
-      font-size: 1.25rem;
-      letter-spacing: 0.5px;
-      color: #ffffff;
-      text-transform: uppercase;
-    }
-
-    .brand-text span {
-      color: #3b82f6;
-    }
-
-    nav {
-      display: flex;
-      gap: 22px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: #9ca3af;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.92rem;
-      transition: color 0.2s ease, transform 0.2s ease;
-      position: relative;
-    }
-
-    nav a:hover {
-      color: #ffffff;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -4px;
-      left: 0;
-      background-color: #3b82f6;
-      transition: width 0.2s ease;
-    }
-
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    /* Auth & User Buttons */
-    .discord-auth-btn {
-      background-color: #5865F2;
-      color: #ffffff;
-      border: none;
-      padding: 9px 18px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.88rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 4px 12px rgba(88, 101, 242, 0.25);
-    }
-
-    .discord-auth-btn:hover {
-      background-color: #4752C4;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(88, 101, 242, 0.35);
-    }
-
-    .user-profile {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background-color: rgba(255, 255, 255, 0.05);
-      padding: 6px 14px;
-      border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .user-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-
-    .user-name {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: #ffffff;
-    }
-
-    .vip-badge {
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      color: #000000;
-      font-size: 0.7rem;
-      font-weight: 900;
-      padding: 2px 8px;
-      border-radius: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .logout-btn {
-      background: none;
-      border: none;
-      color: #ef4444;
-      cursor: pointer;
-      font-size: 0.8rem;
-      margin-left: 6px;
-      text-decoration: underline;
-      transition: color 0.2s ease;
-    }
-
-    .logout-btn:hover {
-      color: #f87171;
-    }
-
-    /* ==========================================================================
-       3. HERO SECTION
-       ========================================================================== */
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 100px 20px 80px 20px;
-      position: relative;
-      background: radial-gradient(circle at 50% 20%, rgba(59, 130, 246, 0.08) 0%, rgba(3, 7, 18, 0) 70%);
-    }
-
-    .badge {
-      background-color: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      color: #60a5fa;
-      padding: 8px 20px;
-      border-radius: 30px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      margin-bottom: 28px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    .status-container {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 35px;
-    }
-
-    .status-card {
-      background-color: rgba(11, 15, 25, 0.8);
-      border: 1px solid rgba(59, 130, 246, 0.25);
-      border-radius: 14px;
-      padding: 12px 24px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      backdrop-filter: blur(8px);
-    }
-
-    .status-dot {
-      width: 10px;
-      height: 10px;
-      background-color: #10b981;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #10b981;
-    }
-
-    .status-dot.pulse {
-      animation: pulse 1.8s infinite;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-    }
-
-    .status-text {
-      font-size: 0.92rem;
-      color: #9ca3af;
-    }
-
-    .status-text strong {
-      color: #ffffff;
-      font-weight: 700;
-    }
-
-    h1 {
-      font-size: 4.8rem;
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -2px;
-      margin-bottom: 25px;
-      max-width: 950px;
-      color: #ffffff;
-    }
-
-    h1 .highlight {
-      color: #3b82f6;
-      display: block;
-      background: linear-gradient(135deg, #60a5fa, #2563eb);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    p.subtitle {
-      color: #9ca3af;
-      font-size: 1.15rem;
-      max-width: 650px;
-      margin-bottom: 45px;
-      line-height: 1.7;
-    }
-
-    .button-group {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .btn {
-      padding: 14px 28px;
-      border-radius: 10px;
-      font-weight: 700;
-      text-decoration: none;
-      font-size: 0.98rem;
-      transition: all 0.25s ease;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      border: none;
-    }
-
-    .btn-primary {
-      background-color: #3b82f6;
-      color: #ffffff;
-      box-shadow: 0 4px 18px rgba(59, 130, 246, 0.35);
-    }
-
-    .btn-primary:hover {
-      background-color: #2563eb;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 22px rgba(59, 130, 246, 0.5);
-    }
-
-    .btn-secondary {
-      background-color: rgba(255, 255, 255, 0.05);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
-    .btn-secondary:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-
-    .btn-vip {
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      color: #000000;
-      box-shadow: 0 4px 18px rgba(245, 158, 11, 0.3);
-    }
-
-    .btn-vip:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 22px rgba(245, 158, 11, 0.45);
-    }
-
-    /* ==========================================================================
-       4. SECTIONS COMMON STYLES
-       ========================================================================== */
-    section {
-      padding: 90px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-      text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    section h2 {
-      font-size: 2.4rem;
-      font-weight: 800;
-      margin-bottom: 12px;
-      color: #ffffff;
-      letter-spacing: -0.5px;
-    }
-
-    section p.section-sub {
-      color: #9ca3af;
-      font-size: 1.08rem;
-      margin-bottom: 45px;
-    }
-
-    .search-box {
-      width: 100%;
-      max-width: 520px;
-      margin: 0 auto 30px auto;
-      display: block;
-      padding: 14px 22px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background-color: #0b0f19;
-      color: #ffffff;
-      font-size: 0.98rem;
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .search-box:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
-    }
-
-    /* ==========================================================================
-       5. KEYBINDS SECTION
-       ========================================================================== */
-    .keybinds-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
-      text-align: left;
-    }
-
-    .keybind-card {
-      background-color: #0b0f19;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 24px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .keybind-card h3 {
-      font-size: 1.15rem;
-      color: #60a5fa;
-      margin-bottom: 18px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .keybind-list {
-      list-style: none;
-    }
-
-    .keybind-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 11px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      font-size: 0.92rem;
-      color: #cbd5e1;
-    }
-
-    .keybind-item:last-child {
-      border-bottom: none;
-    }
-
-    kbd {
-      background-color: #1e293b;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 6px;
-      box-shadow: 0 2px 0 rgba(255, 255, 255, 0.25);
-      color: #38bdf8;
-      display: inline-block;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 0.85rem;
-      font-weight: 700;
-      padding: 4px 9px;
-    }
-
-    /* ==========================================================================
-       6. STRAFRECHT & CALCULATOR SECTION
-       ========================================================================== */
-    .rights-card {
-      background-color: #0b0f19;
-      border: 1px solid rgba(239, 68, 68, 0.35);
-      border-radius: 14px;
-      padding: 28px;
-      text-align: left;
-      margin-bottom: 40px;
-      box-shadow: 0 4px 20px rgba(239, 68, 68, 0.05);
-    }
-
-    .rights-card h3 {
-      color: #f87171;
-      font-size: 1.35rem;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .rights-card p {
-      color: #94a3b8;
-      font-size: 0.95rem;
-      margin-bottom: 20px;
-    }
-
-    .rights-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 16px;
-    }
-
-    .right-box {
-      background-color: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      padding: 16px;
-    }
-
-    .right-box h4 {
-      color: #ffffff;
-      font-size: 0.98rem;
-      margin-bottom: 6px;
-    }
-
-    .right-box p {
-      color: #94a3b8;
-      font-size: 0.86rem;
-      line-height: 1.4;
-      margin-bottom: 0;
-    }
-
-    .calculator-container {
-      background-color: #0b0f19;
-      border: 1px solid rgba(59, 130, 246, 0.3);
-      border-radius: 14px;
-      padding: 28px;
-      text-align: left;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .calculator-container h3 {
-      color: #60a5fa;
-      font-size: 1.25rem;
-      margin-bottom: 8px;
-    }
-
-    .calculator-sub {
-      color: #94a3b8;
-      font-size: 0.92rem;
-      margin-bottom: 24px;
-    }
-
-    .offense-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 14px;
-      margin-bottom: 28px;
-    }
-
-    .offense-item {
-      background-color: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      cursor: pointer;
-      user-select: none;
-      transition: border-color 0.2s ease, background-color 0.2s ease;
-    }
-
-    .offense-item:hover {
-      border-color: rgba(59, 130, 246, 0.5);
-      background-color: rgba(15, 23, 42, 0.9);
-    }
-
-    .offense-title {
-      font-size: 0.92rem;
-      color: #ffffff;
-      font-weight: 600;
-      display: block;
-    }
-
-    .offense-penalty {
-      font-size: 0.82rem;
-      color: #94a3b8;
-      display: block;
-      margin-top: 2px;
-    }
-
-    .offense-item input[type="checkbox"] {
-      width: 20px;
-      height: 20px;
-      accent-color: #3b82f6;
-      cursor: pointer;
-    }
-
-    .calc-total-bar {
-      background-color: #1e293b;
-      border-radius: 10px;
-      padding: 22px 28px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .total-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #ffffff;
-    }
-
-    .total-values {
-      display: flex;
-      gap: 28px;
-    }
-
-    .total-box {
-      text-align: right;
-    }
-
-    .total-label {
-      font-size: 0.78rem;
-      color: #94a3b8;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      font-weight: 600;
-    }
-
-    .total-amount {
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: #10b981;
-    }
-
-    .total-jail {
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: #f87171;
-    }
-
-    /* ==========================================================================
-       7. MOGELIJKHEDEN SECTION
-       ========================================================================== */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 22px;
-      text-align: left;
-    }
-
-    .feature-card {
-      background-color: #0b0f19;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 26px;
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(59, 130, 246, 0.4);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-    }
-
-    .feature-card.highlight-card {
-      border: 1px solid rgba(245, 158, 11, 0.4);
-      background: linear-gradient(180deg, #0b0f19 0%, rgba(245, 158, 11, 0.04) 100%);
-    }
-
-    .feature-icon {
-      font-size: 2rem;
-      margin-bottom: 14px;
-    }
-
-    .feature-card h3 {
-      font-size: 1.2rem;
-      color: #ffffff;
-      margin-bottom: 10px;
-    }
-
-    .feature-card p {
-      color: #94a3b8;
-      font-size: 0.92rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .feature-btn {
-      margin-top: auto;
-      display: inline-block;
-      text-align: center;
-      background-color: rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-      padding: 10px 16px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.88rem;
-      transition: background-color 0.2s ease;
-    }
-
-    .feature-btn:hover {
-      background-color: #3b82f6;
-    }
-
-    /* ==========================================================================
-       8. RANGEN SHOP SECTION
-       ========================================================================== */
-    .vip-banner {
-      background: linear-gradient(90deg, #f59e0b, #d97706);
-      color: #000000;
-      padding: 14px 24px;
-      border-radius: 10px;
-      font-weight: 800;
-      margin-bottom: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      text-align: left;
-      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.25);
-    }
-
-    .category-title {
-      font-size: 1.35rem;
-      color: #60a5fa;
-      margin: 40px 0 22px 0;
-      text-align: left;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .shop-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 22px;
-      margin-bottom: 20px;
-    }
-
-    .shop-card {
-      background-color: #0b0f19;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      text-align: left;
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .shop-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(59, 130, 246, 0.4);
-    }
-
-    .card-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: #ffffff;
-    }
-
-    .price-container {
-      margin-bottom: 18px;
-    }
-
-    .price {
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: #10b981;
-    }
-
-    .original-price {
-      text-decoration: line-through;
-      color: #6b7280;
-      font-size: 0.98rem;
-      margin-right: 6px;
-    }
-
-    .price-note {
-      font-size: 0.82rem;
-      color: #6b7280;
-      font-weight: 400;
-    }
-
-    .buy-btn {
-      display: block;
-      text-align: center;
-      background-color: #3b82f6;
-      color: #ffffff;
-      padding: 10px 16px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.88rem;
-      transition: background-color 0.2s ease;
-    }
-
-    .buy-btn:hover {
-      background-color: #2563eb;
-    }
-
-    /* ==========================================================================
-       9. APV RULES SECTION
-       ========================================================================== */
-    .apv-container {
-      background-color: #0b0f19;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 14px;
-      padding: 32px;
-      text-align: left;
-      max-height: 480px;
-      overflow-y: auto;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .apv-section h3 {
-      color: #60a5fa;
-      margin: 22px 0 12px 0;
-      font-size: 1.1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 6px;
-    }
-
-    .apv-section:first-child h3 {
-      margin-top: 0;
-    }
-
-    .apv-container ul {
-      list-style: none;
-      margin-bottom: 18px;
-    }
-
-    .apv-container li {
-      color: #94a3b8;
-      font-size: 0.92rem;
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-
-    .apv-container strong {
-      color: #ffffff;
-    }
-
-    /* ==========================================================================
-       10. FAQ ACCORDION
-       ========================================================================== */
-    .faq-container {
-      max-width: 850px;
-      margin: 0 auto;
-      text-align: left;
-    }
-
-    .faq-item {
-      background-color: #0b0f19;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      margin-bottom: 14px;
-      overflow: hidden;
-    }
-
-    .faq-question {
-      width: 100%;
-      padding: 20px 24px;
-      background: none;
-      border: none;
-      color: #ffffff;
-      font-size: 1.02rem;
-      font-weight: 600;
-      text-align: left;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      padding: 0 24px;
-      color: #94a3b8;
-      font-size: 0.92rem;
-      line-height: 1.6;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-    }
-
-    .faq-item.active .faq-answer {
-      max-height: 250px;
-      padding: 0 24px 20px 24px;
-    }
-
-    .faq-toggle {
-      font-size: 1.3rem;
-      color: #3b82f6;
-      transition: transform 0.3s ease;
-    }
-
-    .faq-item.active .faq-toggle {
-      transform: rotate(45deg);
-    }
-
-    /* ==========================================================================
-       11. FOOTER
-       ========================================================================== */
-    footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 35px 20px;
-      text-align: center;
-      color: #6b7280;
-      font-size: 0.88rem;
-      margin-top: auto;
-      background-color: #030712;
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Header / Navigation -->
-  <header>
-    <a href="index.html" class="brand-container">
-      <img src="logo.jpg" alt="Noordkust RP Logo" class="site-logo">
-      <span class="brand-text">NOORDKUST<span>RP</span></span>
-    </a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="#keybinds">Keybinds</a>
-      <a href="#strafrecht">Strafrecht</a>
-      <a href="#mogelijkheden">Mogelijkheden</a>
-      <a href="#shop">Shop</a>
-      <a href="#regels">Regels</a>
-      <a href="#faq">FAQ</a>
-      <a href="#discords">Discords</a>
-
-      <div id="auth-section">
-        <a id="login-btn" href="#" class="discord-auth-btn" onclick="loginWithDiscord()">
-          <svg width="18" height="18" viewBox="0 0 127.14 96.36" fill="currentColor"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0,3.36,6.83A97.68,97.68,0,0,0,55.6,6.83,72.37,72.37,0,0,0,58.9,0,105.15,105.15,0,0,0,32.6,8.07C12.79,37.66,7.4,66.5,10.05,95a105.82,105.82,0,0,0,32.22,16.27,77.58,77.58,0,0,0,6.83-11.1,68.42,68.42,0,0,1-10.84-5.22c.91-.66,1.8-1.34,2.66-2a73.5,73.5,0,0,0,64.22,0c.87.68,1.76,1.36,2.67,2a68.68,68.68,0,0,1-10.87,5.24,77.34,77.34,0,0,0,6.83,11.1A105.82,105.82,0,0,0,117.1,95C120.35,60.6,113.88,31.8,107.7,8.07ZM42.45,65.69C36.21,65.69,31,60,31,53s5.08-12.69,11.45-12.69S54,45.92,53.88,53,48.8,65.69,42.45,65.69Zm42.24,0C78.45,65.69,73.28,60,73.28,53s5.08-12.69,11.41-12.69S96.24,45.92,96.13,53,91.08,65.69,84.69,65.69Z"/></svg>
-          Inloggen met Discord
-        </a>
-      </div>
-    </nav>
-  </header>
-
-  <!-- Main Hero Section -->
-  <main>
-    <div class="badge">
-      🌊 Welkom bij Noordkust Roleplay
-    </div>
-
-    <div class="status-container">
-      <div class="status-card">
-        <div class="status-dot"></div>
-        <div class="status-text">
-          Discord Status: <strong id="discord-count">124</strong> online
-        </div>
-      </div>
-
-      <div class="status-card">
-        <div class="status-dot pulse"></div>
-        <div class="status-text">
-          Website Bezoekers: <strong id="web-visitors-count">12</strong> online
-        </div>
-      </div>
-    </div>
-
-    <h1>JOUW STAD.<span class="highlight">JOUW VERHAAL.</span></h1>
-
-    <p class="subtitle">
-      Stap in de wereld van Noordkust Roleplay. Beleef unieke roleplay, bouw je eigen carrière, maak vrienden en bepaal zelf hoe jouw verhaal eindigt.
-    </p>
-
-    <div class="button-group">
-      <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="btn btn-primary">💬 Join Main Discord</a>
-      <a href="#mogelijkheden" class="btn btn-secondary">Ontdek Noordkust →</a>
-      <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="btn btn-vip">⭐ Koop VIP Rangen</a>
-    </div>
-  </main>
-
-  <!-- Keybinds Section -->
-  <section id="keybinds">
-    <h2>⌨️ Besturing & Keybinds</h2>
-    <p class="section-sub">Bekijk de belangrijkste spiertoetsen om soepel te spelen in de stad.</p>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noordkust Roleplay | Officiële Community & Shop</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <input type="text" id="keybindSearch" class="search-box" placeholder="🔎 Zoek een keybind (bijv. telefoon, gordel, chat)..." onkeyup="filterKeybinds()">
-
-    <div class="keybinds-grid" id="keybindList">
-      <div class="keybind-card">
-        <h3>💬 Algemeen & Interactie</h3>
-        <ul class="keybind-list">
-          <li class="keybind-item"><span>Telefoon openen</span> <kbd>M</kbd></li>
-          <li class="keybind-item"><span>Radiaalmenu / Acties</span> <kbd>F1</kbd></li>
-          <li class="keybind-item"><span>Third-Eye (Interactie)</span> <kbd>L-ALT</kbd></li>
-          <li class="keybind-item"><span>Chat / Commands</span> <kbd>T</kbd></li>
-          <li class="keybind-item"><span>Animatie / Emote menu</span> <kbd>F6</kbd></li>
-          <li class="keybind-item"><span>Stem bereik aanpassen</span> <kbd>H</kbd></li>
-        </ul>
-      </div>
-
-      <div class="keybind-card">
-        <h3>🚗 Voertuig Besturing</h3>
-        <ul class="keybind-list">
-          <li class="keybind-item"><span>Gordel om/af doen</span> <kbd>B</kbd></li>
-          <li class="keybind-item"><span>Motor starten / stoppen</span> <kbd>G</kbd></li>
-          <li class="keybind-item"><span>Voertuig op slot / van slot</span> <kbd>L</kbd></li>
-          <li class="keybind-item"><span>Richtingaanwijzers</span> <kbd>←</kbd> <kbd>→</kbd></li>
-          <li class="keybind-item"><span>Snelheidsbegrenzer (Cruise)</span> <kbd>Y</kbd></li>
-        </ul>
-      </div>
-
-      <div class="keybind-card">
-        <h3>🎒 Inventaris & Wapens</h3>
-        <ul class="keybind-list">
-          <li class="keybind-item"><span>Inventaris openen</span> <kbd>TAB</kbd></li>
-          <li class="keybind-item"><span>Sneltoetsen 1 t/m 5</span> <kbd>1</kbd> - <kbd>5</kbd></li>
-          <li class="keybind-item"><span>Wapen herladen</span> <kbd>R</kbd></li>
-          <li class="keybind-item"><span>Handen omhoog doen</span> <kbd>X</kbd></li>
-          <li class="keybind-item"><span>Wapen wegsteken</span> <kbd>BACKSPACE</kbd></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Strafrecht & Calculator Section -->
-  <section id="strafrecht">
-    <h2>⚖️ Verdachtenrechten & Strafmaat</h2>
-    <p class="section-sub">Rechten bij een aanhouding door de Politie & de interactieve boetecalculator.</p>
-
-    <div class="rights-card">
-      <h3>🚨 Rechten bij Aanhouding (Verdachtenrechten)</h3>
-      <p>Indien je wordt aangehouden door de Politie van Noordkust Roleplay, heb je altijd recht op de onderstaande punten. De politie is verplicht je hierop te wijzen:</p>
-      
-      <div class="rights-grid">
-        <div class="right-box">
-          <h4>🍞 Eten & Drinken</h4>
-          <p>Je hebt recht op basisbehoeften zoals eten en drinken tijdens je celstraf of verhoor op het bureau.</p>
-        </div>
-        <div class="right-box">
-          <h4>🏥 Medische Zorg</h4>
-          <p>Indien je gewond bent, heb je direct recht op medische bijstand van de Ambulance (EMS).</p>
-        </div>
-        <div class="right-box">
-          <h4>⚖️ Recht op een Advocaat</h4>
-          <p>Je hebt recht op juridische bijstand van een advocaat voordat het verhoor plaatsvindt.</p>
-        </div>
-        <div class="right-box">
-          <h4>🗣️ Recht op een Tolk</h4>
-          <p>Begrijp je de Nederlandse taal niet goed? Dan heb je recht op een tolk die je bijstaat.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="calculator-container">
-      <h3>📊 APV Strafmaat & Boete Calculator</h3>
-      <p class="calculator-sub">Vink de begane overtredingen aan om de totale boete en celstraf te berekenen:</p>
-
-      <div class="offense-list">
-        <label class="offense-item">
-          <div>
-            <span class="offense-title">Snelheidsovertreding (>30 km/u)</span>
-            <span class="offense-penalty">€1.500 | 0 mnd</span>
-          </div>
-          <input type="checkbox" class="offense-check" data-price="1500" data-jail="0" onchange="calculatePenalties()">
-        </label>
-
-        <label class="offense-item">
-          <div>
-            <span class="offense-title">Rijden zonder Rijbewijs</span>
-            <span class="offense-penalty">€2.500 | 5 mnd</span>
-          </div>
-          <input type="checkbox" class="offense-check" data-price="2500" data-jail="5" onchange="calculatePenalties()">
-        </label>
-
-        <label class="offense-item">
-          <div>
-            <span class="offense-title">Vluchten voor Politie</span>
-            <span class="offense-penalty">€5.000 | 10 mnd</span>
-          </div>
-          <input type="checkbox" class="offense-check" data-price="5000" data-jail="10" onchange="calculatePenalties()">
-        </label>
-
-        <label class="offense-item">
-          <div>
-            <span class="offense-title">Illegaal Wapenbezit (Licht)</span>
-            <span class="offense-penalty">€7.500 | 15 mnd</span>
-          </div>
-          <input type="checkbox" class="offense-check" data-price="7500" data-jail="15" onchange="calculatePenalties()">
-        </label>
-
-        <label class="offense-item">
-          <div>
-            <span class="offense-title">Illegaal Wapenbezit (Zwaar)</span>
-            <span class="offense-penalty">€15.000 | 30 mnd</span>
-          </div>
-          <input type="checkbox" class="offense-check" data-price="15000" data-jail="30" onchange="calculatePenalties()">
-        </label>
-
-        <label class="offense-item">
-          <div>
-            <span class="offense-title">Overval op Winkel / ATM</span>
-            <span class="offense-penalty">€10.000 | 20 mnd</span>
-          </div>
-          <input type="checkbox" class="offense-check" data-price="10000" data-jail="20" onchange="calculatePenalties()">
-        </label>
-
-        <label class="offense-item">
-          <div>
-            <span class="offense-title">Overval op de Bank</span>
-            <span class="offense-penalty">€25.000 | 45 mnd</span>
-          </div>
-          <input type="checkbox" class="offense-check" data-price="25000" data-jail="45" onchange="calculatePenalties()">
-        </label>
-
-        <label class="offense-item">
-          <div>
-            <span class="offense-title">Poging tot Doodslag / Moord</span>
-            <span class="offense-penalty">€30.000 | 60 mnd</span>
-          </div>
-          <input type="checkbox" class="offense-check" data-price="30000" data-jail="60" onchange="calculatePenalties()">
-        </label>
-      </div>
-
-      <div class="calc-total-bar">
-        <div class="total-title">Totale Strafmaat Berekening:</div>
-        <div class="total-values">
-          <div class="total-box">
-            <div class="total-label">Totale Boete</div>
-            <div class="total-amount" id="totalFine">€0</div>
-          </div>
-          <div class="total-box">
-            <div class="total-label">Celstraf</div>
-            <div class="total-jail" id="totalJail">0 maanden</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Mogelijkheden Section -->
-  <section id="mogelijkheden">
-    <h2>🚀 Mogelijkheden in de Stad</h2>
-    <p class="section-sub">Kies je eigen pad binnen Noordkust Roleplay.</p>
-
-    <div class="features-grid">
-      <div class="feature-card">
-        <div>
-          <div class="feature-icon">🚔</div>
-          <h3>Hulpdiensten</h3>
-          <p>Sluit je aan bij de Politie, Ambulance of Brandweer en bescherm de burgers van de stad.</p>
-        </div>
-        <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="feature-btn">Solliciteer Nu</a>
-      </div>
-
-      <div class="feature-card">
-        <div>
-          <div class="feature-icon">💼</div>
-          <h3>Legaal Werken</h3>
-          <p>Wordt monteur bij de ANWB, start een eigen onderneming of werk in het casino.</p>
-        </div>
-        <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="feature-btn">Bekijk Banen</a>
-      </div>
-
-      <div class="feature-card highlight-card">
-        <div>
-          <div class="feature-icon">🕶️</div>
-          <h3>Onderwereld</h3>
-          <p>Bouw je eigen criminele imperium op, voer overvallen uit en domineer het straatleven.</p>
-        </div>
-        <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="feature-btn">Gang Aanvragen</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Shop Section -->
-  <section id="shop">
-    <h2>⭐ Shop & Donor Rangen</h2>
-    <p class="section-sub">Steun de server en ontvang unieke voordelen in de stad.</p>
-
-    <div class="vip-banner">
-      <span>👑 Bekijk onze exclusieve donor rangen in Discord!</span>
-      <span>⭐ VIP Voordelen</span>
-    </div>
-
-    <div class="shop-grid">
-      <div class="shop-card">
-        <div>
-          <div class="card-title">Bronze VIP</div>
-          <div class="price-container">
-            <span class="price">€5.00</span>
-            <span class="price-note">/ maand</span>
-          </div>
-          <p class="calculator-sub">Priority queue lvl 1, VIP rol in Discord, €50K startkapitaal.</p>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Bekijk in Discord</a>
-      </div>
-
-      <div class="shop-card">
-        <div>
-          <div class="card-title">Silver VIP</div>
-          <div class="price-container">
-            <span class="price">€10.00</span>
-            <span class="price-note">/ maand</span>
-          </div>
-          <p class="calculator-sub">Priority queue lvl 2, Exclusieve auto, €150K startkapitaal.</p>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Bekijk in Discord</a>
-      </div>
-
-      <div class="shop-card">
-        <div>
-          <div class="card-title">Gold VIP</div>
-          <div class="price-container">
-            <span class="price">€20.00</span>
-            <span class="price-note">/ maand</span>
-          </div>
-          <p class="calculator-sub">Hoogste priority queue, Custom voertuig, Aangepaste behuizing.</p>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Bekijk in Discord</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Regels Section -->
-  <section id="regels">
-    <h2>📜 Algemene Plaatselijke Verordening (APV)</h2>
-    <p class="section-sub">Zorg dat je de regels goed kent om sancties te voorkomen.</p>
-
-    <div class="apv-container">
-      <div class="apv-section">
-        <h3>1. Algemene Roleplay Regels</h3>
-        <ul>
-          <li><strong>FailRP:</strong> Je dient op elk moment realistic roleplay te vertonen.</li>
-          <li><strong>RDM (Random Deathmatch):</strong> Het zomaar doden/aanvallen van spelers zonder geldige RP-reden is streng verboden.</li>
-          <li><strong>VDM (Vehicle Deathmatch):</strong> Het inzetten van een voertuig als wapen is niet toegestaan.</li>
-          <li><strong>Metagaming:</strong> Informatie van buiten de game (Discord, livestreams) gebruiken in-game is verboden.</li>
-        </ul>
-      </div>
-
-      <div class="apv-section">
-        <h3>2. Hulpdiensten & Overvallen</h3>
-        <ul>
-          <li><strong>NLR (New Life Rule):</strong> Als je bent doodgegaan, ben je al je herinneringen van het incident kwijt.</li>
-          <li><strong>NLD (No Value for Life):</strong> Je moet waarde hechten aan het leven van jouw karakter.</li>
-          <li><strong>Copbaiting:</strong> Het opzettelijk uitlokken van politie zonder RP-reden is niet toegestaan.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section id="faq">
-    <h2>❓ Veelgestelde Vragen (FAQ)</h2>
-    <p class="section-sub">Vind direct antwoord op de meest gestelde vragen.</p>
-
-    <div class="faq-container">
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          Hoe kan ik de server joinen?
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          Je kunt de server joinen via FiveM door te zoeken op 'Noordkust Roleplay' of via de directe verbinding in onze Discord server.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          Is er een Whitelist sollicitatie nodig?
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          Nee, onze server is momenteel Public. Hulpdiensten en illegale organisaties vereisen wel een sollicitatie via Discord.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFaq(this)">
-          Hoe meld ik een regelovertreding?
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          Je kunt een ticket aanmaken in onze Discord server onder het kanaal #support met een duidelijke videoclip (onderbouwing).
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 Noordkust Roleplay. Alle rechten voorbehouden.</p>
-  </footer>
-
-  <!-- JavaScript Logica -->
-  <script>
-    /* 1. Keybind Zoek Filter Functionality */
-    function filterKeybinds() {
-      const input = document.getElementById('keybindSearch').value.toLowerCase();
-      const items = document.querySelectorAll('.keybind-item');
-
-      items.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        if (text.includes(input)) {
-          item.style.display = 'flex';
-        } else {
-          item.style.display = 'none';
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#06b6d4',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        dark: {
+                            bg: '#0a0d14',
+                            card: '#121824',
+                            border: '#1e293b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
         }
-      });
-    }
-
-    /* 2. Strafmaat Calculator Functionality */
-    function calculatePenalties() {
-      let totalFine = 0;
-      let totalJail = 0;
-
-      const checkboxes = document.querySelectorAll('.offense-check');
-      checkboxes.forEach(box => {
-        if (box.checked) {
-          totalFine += parseInt(box.getAttribute('data-price')) || 0;
-          totalJail += parseInt(box.getAttribute('data-jail')) || 0;
+    </script>
+    
+    <style>
+        body {
+            background-color: #0a0d14;
+            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
         }
-      });
+        .glass-panel {
+            background: rgba(18, 24, 36, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-panel-hover {
+            transition: all 0.3s ease;
+        }
+        .glass-panel-hover:hover {
+            background: rgba(26, 35, 50, 0.85);
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-2px);
+        }
+        .glow-effect {
+            box-shadow: 0 0 25px -5px rgba(2, 132, 199, 0.3);
+        }
+        kbd {
+            background: #1e293b;
+            border: 1px solid #334155;
+            box-shadow: inset 0 -2px 0 #0f172a;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 0.8em;
+            font-weight: 600;
+            color: #38bdf8;
+        }
+        /* Custom scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #0284c7;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-500 selection:text-white">
 
-      document.getElementById('totalFine').textContent = '€' + totalFine.toLocaleString('nl-NL');
-      document.getElementById('totalJail').textContent = totalJail + ' maanden';
-    }
+    <header class="sticky top-0 z-50 glass-panel border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Brand -->
+                <div class="flex items-center space-x-3">
+                    <a href="#" class="flex items-center space-x-3 group">
+                        <img src="logo.jpg" onerror="this.src='https://placehold.co/100x100/0284c7/ffffff?text=NKRP'" alt="Noordkust RP Logo" class="h-12 w-12 rounded-xl object-cover ring-2 ring-brand-500/30 group-hover:ring-brand-400 transition-all">
+                        <div>
+                            <span class="text-xl font-black tracking-wider bg-gradient-to-r from-white via-slate-200 to-brand-400 bg-clip-text text-transparent block">NOORDKUST</span>
+                            <span class="text-xs font-semibold text-brand-400 tracking-widest uppercase block -mt-1">Roleplay</span>
+                        </div>
+                    </a>
+                </div>
 
-    /* 3. FAQ Accordion Functionality */
-    function toggleFaq(button) {
-      const faqItem = button.parentElement;
-      faqItem.classList.toggle('active');
-    }
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center space-x-1 xl:space-x-2 text-sm font-medium">
+                    <a href="#home" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">Home</a>
+                    <a href="#keybinds" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">Keybinds</a>
+                    <a href="#strafrecht" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">Strafrecht</a>
+                    <a href="#mogelijkheden" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">Mogelijkheden</a>
+                    <a href="#shop" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">Winkel</a>
+                    <a href="#regels" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">Regels</a>
+                    <a href="#faq" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">FAQ</a>
+                    <a href="#discords" class="px-3 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">Discords</a>
+                </nav>
 
-    /* 4. Mock Discord Auth Login */
-    function loginWithDiscord() {
-      alert("Discord Login functionaliteit wordt omgeleid via je OAuth2 applicatie!");
-    }
-  </script>
+                <!-- Dynamic Discord OAuth2 Profile Container -->
+                <div class="flex items-center space-x-3">
+                    <div id="userProfileContainer">
+                        <button id="vipAuthBtn" onclick="toggleVipStatus()" class="flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 shadow-sm">
+                            <i class="fa-brands fa-discord text-indigo-400 text-sm"></i>
+                            <span id="vipAuthText">Simuleer Discord VIP Login</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="relative py-20 lg:py-28 overflow-hidden">
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-brand-600/15 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <!-- Badge & Server Status -->
+            <div class="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-full glass-panel border border-brand-500/20 mb-8 text-xs font-semibold text-slate-300">
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span>🌊 Welkom bij Noordkust RP</span>
+                <span class="text-slate-600">•</span>
+                <span class="text-brand-400" id="liveVisitorsCount"><i class="fa-solid fa-users text-xs mr-1"></i>-- Spelers Online</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white mb-6">
+                JOUW STAD. <br class="hidden sm:inline" />
+                <span class="bg-gradient-to-r from-brand-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent">JOUW VERHAAL.</span>
+            </h1>
+
+            <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-400 mb-10 leading-relaxed">
+                Stap binnen in de meest meeslepende FiveM roleplay ervaring van Nederland. Bouw je eigen imperium, handhaaf de wet als hulpdienst, of heers over de onderwereld van Noordkust.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
+                <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm transition-all flex items-center justify-center space-x-2 shadow-lg shadow-indigo-600/25">
+                    <i class="fa-brands fa-discord text-lg"></i>
+                    <span>Join Main Discord</span>
+                </a>
+                <a href="#mogelijkheden" class="w-full sm:w-auto px-6 py-3.5 rounded-xl glass-panel hover:bg-slate-800 text-white font-semibold text-sm transition-all flex items-center justify-center space-x-2 border border-slate-700">
+                    <span>Ontdek Noordkust</span>
+                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+                <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-sm transition-all flex items-center justify-center space-x-2 shadow-lg shadow-amber-500/20">
+                    <i class="fa-solid fa-star text-sm"></i>
+                    <span>Koop VIP Rangen</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="keybinds" class="py-16 bg-slate-900/40 border-y border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Besturing & Keybinds</h2>
+                <p class="text-slate-400 text-sm mt-2">Belangrijkste sneltoetsen om soepel te spelen in Noordkust RP.</p>
+                
+                <!-- Live Search Box -->
+                <div class="max-w-md mx-auto mt-6 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
+                    <input type="text" id="keybindSearch" onkeyup="filterKeybinds()" placeholder="Zoek op functie of toets..." class="w-full pl-11 pr-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 placeholder-slate-500 text-sm focus:outline-none focus:border-brand-500 transition">
+                </div>
+            </div>
+
+            <!-- Keybind Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Algemeen -->
+                <div class="glass-panel rounded-2xl p-6 keybind-card">
+                    <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-800">
+                        <div class="p-2.5 rounded-lg bg-brand-500/10 text-brand-400">
+                            <i class="fa-solid fa-user-gear text-lg"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Algemeen & Interactie</h3>
+                    </div>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Interactie Menu</span>
+                            <kbd>F1</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Speler Menu / Animaties</span>
+                            <kbd>F2</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Telefoon Openen</span>
+                            <kbd>F3</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Stem Bereik Aanpassen</span>
+                            <kbd>H</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Handen Omhoog</span>
+                            <kbd>X</kbd>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Voertuig -->
+                <div class="glass-panel rounded-2xl p-6 keybind-card">
+                    <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-800">
+                        <div class="p-2.5 rounded-lg bg-indigo-500/10 text-indigo-400">
+                            <i class="fa-solid fa-car text-lg"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Voertuig Besturing</h3>
+                    </div>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Motor Starten / Stoppen</span>
+                            <kbd>M</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Autoweld / Categoriemenu</span>
+                            <kbd>U</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Veiligheidsgordel Omdoen</span>
+                            <kbd>B</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Snelheidsbegrenzer (Cruise)</span>
+                            <kbd>Y</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Sirene / Noodverlichting</span>
+                            <kbd>Q / E</kbd>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Inventaris -->
+                <div class="glass-panel rounded-2xl p-6 keybind-card">
+                    <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-800">
+                        <div class="p-2.5 rounded-lg bg-emerald-500/10 text-emerald-400">
+                            <i class="fa-solid fa-bag-shopping text-lg"></i>
+                        </div>
+                        <h3 class="font-bold text-white">Inventaris & Wapens</h3>
+                    </div>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Inventaris Openen</span>
+                            <kbd>TAB</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Sneltoetsen Slots</span>
+                            <kbd>1 - 5</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Wapen Herladen</span>
+                            <kbd>R</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Wapen Wegsteken</span>
+                            <kbd>HOLSTER</kbd>
+                        </li>
+                        <li class="flex justify-between items-center keybind-item">
+                            <span class="text-slate-300">Kofferbak Openen</span>
+                            <kbd>L</kbd>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="strafrecht" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Strafrecht & APV Calculator</h2>
+                <p class="text-slate-400 text-sm mt-2">Bereken direct boetes en celstraffen op basis van het Noordkust Wetboek.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Verdachtenrechten Card -->
+                <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-6 pb-4 border-b border-slate-800">
+                            <div class="p-2.5 rounded-lg bg-amber-500/10 text-amber-400">
+                                <i class="fa-solid fa-scale-balanced text-lg"></i>
+                            </div>
+                            <h3 class="font-bold text-white">Verdachtenrechten</h3>
+                        </div>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">Iedere verdachte die wordt aangehouden op het grondgebied van Noordkust RP heeft recht op:</p>
+                        <ul class="space-y-3 text-xs text-slate-300">
+                            <li class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span><strong>Eten & Drinken:</strong> Recht op basisvoorzieningen bij langdurig verhoor.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span><strong>Medische Zorg:</strong> Direct recht op een trauma-arts of ambulance bij verwondingen.</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span><strong>Recht op Advocaat:</strong> Recht op bijstand voor/tijdens het verhoor (indien beschikbaar).</span>
+                            </li>
+                            <li class="flex items-start space-x-2">
+                                <i class="fa-solid fa-check text-emerald-400 mt-0.5"></i>
+                                <span><strong>Recht op Tolk:</strong> Bij gebrekkige taalbeheersing.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800/80 text-[11px] text-slate-500">
+                        * Let op: Het niet oplezen van rechten kan leiden tot strafvermindering door de Rechter.
+                    </div>
+                </div>
+
+                <!-- Interactive Calculator Grid -->
+                <div class="lg:col-span-2 glass-panel rounded-2xl p-6">
+                    <h3 class="font-bold text-white mb-4 text-base flex items-center justify-between">
+                        <span>Selecteer Overtredingen</span>
+                        <button onclick="resetCalculator()" class="text-xs text-brand-400 hover:text-brand-300 flex items-center gap-1 font-normal">
+                            <i class="fa-solid fa-rotate-left"></i> Reset Selection
+                        </button>
+                    </h3>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
+                        <label class="flex items-center p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition">
+                            <input type="checkbox" data-fine="2500" data-months="5" onchange="calculateStrafmaat()" class="straf-check rounded border-slate-700 text-brand-500 focus:ring-0 mr-3">
+                            <div class="text-xs">
+                                <div class="font-semibold text-slate-200">Snelheidsovertreding (>30 km/u)</div>
+                                <div class="text-slate-500">€2.500 | 5 Maanden</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition">
+                            <input type="checkbox" data-fine="7500" data-months="15" onchange="calculateStrafmaat()" class="straf-check rounded border-slate-700 text-brand-500 focus:ring-0 mr-3">
+                            <div class="text-xs">
+                                <div class="font-semibold text-slate-200">Rijden zonder Rijbewijs</div>
+                                <div class="text-slate-500">€7.500 | 15 Maanden</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition">
+                            <input type="checkbox" data-fine="15000" data-months="25" onchange="calculateStrafmaat()" class="straf-check rounded border-slate-700 text-brand-500 focus:ring-0 mr-3">
+                            <div class="text-xs">
+                                <div class="font-semibold text-slate-200">Wapenbezit Categorie 1</div>
+                                <div class="text-slate-500">€15.000 | 25 Maanden</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition">
+                            <input type="checkbox" data-fine="35000" data-months="45" onchange="calculateStrafmaat()" class="straf-check rounded border-slate-700 text-brand-500 focus:ring-0 mr-3">
+                            <div class="text-xs">
+                                <div class="font-semibold text-slate-200">Overval Kleine Winkel / ATM</div>
+                                <div class="text-slate-500">€35.000 | 45 Maanden</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition">
+                            <input type="checkbox" data-fine="50000" data-months="60" onchange="calculateStrafmaat()" class="straf-check rounded border-slate-700 text-brand-500 focus:ring-0 mr-3">
+                            <div class="text-xs">
+                                <div class="font-semibold text-slate-200">Bankoverval / Gijzeling</div>
+                                <div class="text-slate-500">€50.000 | 60 Maanden</div>
+                            </div>
+                        </label>
+                        <label class="flex items-center p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 cursor-pointer transition">
+                            <input type="checkbox" data-fine="20000" data-months="30" onchange="calculateStrafmaat()" class="straf-check rounded border-slate-700 text-brand-500 focus:ring-0 mr-3">
+                            <div class="text-xs">
+                                <div class="font-semibold text-slate-200">Poging tot Doodslag / Ambtenaar</div>
+                                <div class="text-slate-500">€20.000 | 30 Maanden</div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Total Outputs -->
+                    <div class="grid grid-cols-2 gap-4 p-4 rounded-xl bg-slate-950 border border-slate-800">
+                        <div>
+                            <span class="text-xs text-slate-500 block uppercase font-bold tracking-wider">Totale Boete</span>
+                            <span id="totalFine" class="text-xl sm:text-2xl font-black text-emerald-400">€0</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 block uppercase font-bold tracking-wider">Gevangenisstraf</span>
+                            <span id="totalMonths" class="text-xl sm:text-2xl font-black text-amber-400">0 Maanden</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mogelijkheden" class="py-16 bg-slate-900/30 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Carrière & Mogelijkheden</h2>
+                <p class="text-slate-400 text-sm mt-2">Kies jouw pad in de stad Noordkust.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Staff -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Staff Worden</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-6">Help mee om de community veilig en eerlijk te houden als gemotiveerd teamlid.</p>
+                    </div>
+                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition text-center block">Solliciteer via Support</a>
+                </div>
+
+                <!-- Politie -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-handcuffs"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Politie & Hulpdienst</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-6">Bescherm burgers, voorkom misdaad en rijd in de nieuwste dienstvoertuigen.</p>
+                    </div>
+                    <a href="https://forms.gle/6jV5k2QgvrmQmneV7" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold transition text-center block">Solliciteer Nu →</a>
+                </div>
+
+                <!-- Onderneming -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">Eigen Onderneming</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-6">Start een eigen garage, nachtclub of rijschool. Vraag een bedrijf aan via Discord.</p>
+                    </div>
+                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition text-center block">Bedrijf Aanvragen</a>
+                </div>
+
+                <!-- Onderwereld -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-red-500/10 text-red-400 flex items-center justify-center mb-4 text-xl">
+                            <i class="fa-solid fa-skull"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2">De Onderwereld</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed mb-6">Richt een eigen Gang of Cartel op. Verover gebieden en heers over illegaal Noordkust.</p>
+                    </div>
+                    <a href="https://discord.gg/4rtk2dzUqr" target="_blank" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition text-center block">Join Onderwereld</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="shop" class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand-400 bg-brand-500/10 px-3 py-1 rounded-full">Official Store</span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-3">Noordkust Shop & Rangen</h2>
+                <p class="text-slate-400 text-sm mt-2 max-w-xl mx-auto">Steun de server en ontvang exclusieve perks, rangen en voordelen in-game.</p>
+
+                <!-- VIP Discount Banner Notice -->
+                <div id="vipNotice" class="hidden max-w-lg mx-auto mt-6 p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-semibold animate-pulse">
+                    <i class="fa-solid fa-tag mr-2"></i> VIP Discount Actief! Je ontvangt 20% korting op alle rangen.
+                </div>
+            </div>
+
+            <!-- Category 1: Staff Rangen -->
+            <div class="mb-14">
+                <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="fa-solid fa-user-shield text-brand-400"></i> Staff Rangen
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Ticket Support -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-white text-base">Ticket Support</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Instap-staff functie voor het afhandelen van basistickets.</p>
+                            <div class="mb-6">
+                                <span class="text-2xl font-black text-white rank-price" data-original="5.00">€5,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs text-center block transition">Bestel via Support</a>
+                    </div>
+
+                    <!-- Junior Moderator -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-white text-base">Junior Moderator</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Ondersteun de miere van spelers in game en op Discord.</p>
+                            <div class="mb-6">
+                                <span class="text-2xl font-black text-white rank-price" data-original="10.00">€10,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs text-center block transition">Bestel via Support</a>
+                    </div>
+
+                    <!-- Moderator -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-white text-base">Moderator</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Volwaardige moderator perms en supportmogelijkheden.</p>
+                            <div class="mb-6">
+                                <span class="text-2xl font-black text-white rank-price" data-original="15.00">€15,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs text-center block transition">Bestel via Support</a>
+                    </div>
+
+                    <!-- Super Moderator -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-white text-base">Super Moderator</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Uitgebreide moderator rechten en begeleiding van nieuwe staff.</p>
+                            <div class="mb-6">
+                                <span class="text-2xl font-black text-white rank-price" data-original="20.00">€20,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs text-center block transition">Bestel via Support</a>
+                    </div>
+
+                    <!-- Junior Administrator -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-white text-base">Junior Administrator</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Administratieve permissies voor complexe ingame situaties.</p>
+                            <div class="mb-6">
+                                <span class="text-2xl font-black text-white rank-price" data-original="25.00">€25,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs text-center block transition">Bestel via Support</a>
+                    </div>
+
+                    <!-- Administrator -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-white text-base">Administrator</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Ervaren beheerder van serverzaken en geschillen.</p>
+                            <div class="mb-6">
+                                <span class="text-2xl font-black text-white rank-price" data-original="30.00">€30,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs text-center block transition">Bestel via Support</a>
+                    </div>
+
+                    <!-- Senior Administrator -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-white text-base">Senior Administrator</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Hoogste administratieve rang voor leidende teamleden.</p>
+                            <div class="mb-6">
+                                <span class="text-2xl font-black text-white rank-price" data-original="35.00">€35,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs text-center block transition">Bestel via Support</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category 2: VIP Rangen -->
+            <div>
+                <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                    <i class="fa-solid fa-crown text-amber-400"></i> VIP Rangen
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Bronze VIP -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between border-amber-900/30">
+                        <div>
+                            <span class="px-2.5 py-0.5 rounded-full bg-amber-900/40 text-amber-400 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Bronze</span>
+                            <h4 class="font-bold text-white text-lg">Bronze VIP</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Starter VIP kit met basisvoordelen en kledingtoegang.</p>
+                            <div class="mb-6">
+                                <span class="text-3xl font-black text-amber-400 rank-price" data-original="7.50">€7,50</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs text-center block transition">Koop Bronze VIP</a>
+                    </div>
+
+                    <!-- Silver VIP -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between border-slate-600/30">
+                        <div>
+                            <span class="px-2.5 py-0.5 rounded-full bg-slate-700/40 text-slate-300 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Silver</span>
+                            <h4 class="font-bold text-white text-lg">Silver VIP</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Inclusief extra garage slots en maandelijks bonusgeld.</p>
+                            <div class="mb-6">
+                                <span class="text-3xl font-black text-slate-200 rank-price" data-original="12.50">€12,50</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-slate-200 hover:bg-white text-slate-950 font-bold text-xs text-center block transition">Koop Silver VIP</a>
+                    </div>
+
+                    <!-- Gold VIP -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between border-yellow-500/30 relative">
+                        <div>
+                            <span class="px-2.5 py-0.5 rounded-full bg-yellow-500/20 text-yellow-300 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Popular</span>
+                            <h4 class="font-bold text-white text-lg">Gold VIP</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">Toegang tot unieke voertuigen, meer huizen en prioriteit.</p>
+                            <div class="mb-6">
+                                <span class="text-3xl font-black text-yellow-400 rank-price" data-original="20.00">€20,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-yellow-500 hover:bg-yellow-400 text-slate-950 font-bold text-xs text-center block transition">Koop Gold VIP</a>
+                    </div>
+
+                    <!-- Diamond VIP -->
+                    <div class="glass-panel glass-panel-hover rounded-2xl p-6 flex flex-col justify-between border-cyan-500/30 glow-effect">
+                        <div>
+                            <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 text-[10px] font-bold uppercase tracking-wider mb-2 inline-block">Ultimate</span>
+                            <h4 class="font-bold text-white text-lg">Diamond VIP</h4>
+                            <p class="text-xs text-slate-400 mt-1 mb-4">All-inclusive VIP status met maximale privileges en custom kenteken.</p>
+                            <div class="mb-6">
+                                <span class="text-3xl font-black text-cyan-400 rank-price" data-original="30.00">€30,00</span>
+                            </div>
+                        </div>
+                        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs text-center block transition">Koop Diamond VIP</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="regels" class="py-16 bg-slate-900/40 border-t border-slate-800/60">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Algemene Plaatselijke Verordening (APV)</h2>
+                <p class="text-slate-400 text-sm mt-2">Houd je aan de regels voor een hoogwaardige Roleplay ervaring.</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Algemeen -->
+                <div class="glass-panel rounded-2xl p-6">
+                    <h3 class="text-base font-bold text-brand-400 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-gavel"></i> 1. Algemene Regels & FailRP
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-xs text-slate-300 leading-relaxed">
+                        <li><strong>FailRP:</strong> Je dient te allen tijde realistisch te handelen naar je karakter. Onrealistische acties worden bestraft.</li>
+                        <li><strong>Metagaming:</strong> Het gebruiken van informatie die je buiten het karakter om hebt verkregen (via bijv. Discord of Streams) is ten strengste verboden.</li>
+                        <li><strong>Value of Life (VoL):</strong> Je dient het leven van jouw personage te beschermen alsof het je eigen leven is.</li>
+                    </ul>
+                </div>
+
+                <!-- NLR -->
+                <div class="glass-panel rounded-2xl p-6">
+                    <h3 class="text-base font-bold text-brand-400 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-skull-crossbones"></i> 2. Karakter & New Life Rule (NLR)
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-xs text-slate-300 leading-relaxed">
+                        <li>Wanneer je 'dood' bent gegaan en overgebracht wordt naar het ziekenhuis, vergeet je de hele situatie die leidde tot je dood.</li>
+                        <li>Het is niet toegestaan direct terug te keren naar de locatie waar je bent neergegaan (wachttijd: 30 minuten).</li>
+                    </ul>
+                </div>
+
+                <!-- Criminaliteit -->
+                <div class="glass-panel rounded-2xl p-6">
+                    <h3 class="text-base font-bold text-brand-400 mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-mask"></i> 3. Criminaliteit & Overvallen
+                    </h3>
+                    <ul class="list-disc list-inside space-y-2 text-xs text-slate-300 leading-relaxed">
+                        <li>Overvallen op overheidsdiensten zonder gegronde roleplay-reden zijn niet toegestaan.</li>
+                        <li>Maximaal toegestane gijzelaars bij grote overvallen staat vast op 3 personen.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Veelgestelde Vragen</h2>
+                <p class="text-slate-400 text-sm mt-2">Alles wat je moet weten over Noordkust RP.</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="glass-panel rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-sm text-white flex justify-between items-center hover:bg-slate-800/50 transition">
+                        <span>Hoe kan ik verbinding maken met de server?</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-5 pt-0 text-xs text-slate-400 border-t border-slate-800/50 leading-relaxed">
+                        Je kunt inloggen door FiveM te openen, te zoeken naar "Noordkust Roleplay" in de serverlijst of direct te verbinden via F8 met het IP-adres in onze Discord.
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-sm text-white flex justify-between items-center hover:bg-slate-800/50 transition">
+                        <span>Hoe ontvang ik mijn gekochte VIP rang?</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-5 pt-0 text-xs text-slate-400 border-t border-slate-800/50 leading-relaxed">
+                        Na je bestelling op de Support Discord open je een donatie-ticket met je bewijs. Een administrator zal je rang direct toewijzen in-game en op Discord.
+                    </div>
+                </div>
+
+                <div class="glass-panel rounded-xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full p-5 text-left font-bold text-sm text-white flex justify-between items-center hover:bg-slate-800/50 transition">
+                        <span>Wat zijn de minimale vereisten voor de server?</span>
+                        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden p-5 pt-0 text-xs text-slate-400 border-t border-slate-800/50 leading-relaxed">
+                        Je hebt een legitieme exemplaar van GTA V nodig, FiveM geïnstalleerd en een werkende microfoon voor in-game spraakcommunicatie.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="discords" class="py-16 bg-slate-900/40 border-t border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Onze Community Discords</h2>
+                <p class="text-slate-400 text-sm mt-2">Word lid van de juiste server voor updates, hulp of onderwereldzaken.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Main Discord -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 text-center flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-brands fa-discord"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-base">Main Discord</h3>
+                        <p class="text-xs text-slate-400 mt-1 mb-2">De algemene ontmoetingsplek voor alle spelers.</p>
+                        <span id="discordOnlineBadge" class="text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full inline-block mb-4">
+                            <i class="fa-solid fa-circle text-[8px] mr-1"></i> Live Status Laden...
+                        </span>
+                    </div>
+                    <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="w-full py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition block">Join Server</a>
+                </div>
+
+                <!-- Support Discord -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 text-center flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-brand-500/10 text-brand-400 flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-headset"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-base">Support Discord</h3>
+                        <p class="text-xs text-slate-400 mt-1 mb-6">Voor vragen, winkel-tickets en vragen aan staff.</p>
+                    </div>
+                    <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs transition block">Open Ticket</a>
+                </div>
+
+                <!-- Overheid Discord -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 text-center flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-building-columns"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-base">Overheid Discord</h3>
+                        <p class="text-xs text-slate-400 mt-1 mb-6">Voor Politie, Ambulance en overheidspersoneel.</p>
+                    </div>
+                    <a href="https://discord.gg/xPQvzAfZb" target="_blank" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition block">Join Overheid</a>
+                </div>
+
+                <!-- Onderwereld Discord -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6 text-center flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 mx-auto rounded-2xl bg-red-500/10 text-red-400 flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-mask"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-base">Onderwereld Discord</h3>
+                        <p class="text-xs text-slate-400 mt-1 mb-6">Voor Bends, Cartels en illegale zaken.</p>
+                    </div>
+                    <a href="https://discord.gg/4rtk2dzUqr" target="_blank" class="w-full py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs transition block">Join Onderwereld</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="glass-panel border-t border-slate-800/80 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500">
+            <p>© 2026 Noordkust Roleplay. Alle rechten voorbehouden. Niet geaffilieerd met Rockstar Games of Take-Two Interactive.</p>
+        </div>
+    </footer>
+
+    <script>
+        // State variables
+        let isVipLoggedIn = false;
+        let discordUser = null;
+
+        // Interactive Keybind Filter
+        function filterKeybinds() {
+            const query = document.getElementById('keybindSearch').value.toLowerCase();
+            const items = document.querySelectorAll('.keybind-item');
+
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // Interactive Strafmaat & Boete Calculator
+        function calculateStrafmaat() {
+            let totalFine = 0;
+            let totalMonths = 0;
+            const checkboxes = document.querySelectorAll('.straf-check:checked');
+
+            checkboxes.forEach(cb => {
+                totalFine += parseInt(cb.getAttribute('data-fine') || '0');
+                totalMonths += parseInt(cb.getAttribute('data-months') || '0');
+            });
+
+            document.getElementById('totalFine').innerText = '€' + totalFine.toLocaleString('nl-NL');
+            document.getElementById('totalMonths').innerText = totalMonths + ' Maanden';
+        }
+
+        function resetCalculator() {
+            document.querySelectorAll('.straf-check').forEach(cb => cb.checked = false);
+            calculateStrafmaat();
+        }
+
+        // VIP Discount Simulation & Discord OAuth Handling
+        function toggleVipStatus() {
+            isVipLoggedIn = !isVipLoggedIn;
+            const btnText = document.getElementById('vipAuthText');
+            const notice = document.getElementById('vipNotice');
+            const priceElements = document.querySelectorAll('.rank-price');
+
+            if (isVipLoggedIn) {
+                // Set simulated discord user profile
+                discordUser = {
+                    username: "NoordkustLover",
+                    avatar: "https://placehold.co/100x100/0284c7/ffffff?text=NK"
+                };
+                
+                if(btnText) btnText.innerText = 'VIP Ingelogd (20% Korting Actief)';
+                if(notice) notice.classList.remove('hidden');
+                
+                priceElements.forEach(el => {
+                    const originalPrice = parseFloat(el.getAttribute('data-original'));
+                    const discountedPrice = (originalPrice * 0.8).toFixed(2);
+                    el.innerHTML = `<span class="line-through text-slate-500 text-sm mr-1">€${originalPrice.toFixed(2).replace('.', ',')}</span> €${discountedPrice.replace('.', ',')}`;
+                });
+                
+                renderUserProfile();
+            } else {
+                discordUser = null;
+                if(btnText) btnText.innerText = 'Simuleer Discord VIP Login';
+                if(notice) notice.classList.add('hidden');
+
+                priceElements.forEach(el => {
+                    const originalPrice = parseFloat(el.getAttribute('data-original'));
+                    el.innerText = `€${originalPrice.toFixed(2).replace('.', ',')}`;
+                });
+                
+                renderUserProfile();
+            }
+        }
+
+        // Render Profile Badge in Navbar
+        function renderUserProfile() {
+            const container = document.getElementById('userProfileContainer');
+            if (!container) return;
+
+            if (discordUser) {
+                container.innerHTML = `
+                    <div class="flex items-center space-x-3 bg-slate-800/80 border border-brand-500/40 rounded-xl p-1.5 pr-3">
+                        <img src="${discordUser.avatar}" class="w-8 h-8 rounded-lg object-cover ring-1 ring-brand-400">
+                        <div class="text-left">
+                            <span class="text-xs font-bold text-white block leading-tight">${discordUser.username}</span>
+                            <span class="text-[10px] text-brand-400 font-semibold block">VIP Member • 20% Korting</span>
+                        </div>
+                        <button onclick="toggleVipStatus()" class="ml-2 text-slate-400 hover:text-red-400 text-xs transition" title="Uitloggen">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        </button>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <button id="vipAuthBtn" onclick="toggleVipStatus()" class="flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 shadow-sm">
+                        <i class="fa-brands fa-discord text-indigo-400 text-sm"></i>
+                        <span id="vipAuthText">Simuleer Discord VIP Login</span>
+                    </button>
+                `;
+            }
+        }
+
+        // Discord Live Status Widget Fetcher
+        async function fetchDiscordStatus() {
+            const badge = document.getElementById('discordOnlineBadge');
+            if (!badge) return;
+
+            try {
+                // Fetch live server widget data if available or fallback safely
+                const response = await fetch('https://discord.com/api/guilds/1086000000000000000/widget.json').catch(() => null);
+                if (response && response.ok) {
+                    const data = await response.json();
+                    badge.innerHTML = `<i class="fa-solid fa-circle text-[8px] mr-1"></i> ${data.presence_count || 120} Online Leden`;
+                } else {
+                    // Modern simulation fallback
+                    badge.innerHTML = `<i class="fa-solid fa-circle text-[8px] mr-1"></i> 142 Community Leden Online`;
+                }
+            } catch (err) {
+                badge.innerHTML = `<i class="fa-solid fa-circle text-[8px] mr-1"></i> 142 Community Leden Online`;
+            }
+        }
+
+        // FAQ Accordion Toggle
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Simulated Live Discord / Visitor Counter
+        function initLiveCounters() {
+            const visitorsEl = document.getElementById('liveVisitorsCount');
+            
+            // Generate realistic random count between 42 and 78
+            const updateCount = () => {
+                const count = Math.floor(Math.random() * 37) + 42;
+                if(visitorsEl) {
+                    visitorsEl.innerHTML = `<i class="fa-solid fa-users text-xs mr-1"></i>${count} Spelers Online`;
+                }
+            };
+
+            updateCount();
+            setInterval(updateCount, 12000);
+        }
+
+        // Handle OAuth2 URL parameters parser
+        function checkOAuth2Params() {
+            const hash = window.location.hash;
+            if (hash && hash.includes('access_token')) {
+                // Detected Discord login callback token
+                toggleVipStatus();
+                window.history.replaceState(null, null, ' ');
+            }
+        }
+
+        // Initialize on Load
+        window.onload = function() {
+            initLiveCounters();
+            fetchDiscordStatus();
+            checkOAuth2Params();
+        };
+    </script>
 </body>
 </html>
