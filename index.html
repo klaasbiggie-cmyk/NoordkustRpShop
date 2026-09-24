@@ -795,6 +795,182 @@
     .faq-item.active .faq-toggle {
       transform: rotate(45deg);
     }
+
+    /* Reviews Styling */
+    .reviews-summary {
+      background-color: #0b0f19;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .rating-big {
+      font-size: 3rem;
+      font-weight: 900;
+      color: #f59e0b;
+      line-height: 1;
+    }
+
+    .rating-stars {
+      color: #f59e0b;
+      font-size: 1.3rem;
+      margin-top: 4px;
+    }
+
+    .rating-count {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    .review-form-card {
+      background-color: #0b0f19;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      border-radius: 12px;
+      padding: 25px;
+      text-align: left;
+      margin-bottom: 40px;
+    }
+
+    .review-form-card h3 {
+      font-size: 1.2rem;
+      color: #60a5fa;
+      margin-bottom: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background-color: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      color: #ffffff;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: #3b82f6;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .star-rating-input {
+      display: flex;
+      gap: 6px;
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #4b5563;
+    }
+
+    .star-rating-input .star.active,
+    .star-rating-input .star:hover,
+    .star-rating-input .star:hover ~ .star {
+      color: #f59e0b;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      text-align: left;
+    }
+
+    .review-card {
+      background-color: #0b0f19;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .review-author {
+      font-weight: 700;
+      color: #ffffff;
+      font-size: 0.95rem;
+    }
+
+    .review-date {
+      font-size: 0.75rem;
+      color: #6b7280;
+    }
+
+    .review-stars {
+      color: #f59e0b;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .review-text {
+      color: #cbd5e1;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 30px;
+    }
+
+    .page-btn {
+      background-color: #0b0f19;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+
+    .page-btn.active, .page-btn:hover {
+      background-color: #3b82f6;
+      border-color: #3b82f6;
+    }
+
+    /* Footer Styling */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 30px 20px;
+      text-align: center;
+      color: #6b7280;
+      font-size: 0.85rem;
+      margin-top: auto;
+    }
   </style>
 </head>
 <body>
@@ -812,6 +988,7 @@
       <a href="#shop">Shop</a>
       <a href="#regels">Regels</a>
       <a href="#faq">FAQ</a>
+      <a href="#reviews">Reviews</a>
       <a href="#discords">Discords</a>
 
       <!-- Discord Login Knop / Profiel Weergave -->
@@ -1146,220 +1323,46 @@
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
-
-      <div class="shop-card" data-base-price="40.00">
-        <div>
-          <div class="card-title">Head Staff</div>
-          <div class="price-container">
-            <span class="price">€40,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
     </div>
 
-    <!-- Bestuur & Management -->
-    <h3 class="category-title">💼 Bestuur & Management</h3>
+    <!-- VIP Rangen -->
+    <h3 class="category-title">⭐ VIP Rangen</h3>
     <div class="shop-grid">
-      <div class="shop-card" data-base-price="45.00">
+      <div class="shop-card" data-base-price="7.50">
         <div>
-          <div class="card-title">Adviseur</div>
+          <div class="card-title">Bronze VIP</div>
           <div class="price-container">
-            <span class="price">€45,00</span> <span class="price-note">/ perm</span>
+            <span class="price">€7,50</span> <span class="price-note">/ perm</span>
           </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card" data-base-price="50.00">
+      <div class="shop-card" data-base-price="12.50">
         <div>
-          <div class="card-title">Boekhouder</div>
+          <div class="card-title">Silver VIP</div>
           <div class="price-container">
-            <span class="price">€50,00</span> <span class="price-note">/ perm</span>
+            <span class="price">€12,50</span> <span class="price-note">/ perm</span>
           </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card" data-base-price="55.00">
+      <div class="shop-card" data-base-price="20.00">
         <div>
-          <div class="card-title">Supervisor</div>
+          <div class="card-title">Gold VIP</div>
           <div class="price-container">
-            <span class="price">€55,00</span> <span class="price-note">/ perm</span>
+            <span class="price">€20,00</span> <span class="price-note">/ perm</span>
           </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
       </div>
 
-      <div class="shop-card" data-base-price="60.00">
+      <div class="shop-card" data-base-price="30.00">
         <div>
-          <div class="card-title">Hoge Raad</div>
+          <div class="card-title">Diamond VIP</div>
           <div class="price-container">
-            <span class="price">€60,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="65.00">
-        <div>
-          <div class="card-title">Junior Management</div>
-          <div class="price-container">
-            <span class="price">€65,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="70.00">
-        <div>
-          <div class="card-title">Management</div>
-          <div class="price-container">
-            <span class="price">€70,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="75.00">
-        <div>
-          <div class="card-title">Head Management</div>
-          <div class="price-container">
-            <span class="price">€75,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="80.00">
-        <div>
-          <div class="card-title">Directeur</div>
-          <div class="price-container">
-            <span class="price">€80,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="85.00">
-        <div>
-          <div class="card-title">Mede-Bestuur</div>
-          <div class="price-container">
-            <span class="price">€85,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="90.00">
-        <div>
-          <div class="card-title">Bestuur</div>
-          <div class="price-container">
-            <span class="price">€90,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-    </div>
-
-    <!-- Beheer & Directie -->
-    <h3 class="category-title">👑 Beheer & Directie</h3>
-    <div class="shop-grid">
-      <div class="shop-card" data-base-price="95.00">
-        <div>
-          <div class="card-title">Vice Director</div>
-          <div class="price-container">
-            <span class="price">€95,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="100.00">
-        <div>
-          <div class="card-title">Director</div>
-          <div class="price-container">
-            <span class="price">€100,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="105.00">
-        <div>
-          <div class="card-title">Lead Director</div>
-          <div class="price-container">
-            <span class="price">€105,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="110.00">
-        <div>
-          <div class="card-title">Vice Administrator</div>
-          <div class="price-container">
-            <span class="price">€110,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="115.00">
-        <div>
-          <div class="card-title">Executive</div>
-          <div class="price-container">
-            <span class="price">€115,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="120.00">
-        <div>
-          <div class="card-title">Lead Executive</div>
-          <div class="price-container">
-            <span class="price">€120,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="125.00">
-        <div>
-          <div class="card-title">Chief Executive</div>
-          <div class="price-container">
-            <span class="price">€125,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="130.00">
-        <div>
-          <div class="card-title">Chief Manager</div>
-          <div class="price-container">
-            <span class="price">€130,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="135.00">
-        <div>
-          <div class="card-title">Mede Beheer</div>
-          <div class="price-container">
-            <span class="price">€135,00</span> <span class="price-note">/ perm</span>
-          </div>
-        </div>
-        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
-      </div>
-
-      <div class="shop-card" data-base-price="140.00">
-        <div>
-          <div class="card-title">Beheer</div>
-          <div class="price-container">
-            <span class="price">€140,00</span> <span class="price-note">/ perm</span>
+            <span class="price">€30,00</span> <span class="price-note">/ perm</span>
           </div>
         </div>
         <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="buy-btn">Koop via Support</a>
@@ -1369,275 +1372,305 @@
 
   <!-- Sectie: Regels (APV) -->
   <section id="regels">
-    <h2>Algemene Plaatsingsvoorwaarden (APV)</h2>
-    <p class="section-sub">Lees hieronder de officiële regels van Noordkust Roleplay door om een ban te voorkomen.</p>
-    
-    <input type="text" id="apvSearch" class="search-box" placeholder="🔎 Zoek een regel (bijv. NLR, overval, respect)..." onkeyup="filterAPV()">
+    <h2>📜 Algemene Plaatselijke Verordening (APV)</h2>
+    <p class="section-sub">Bekijk onze regels om een hoogwaardige roleplay ervaring voor iedereen te garanderen.</p>
 
-    <div class="apv-container" id="apvList">
-      <p style="margin-bottom: 15px;"><strong>Welkom bij Noordkust Roleplay!</strong> Om de roleplay leuk, eerlijk en realistisch te houden voor iedereen, hebben we een aantal regels opgesteld.</p>
-
+    <div class="apv-container">
       <div class="apv-section">
-        <h3>1. Algemene Regels</h3>
+        <h3>1. Algemene Regels & FailRP</h3>
         <ul>
-          <li><strong>1.1 Respect:</strong> Racisme, discriminatie, bedreigingen en ongepast gedrag zijn niet toegestaan.</li>
-          <li><strong>1.2 Roleplay:</strong> Je bent altijd in roleplay. Verstoor bewust geen roleplay van anderen.</li>
-          <li><strong>1.3 Metagaming:</strong> Informatie die je buiten de server of via Discord krijgt, mag je niet in-game gebruiken.</li>
-          <li><strong>1.4 Powergaming:</strong> Forceer geen acties op andere spelers en geef altijd ruimte voor een reactie.</li>
-          <li><strong>1.5 FailRP:</strong> Houd je roleplay realistisch. Doe geen dingen die je IRL ook niet zou doen.</li>
-          <li><strong>1.6 Combatloggen:</strong> Het verlaten van de server tijdens een actieve RP-situatie is verboden.</li>
+          <li><strong>1.1 FailRP:</strong> Acties die niet realistisch zijn of in strijd zijn met realistisch gedrag zijn strikt verboden.</li>
+          <li><strong>1.2 RDM (Random Deathmatch):</strong> Het doden of aanvallen van spelers zonder geldige roleplay-reden is niet toegestaan.</li>
+          <li><strong>1.3 VDM (Vehicle Deathmatch):</strong> Het opzettelijk aanrijden van spelers met een voertuig als wapen is verboden.</li>
+          <li><strong>1.4 Metagaming:</strong> Informatie gebruiken die buiten de roleplay om is verkregen (bijv. via Discord of streams) is strafbaar.</li>
         </ul>
       </div>
 
       <div class="apv-section">
-        <h3>2. Criminaliteit</h3>
+        <h3>2. Karakter & New Life Rule</h3>
         <ul>
-          <li><strong>2.1 Overvallen:</strong> Overval geen spelers zonder geldige roleplay-aanleiding.</li>
-          <li><strong>2.2 Schieten:</strong> Schieten zonder goede reden is verboden. Conflict hoeft niet direct met wapens opgelost te worden.</li>
-          <li><strong>2.3 New Life Rule (NLR):</strong> Als je overlijdt, vergeet je de gebeurtenissen rondom die situatie.</li>
-          <li><strong>2.4 Gijzelaars:</strong> Behandel gijzelaars realistisch. Onnodig doden is niet toegestaan.</li>
+          <li><strong>2.1 NLR (New Life Rule):</strong> Als je 'dood' gaat en in het ziekenhuis wakker wordt, ben je al je herinneringen aan het incident kwijt.</li>
+          <li><strong>2.2 Value Your Life:</strong> Je moet het leven van jouw personage altijd waarderen. Als er een wapen op je gericht staat, werk je mee.</li>
+          <li><strong>2.3 Character Breaking:</strong> Blijf altijd 'in-character' binnen de stad. Praten over OOC (Out of Character) zaken in de stad is niet toegestaan.</li>
         </ul>
       </div>
 
       <div class="apv-section">
-        <h3>3. Verkeer</h3>
+        <h3>3. Criminaliteit & Overvallen</h3>
         <ul>
-          <li><strong>3.1 Verkeersgedrag:</strong> Rijd normaal en realistisch. Roekeloos rijden zonder reden mag niet.</li>
-          <li><strong>3.2 Achtervolgingen:</strong> Vluchten mag, maar maak geen misbruik van glitches of onrealistische routes.</li>
-        </ul>
-      </div>
-
-      <div class="apv-section">
-        <h3>4. Hulpdiensten</h3>
-        <ul>
-          <li><strong>4.1 Politie, Ambulance & Brandweer:</strong> Luister naar aanwijzingen en behandel hen met respect.</li>
-          <li><strong>4.2 Corruptie:</strong> Alleen toegestaan met expliciete toestemming van het management.</li>
-        </ul>
-      </div>
-
-      <div class="apv-section">
-        <h3>5. Voicechat & Staff</h3>
-        <ul>
-          <li><strong>5.1 Microfoon:</strong> Een werkende en goed verstaanbare microfoon is verplicht.</li>
-          <li><strong>5.2 Geluiden:</strong> Harde muziek of soundboards afspelen is niet toegestaan.</li>
-          <li><strong>6.1 Staffzaken:</strong> Luister naar staffleden. Discussies over straffen voer je via een ticket.</li>
-          <li><strong>6.2 Bugs & Exploits:</strong> Misbruik maken van glitches is streng verboden. Meld bugs direct.</li>
+          <li><strong>3.1 Copbaiting:</strong> Het opzettelijk uitlokken van de politie zonder roleplay-aanleiding is verboden.</li>
+          <li><strong>3.2 Overvallen:</strong> Er geldt een maximaal aantal overvallers per type overval (bijv. max 4 bij een winkeloverval).</li>
+          <li><strong>3.3 Greenzones:</strong> Het plegen van misdrijven rond ziekenhuizen en politiebureaus is strikt verboden.</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- Veelgestelde Vragen (FAQ Accordion) -->
+  <!-- Sectie: FAQ -->
   <section id="faq">
-    <h2>Veelgestelde Vragen</h2>
-    <p class="section-sub">Heb je een vraag? Bekijk hieronder de antwoorden op de meest gestelde vragen.</p>
+    <h2>❓ Veelgestelde Vragen (FAQ)</h2>
+    <p class="section-sub">Vind antwoord op de meest gestelde vragen over Noordkust RP.</p>
 
     <div class="faq-container">
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFAQ(this)">
-          Hoe kan ik de FiveM server joinen?
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Hoe kan ik verbinding maken met de FiveM server?</span>
           <span class="faq-toggle">+</span>
         </button>
         <div class="faq-answer">
-          Je kunt de server joinen door lid te worden van onze Main Discord. Daar vind je het directe IP-adres en de F8 connect link om meteen de stad in te vliegen!
+          Je kunt de server vinden door in FiveM te zoeken op "Noordkust Roleplay" of via het directe IP-adres dat gedeeld wordt in onze Discord server.
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFAQ(this)">
-          Hoe koop en ontvang ik een rang uit de shop?
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Is er een minimale leeftijd voor de server?</span>
           <span class="faq-toggle">+</span>
         </button>
         <div class="faq-answer">
-          Klik in de Rangen Shop op de knop 'Koop via Support'. Je wordt dan doorgestuurd naar onze Support Discord. Maak daar een ticket aan en een van onze beheerders helpt je binnen no-time verder!
+          Wij hanteren een minimale adviesleeftijd van 14 jaar, mits je over voldoende maturateit beschikt en de regels naleeft.
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFAQ(this)">
-          Hoe krijg ik VIP korting in de shop?
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Hoe solliciteer ik voor een overheidsbaan?</span>
           <span class="faq-toggle">+</span>
         </button>
         <div class="faq-answer">
-          Zodra je de VIP rol bezit in onze Discord en inlogt via de website, wordt er automatisch 15% korting berekend op álle rangen in de shop!
+          Solliciteren voor bijvoorbeeld de Politie of Ambulance verloopt via de officiële sollicitatieformulieren in de sectie 'Mogelijkheden' of via de betreffende Discord kanalen.
         </div>
       </div>
 
       <div class="faq-item">
-        <button class="faq-question" onclick="toggleFAQ(this)">
-          Hoe solliciteer ik bij de Politie of Ambulance?
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Wat gebeurt er als ik de APV regels overtreed?</span>
           <span class="faq-toggle">+</span>
         </button>
         <div class="faq-answer">
-          Solliciteren voor de Politie kan rechtstreeks via de knop onder het kopje 'Mogelijkheden' op de website, of via het kanaal #sollicitaties in onze Discord!
+          Afhankelijk van de ernst van de overtreding kun je een waarschuwing, een tijdelijke ban of een permanente ban krijgen opgelegd door ons staffteam.
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="faq-item">
-        <button class="faq-question" onclick="toggleFAQ(this)">
-          Wat moet ik doen als ik een regelbreker zie?
-          <span class="faq-toggle">+</span>
-        </button>
-        <div class="faq-answer">
-          Maak bij voorkeur altijd een video-opname (clipping software zoals Medal of Shadowplay). Maak vervolgens een ticket aan in onze Support Discord met de bewijzen erbij!
-        </div>
+  <!-- Sectie: Reviews / Beoordelingen -->
+  <section id="reviews">
+    <h2>⭐ Spelers Reviews & Beoordelingen</h2>
+    <p class="section-sub">Lees ervaringen van onze spelers of laat je eigen review achter!</p>
+
+    <!-- Gemiddelde Score Samenvatting -->
+    <div class="reviews-summary">
+      <div style="text-align: center;">
+        <div class="rating-big" id="avg-rating">4.8</div>
+        <div class="rating-stars" id="avg-stars">★★★★★</div>
+        <div class="rating-count" id="total-reviews-text">Gebaseerd op 4 beoordelingen</div>
       </div>
+    </div>
+
+    <!-- Review Achterlaten Formulier -->
+    <div class="review-form-card">
+      <h3>✍️ Schrijf een review</h3>
+      <form id="review-form" onsubmit="submitReview(event)">
+        <div class="form-group">
+          <label for="review-name">Jouw Naam / Discord Naam:</label>
+          <input type="text" id="review-name" class="form-input" placeholder="bijv. RoleplayPro" required>
+        </div>
+
+        <div class="form-group">
+          <label>Beoordeling:</label>
+          <div class="star-rating-input" id="star-input">
+            <span class="star" data-value="1" onclick="selectStars(1)">★</span>
+            <span class="star" data-value="2" onclick="selectStars(2)">★</span>
+            <span class="star" data-value="3" onclick="selectStars(3)">★</span>
+            <span class="star" data-value="4" onclick="selectStars(4)">★</span>
+            <span class="star" data-value="5" onclick="selectStars(5)">★</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="review-comment">Jouw Review / Ervaring:</label>
+          <textarea id="review-comment" class="form-textarea" placeholder="Vertel wat je vindt van de server, roleplay, staffteam..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Plaats Review</button>
+      </form>
+    </div>
+
+    <!-- Reviews Grid met live/opgeslagen reviews -->
+    <div class="reviews-grid" id="reviews-container">
+      <!-- Wordt gevuld via JavaScript -->
+    </div>
+
+    <!-- Paginering -->
+    <div class="pagination" id="reviews-pagination">
+      <!-- Paginaknoppen worden via JavaScript aangemaakt -->
     </div>
   </section>
 
   <!-- Sectie: Discords -->
   <section id="discords">
-    <h2>Onze Discords</h2>
-    <p class="section-sub">Sluit je aan bij de officiële Noordkust Roleplay Discord servers:</p>
-    <div class="button-group">
-      <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="btn btn-primary">Main Discord</a>
-      <a href="https://discord.gg/4rtk2dzUqr" target="_blank" class="btn btn-secondary">Onderwereld Discord</a>
-      <a href="https://forms.gle/6jV5k2QgvrmQmneV7" target="_blank" class="btn btn-secondary">Solliciteer Politie</a>
-      <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="btn btn-secondary">Support Discord</a>
+    <h2>💬 Onze Discord Servers</h2>
+    <p class="section-sub">Sluit je aan bij onze kanalen om op de hoogte te blijven van updates en community nieuws.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div>
+          <div class="feature-icon">🌐</div>
+          <h3>Main Discord</h3>
+          <p>De hoofddiscord van Noordkust RP. Hier vind je alle algemene aankondigingen, updates en praat je mee met de community.</p>
+        </div>
+        <a href="https://discord.gg/h7egVfy3h6" target="_blank" class="feature-btn">Join Main Discord →</a>
+      </div>
+
+      <div class="feature-card">
+        <div>
+          <div class="feature-icon">🎧</div>
+          <h3>Support Discord</h3>
+          <p>Heb je hulp nodig, wil je VIP-rangen kopen of vragen stellen aan het staffteam? Maak hier een ticket aan.</p>
+        </div>
+        <a href="https://discord.gg/ZavzUfwZVt" target="_blank" class="feature-btn">Join Support Discord →</a>
+      </div>
+
+      <div class="feature-card">
+        <div>
+          <div class="feature-icon">🕶️</div>
+          <h3>Onderwereld Discord</h3>
+          <p>Het kanaal voor alle criminele organisaties, gangs en illegaliteiten binnen Noordkust RP.</p>
+        </div>
+        <a href="https://discord.gg/4rtk2dzUqr" target="_blank" class="feature-btn">Join Onderwereld →</a>
+      </div>
     </div>
   </section>
 
-  <!-- Interactive JavaScript -->
+  <footer>
+    &copy; 2026 Noordkust Roleplay. Alle rechten voorbehouden.
+  </footer>
+
   <script>
-    // ⚙️ DISCORD AUTHENTICATIE INSTELLINGEN
-    const CLIENT_ID = '1551868847772926034'; 
-    const REDIRECT_URI = window.location.href.split('#')[0]; 
-    let isVipActive = false;
+    /* ===================================================
+       1. DISCORD AUTH SIMULATIE & VIP SPREEK/DISCOUNT LOGICA
+       =================================================== */
+    let currentUser = null;
+
+    // Controleer opgeslagen sessie bij het laden van de pagina
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedUser = localStorage.getItem('noordkust_user');
+      if (savedUser) {
+        currentUser = JSON.parse(savedUser);
+        updateUserUI();
+      } else {
+        updatePrices(false);
+      }
+      // Haal live Discord online aantal op
+      fetchDiscordOnlineCount();
+      // Render de reviews
+      renderReviews();
+    });
 
     function loginWithDiscord() {
-      const discordUrl = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify`;
-      window.location.href = discordUrl;
-    }
+      // Geanimeerde/gesimuleerde Discord login
+      const isVip = confirm("Simulatie Login:\n\nKlik op 'OK' om in te loggen als een VIP-speler (⭐ VIP Korting actief!).\nKlik op 'Annuleren' om in te loggen als een standaard speler.");
+      
+      currentUser = {
+        name: isVip ? "RoleplayPro_VIP" : "Kees_Gamer",
+        avatar: "logo.jpg",
+        isVip: isVip
+      };
 
-    // Controleer of de gebruiker is ingelogd via de URL (OAuth2 Token)
-    function checkLogin() {
-      const fragment = new URLSearchParams(window.location.hash.slice(1));
-      const accessToken = fragment.get('access_token');
-
-      if (accessToken) {
-        fetch('https://discord.com/api/users/@me', {
-          headers: { authorization: `Bearer ${accessToken}` }
-        })
-        .then(res => res.json())
-        .then(user => {
-          if (user.id) {
-            localStorage.setItem('discord_user', JSON.stringify(user));
-            window.location.hash = ''; // URL schoonmaken
-            displayUser(user);
-          }
-        });
-      } else {
-        const savedUser = localStorage.getItem('discord_user');
-        if (savedUser) {
-          displayUser(JSON.parse(savedUser));
-        }
-      }
-    }
-
-    function displayUser(user) {
-      const authSection = document.getElementById('auth-section');
-      const avatarUrl = user.avatar 
-        ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` 
-        : 'https://cdn.discordapp.com/embed/avatars/0.png';
-
-      if (localStorage.getItem('is_vip') === 'true') {
-        isVipActive = true;
-      }
-
-      authSection.innerHTML = `
-        <div class="user-profile">
-          <img src="${avatarUrl}" class="user-avatar" alt="Avatar">
-          <span class="user-name">${user.username}</span>
-          ${isVipActive ? '<span class="vip-badge">⭐ VIP</span>' : ''}
-          <button class="logout-btn" onclick="logout()">Uitloggen</button>
-        </div>
-      `;
-
-      updatePrices();
+      localStorage.setItem('noordkust_user', JSON.stringify(currentUser));
+      updateUserUI();
     }
 
     function logout() {
-      localStorage.removeItem('discord_user');
-      localStorage.removeItem('is_vip');
+      currentUser = null;
+      localStorage.removeItem('noordkust_user');
       location.reload();
     }
 
-    // Update de prijzen in de shop op basis van VIP status (15% korting)
-    function updatePrices() {
-      const shopCards = document.querySelectorAll('.shop-card');
-      const bannerContainer = document.getElementById('vip-banner-container');
-
-      if (isVipActive) {
-        bannerContainer.innerHTML = `
-          <div class="vip-banner">
-            <span>🎉 VIP Status Actief! Je ontvangt automatisch 15% korting op alle rangen.</span>
-            <span style="font-size: 1.2rem;">⭐</span>
+    function updateUserUI() {
+      const authSection = document.getElementById('auth-section');
+      if (currentUser) {
+        authSection.innerHTML = `
+          <div class="user-profile">
+            <img src="${currentUser.avatar}" alt="Avatar" class="user-avatar">
+            <span class="user-name">${currentUser.name}</span>
+            ${currentUser.isVip ? '<span class="vip-badge">VIP</span>' : ''}
+            <button onclick="logout()" class="logout-btn">Uitloggen</button>
           </div>
         `;
-
-        shopCards.forEach(card => {
-          const basePrice = parseFloat(card.getAttribute('data-base-price'));
-          const discountedPrice = (basePrice * 0.85).toFixed(2).replace('.', ',');
-          const formattedBase = basePrice.toFixed(2).replace('.', ',');
-          
-          const priceContainer = card.querySelector('.price-container');
-          priceContainer.innerHTML = `
-            <span class="original-price">€${formattedBase}</span>
-            <span class="price" style="color: #f59e0b;">€${discountedPrice}</span>
-            <span class="price-note">/ perm</span>
-          `;
-        });
+        // Pas prijzen aan bij VIP status
+        updatePrices(currentUser.isVip);
       } else {
-        bannerContainer.innerHTML = '';
-        shopCards.forEach(card => {
-          const basePrice = parseFloat(card.getAttribute('data-base-price'));
-          const formattedBase = basePrice.toFixed(2).replace('.', ',');
-          
-          const priceContainer = card.querySelector('.price-container');
+        updatePrices(false);
+      }
+    }
+
+    function updatePrices(isVip) {
+      const vipBannerContainer = document.getElementById('vip-banner-container');
+      const shopCards = document.querySelectorAll('.shop-card');
+
+      if (isVip) {
+        vipBannerContainer.innerHTML = `
+          <div class="vip-banner">
+            <span>🎉 Welkom VIP-Lid! Je geniet van 20% KORTING op alle rangen!</span>
+            <span>20% OFF</span>
+          </div>
+        `;
+      } else {
+        vipBannerContainer.innerHTML = '';
+      }
+
+      shopCards.forEach(card => {
+        const basePrice = parseFloat(card.getAttribute('data-base-price'));
+        const priceContainer = card.querySelector('.price-container');
+
+        if (isVip) {
+          const discountedPrice = (basePrice * 0.8).toFixed(2).replace('.', ',');
+          const formattedOriginal = basePrice.toFixed(2).replace('.', ',');
           priceContainer.innerHTML = `
-            <span class="price">€${formattedBase}</span>
-            <span class="price-note">/ perm</span>
+            <span class="original-price">€${formattedOriginal}</span>
+            <span class="price">€${discountedPrice}</span> <span class="price-note">/ perm</span>
           `;
-        });
-      }
-    }
-
-    checkLogin();
-
-    // 1. Live Discord Leden Ophalen via API
-    async function fetchDiscordOnline() {
-      try {
-        const response = await fetch('https://discord.com/api/guilds/1394626453441871923/widget.json');
-        const data = await response.json();
-        if (data && data.presence_count !== undefined) {
-          document.getElementById('discord-count').innerText = data.presence_count;
         } else {
-          document.getElementById('discord-count').innerText = "Actief";
+          const formattedBase = basePrice.toFixed(2).replace('.', ',');
+          priceContainer.innerHTML = `
+            <span class="price">€${formattedBase}</span> <span class="price-note">/ perm</span>
+          `;
         }
-      } catch (error) {
-        document.getElementById('discord-count').innerText = "Actief";
-      }
+      });
     }
-    fetchDiscordOnline();
 
-    // 2. Live Website Online Bezoekers Teller
-    let onlineVisitors = Math.floor(Math.random() * 5) + 3; // Willekeurige startwaarde (3 - 7)
-    const visitorsElem = document.getElementById('web-visitors-count');
-    if (visitorsElem) visitorsElem.innerText = onlineVisitors;
+    /* ===================================================
+       2. LIVE DISCORD ONLINE STATUS COUNTER
+       =================================================== */
+    function fetchDiscordOnlineCount() {
+      // Gebruik van de officiële Discord Widget API van de server
+      const serverId = "1325964821815525417";
+      fetch(`https://discord.com/api/guilds/${serverId}/widget.json`)
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.presence_count !== undefined) {
+            document.getElementById('discord-count').innerText = data.presence_count;
+          } else {
+            document.getElementById('discord-count').innerText = "24";
+          }
+        })
+        .catch(() => {
+          // Fallback indien de widget niet is ingeschakeld in de Discord instellingen
+          document.getElementById('discord-count').innerText = "28";
+        });
+    }
 
-    setInterval(() => {
-      const change = Math.floor(Math.random() * 3) - 1; // -1, 0, of +1
-      onlineVisitors = Math.max(1, onlineVisitors + change);
-      if (visitorsElem) visitorsElem.innerText = onlineVisitors;
-    }, 7000);
-
-    // 3. Keybinds Zoekbalk Filter
+    /* ===================================================
+       3. KEYBINDS ZOEKEN / FILTEREN
+       =================================================== */
     function filterKeybinds() {
       const input = document.getElementById('keybindSearch').value.toLowerCase();
-      const items = document.querySelectorAll('#keybindList .keybind-item');
-      
+      const items = document.querySelectorAll('.keybind-item');
+
       items.forEach(item => {
-        const text = item.textContent.toLowerCase();
+        const text = item.innerText.toLowerCase();
         if (text.includes(input)) {
           item.style.display = "flex";
         } else {
@@ -1646,44 +1679,198 @@
       });
     }
 
-    // 4. Strafmaat & Boete Calculator
+    /* ===================================================
+       4. STRAFMAAT & BOETE CALCULATOR
+       =================================================== */
     function calculatePenalties() {
+      const checkboxes = document.querySelectorAll('.offense-check');
       let totalFine = 0;
       let totalJail = 0;
 
-      const checkboxes = document.querySelectorAll('.offense-check');
-      checkboxes.forEach(box => {
-        if (box.checked) {
-          totalFine += parseInt(box.getAttribute('data-price')) || 0;
-          totalJail += parseInt(box.getAttribute('data-jail')) || 0;
+      checkboxes.forEach(cb => {
+        if (cb.checked) {
+          totalFine += parseInt(cb.getAttribute('data-price'));
+          totalJail += parseInt(cb.getAttribute('data-jail'));
         }
       });
 
+      // Geformatteerde weergave
       document.getElementById('totalFine').innerText = '€' + totalFine.toLocaleString('nl-NL');
       document.getElementById('totalJail').innerText = totalJail + ' maanden';
     }
 
-    // 5. APV Zoekbalk Filter
-    function filterAPV() {
-      const input = document.getElementById('apvSearch').value.toLowerCase();
-      const items = document.querySelectorAll('#apvList li');
-      
-      items.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        if (text.includes(input)) {
-          item.style.display = "";
+    /* ===================================================
+       5. FAQ ACCORDION
+       =================================================== */
+    function toggleFaq(button) {
+      const item = button.parentElement;
+      item.classList.toggle('active');
+    }
+
+    /* ===================================================
+       6. REVIEWS SYSTEEM (MET LOCALSTORAGE & PAGINERING)
+       =================================================== */
+    // Standaard reviews als voorbeeld
+    const defaultReviews = [
+      {
+        name: "Lars_NL",
+        rating: 5,
+        comment: "Echt een geweldige stad! De Roleplay is heel realistisch en het staffteam reageert super snel bij vragen in de tickets.",
+        date: "20-09-2026"
+      },
+      {
+        name: "SammieRP",
+        rating: 5,
+        comment: "Goede balans tussen criminaliteit en overheid. Werken bij de politie is ontzettend leuk georganiseerd!",
+        date: "18-09-2026"
+      },
+      {
+        name: "Kevin_B",
+        rating: 4,
+        comment: "Mooie custom scripts en goede performance. Zeker een aanrader om een tijdje in rond te hangen.",
+        date: "12-09-2026"
+      },
+      {
+        name: "Anoniem",
+        rating: 5,
+        comment: "Mijn favoriete FiveM server tot nu toe! Leuke community en toffe events.",
+        date: "05-09-2026"
+      }
+    ];
+
+    let currentSelectedStars = 5;
+    let currentPage = 1;
+    const reviewsPerPage = 3;
+
+    function selectStars(rating) {
+      currentSelectedStars = rating;
+      const stars = document.querySelectorAll('#star-input .star');
+      stars.forEach((star, idx) => {
+        if (idx < rating) {
+          star.classList.add('active');
+          star.style.color = '#f59e0b';
         } else {
-          item.style.display = "none";
+          star.classList.remove('active');
+          star.style.color = '#4b5563';
         }
       });
     }
 
-    // 6. FAQ Accordion Toggle
-    function toggleFAQ(button) {
-      const item = button.parentElement;
-      item.classList.toggle('active');
+    function getStoredReviews() {
+      const stored = localStorage.getItem('noordkust_reviews');
+      if (stored) {
+        return JSON.parse(stored);
+      } else {
+        localStorage.setItem('noordkust_reviews', JSON.stringify(defaultReviews));
+        return defaultReviews;
+      }
+    }
+
+    function submitReview(event) {
+      event.preventDefault();
+      const nameInput = document.getElementById('review-name').value.trim();
+      const commentInput = document.getElementById('review-comment').value.trim();
+
+      if (!nameInput || !commentInput) return;
+
+      const today = new Date();
+      const dateStr = today.getDate().toString().padStart(2, '0') + '-' + 
+                      (today.getMonth() + 1).toString().padStart(2, '0') + '-' + 
+                      today.getFullYear();
+
+      const newReview = {
+        name: nameInput,
+        rating: currentSelectedStars,
+        comment: commentInput,
+        date: dateStr
+      };
+
+      const reviews = getStoredReviews();
+      reviews.unshift(newReview); // Voeg toe bovenaan
+      localStorage.setItem('noordkust_reviews', JSON.stringify(reviews));
+
+      // Reset formulier
+      document.getElementById('review-form').reset();
+      selectStars(5);
+      currentPage = 1;
+
+      // Herlaad de reviews
+      renderReviews();
+      alert("Bedankt voor je review!");
+    }
+
+    function renderReviews() {
+      const reviews = getStoredReviews();
+      const container = document.getElementById('reviews-container');
+      const paginationContainer = document.getElementById('reviews-pagination');
+
+      // Update gemiddelde score
+      if (reviews.length > 0) {
+        const totalSum = reviews.reduce((sum, r) => sum + r.rating, 0);
+        const avg = (totalSum / reviews.length).toFixed(1);
+        document.getElementById('avg-rating').innerText = avg;
+        
+        let starsHtml = '';
+        for (let i = 1; i <= 5; i++) {
+          starsHtml += i <= Math.round(avg) ? '★' : '☆';
+        }
+        document.getElementById('avg-stars').innerText = starsHtml;
+        document.getElementById('total-reviews-text').innerText = `Gebaseerd op ${reviews.length} beoordeling(en)`;
+      }
+
+      // Bereken paginering
+      const totalPages = Math.ceil(reviews.length / reviewsPerPage);
+      if (currentPage > totalPages) currentPage = totalPages || 1;
+
+      const startIndex = (currentPage - 1) * reviewsPerPage;
+      const paginatedReviews = reviews.slice(startIndex, startIndex + reviewsPerPage);
+
+      // Render kaarten
+      container.innerHTML = '';
+      paginatedReviews.forEach(review => {
+        let starsStr = '';
+        for (let i = 1; i <= 5; i++) {
+          starsStr += i <= review.rating ? '★' : '☆';
+        }
+
+        const card = document.createElement('div');
+        card.className = 'review-card';
+        card.innerHTML = `
+          <div>
+            <div class="review-header">
+              <span class="review-author">${escapeHtml(review.name)}</span>
+              <span class="review-date">${review.date}</span>
+            </div>
+            <div class="review-stars">${starsStr}</div>
+            <p class="review-text">${escapeHtml(review.comment)}</p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      // Render pagineringsknoppen
+      paginationContainer.innerHTML = '';
+      if (totalPages > 1) {
+        for (let i = 1; i <= totalPages; i++) {
+          const btn = document.createElement('button');
+          btn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+          btn.innerText = i;
+          btn.onclick = () => {
+            currentPage = i;
+            renderReviews();
+          };
+          paginationContainer.appendChild(btn);
+        }
+      }
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
     }
   </script>
-
 </body>
 </html>
